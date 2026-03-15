@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>âš½ KostkovÃ¡ Liga</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a12;--bg2:#12121e;--bg3:#1a1a2a;--bg4:#222235;
+  --accent:#f0b429;--accent2:#c98d00;
+  --blue:#3b82f6;--green:#22c55e;--red:#ef4444;--purple:#7c3aed;
+  --text:#e2e8f0;--text2:#94a3b8;--border:#2a2a3e;
+  --shadow:0 4px 24px rgba(0,0,0,.6)
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;display:flex;flex-direction:column}
+*{scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.btn{padding:6px 14px;border:none;border-radius:6px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .18s;display:inline-flex;align-items:center;gap:5px}
+.btn:disabled{opacity:.4;cursor:default}
+.btn-primary{background:var(--accent);color:#000}
+.btn-primary:hover:not(:disabled){background:var(--accent2);color:#fff}
+.btn-secondary{background:var(--bg4);color:var(--text);border:1px solid var(---border)}
+.btn-secondary:hover:not(:disabled){background:var(--bg3)}
+.btn-danger{background:#7f1d1d;color:#fca5a5;border:1px solid #991b1b}
+.btn-danger:hover:not(:disabled){background:#991b1b}
+.btn-sm;padding:3px 9px;font-size:.76rem}
+.hidden{display:none!important}
+/* HEADER */
+#_header{Background:var(--bg2);border-bottom:1px solid var(--border);padding:7px 16px;display:flezÛ¬Ø[YÛ‹Z][\Î˜Ù[\™Ø\ŒLÙ›^\Úš[šÎŒŞ‹Z[™^Œ_BˆÚXY\ˆ^Ù›Û\Ú^™NŒKŒM\™[NÙ›Û]ÙZYÚØÛÛÜ˜\ŠKXXØÙ[
+NİÚ]K\ÜXÙN››İÜ˜\Û]\‹\ÜXÚ[™Î‹K\BˆÚXY\ˆHÜ[ØÛÛÜ˜\ŠK]^ŠNÙ›Û]ÙZYÚÙ›Û\Ú^™N‹\™[NÛX\™Ú[‹[YB‹š‹XXİ[ÛœŞÛX\™Ú[‹[Y˜]]Î™\Ü^N™›^ÙØ\ÜØ[YÛ‹Z][\Î˜Ù[\ŸB‹ÊˆP”È
+‹ÂˆİXœËX˜\Ø˜XÚÙÜ›İ[™˜\ŠKX™ÌŠNØ›Ü™\‹X›İÛNŒœÛÛY˜\ŠKX›Ü™\ŠNÙ\Ü^N™›^Ø[YÛ‹Z][\Îœİ™]ÚÛİ™\™›İË^˜]]Î™›^\Úš[šÎŒÛZ[‹ZZYÚŒÎB‹XÜY[™ÎœMØİ\œÛÜœÚ[\İÚ]K\ÜXÙN››İÜ˜\Ù›Û\Ú^™N‹™[NØÛÛÜ˜\ŠK]^ŠNØ›Ü™\‹X›İÛNŒÜÛÛY˜[œÜ\™[Ù\Ü^N™›^Ø[YÛ‹Z][\Î˜Ù[\ÙØ\Ü˜[œÚ][Û˜[ŒM\ÎÙ›^\Úš[šÎŒİ\Ù\‹\Ù[Xİ››Û™N›X\™Ú[‹X›İÛN‹LœB‹Xšİ™\ØÛÛÜ˜\ŠK]^
+NØ˜XÚÙÜ›İ[™œ™Ø˜JMKMKMKŒ
+_B‹X‹˜Xİ]™^ØÛÛÜ˜\ŠKXXØÙ[
+NØ›Ü™\‹X›İÛKXÛÛÜ˜\ŠKXXØÙ[
+NØ˜XÚÙÜ›İ[™œ™Ø˜JNKŒŠ_B‹X‹XÛÜÙ^İÚYŒMœÚZYÚŒMœØ›Ü™\‹\˜Y]\ÎL	N˜˜XÚÙÜ›İ[™˜[œÜ\™[Ø›Ü™\››Û™NØÛÛÜ˜\ŠK]^ŠN˜İ\œÛÜœÚ[\Ù›Û\Ú^™N‹Ü™[NÙ\Ü^N™›^Ø[YÛ‹Z][\Î˜Ù[\Ú\İYKXÛÛ[˜Ù[\İ˜[œÚ][Û˜[ŒM\ÎÙ›^\Úš[šÎŒB‹X‹XÛÜÙNšİ™\Ğ˜XÚÙÜ›İ[™ˆÍÙŒYYØÛÛÜÚ]_BˆØY]X‹XÜY[™ÎœLœØİ\œÛÜœÚ[\ØÛÛÜ˜\ŠKXXØÙ[
+NÙ›Û\Ú^™NŒKŒÜ™[NØ˜XÚÙÜ›İ[™˜[œÜ\™[Ø›Ü™\››Û™NÙ›^\Úš[šÎŒÛ[™KZZYÚŒNÙ\Ü^N™›^Ø[YÛ‹Z][\Î˜Ù[\ŸBˆØY]X‹Xšİ™\Ø˜XÚÙÜ›İ[™œ™Ø˜JNKŒJ_B‹ÊˆPRSˆ
+‹ÂˆÛXZ[Ù\Ü^N™›^Ù›^ŒNÛİ™\™›İÎšY[ŸB‹ÊˆQ•S‘S
+‹ÂˆÜ›İ[™Ë\[™[Ù›^ŒNÙ\Ü^N™›^Ù›^Y\™Xİ[Û˜ÛÛ[[Ûİ™\™›İÎšY[Ø›Ü™\‹\šYÚŒ\ÛÛY˜\ŠKX›Ü™\Š_BˆÜ›İ[™ZXY\Ğ˜XÚÙÜ›İ[™˜\ŠKX™ÌŠNÜY[™ÎMÙ\Ü^N™›^Ø[YÛ‹Z][\Î˜Ù[\Ú\İYKXÛÛ[œÜXÙKX™]ÙY[Ø›Ü™\‹X›İÛNŒ\ÛÛY˜\ŠKKX›Ü™\ŠNÙ›^\Úš[šÎŒÙØ\ŒLBˆÜ›İ[™ZXY\‹[YÙ\Ü^N™›^Ø[YÛ‹Z][\Î˜Ù[\ÙØ\ŒLB‹œ›İ[™[˜]‹XØ˜XÚÙÜ›İ[™˜\ŠKX™Í
+NØ›Ü™\Œ\ÛÛY˜\ŠKX›Ü™\ŠNØÛÛÜ˜\ŠK]^
+NİÚYŒÌÚZYÚŒÌØ›Ü™\‹\˜Y]\ÎœØİ\œÛÜœÚ[\Ù›Û\Ú^™NŒ\™[NÙ\Ü^N™›^Ø[YÛ‹Z][\Î˜Ù[\Ú\İYKXÛÛ[˜Ù[\İ˜[œÚ][Û˜[ŒM\ßB‹œ›İ[™[˜]‹Xšİ™\››İ
+™\ØX›Y
+^Ø˜XÚÙÜ›İ[™˜\ŠKXXØÙ[
+N˜ÛÛÜˆÌØ›Ü™\‹XÛÛÜ˜\ŠKXXØÙ[
+_B‹œ›İ[™[˜]‹X™\ØX›YÛÜXÚ]N‹ŒÎØİ\œÛÜ™Y˜][BˆÜ›İ[™[X™[Ù›Û\Ú^™N‹\™[NÙ›Û]ÙZYÚÌØÛÛÜ˜\ŠK]^
+NÚ]K\ÜXÙN››İÜ˜\BˆÜ›İ[™\›ÙÜ™\ÜŞÙ›Û\Ú^™N‹Í\™[NØÛÛÜ˜\ŠK]^Š_BˆÜ›İ[™ZXY\‹\šYÚÙ\Ü^N™›^ÙØ\ÜØ[YÛ‹Z][\Î˜Ù[\ŸBˆÛX]Ú\Ë[\İÙ›^ŒNÛİ™\™›İË^N˜]]ÎÜY[™ÎœLÙ\Ü^N™›^Ù›^Y\™Xİ[Û˜ÛÛ[[ŸB‹ÊˆPUÒ“ÕÈ
+‹Â‹˜
