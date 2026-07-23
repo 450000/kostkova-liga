@@ -1,0 +1,12 @@
+{
+  "name": "kostkovy-sportovec",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kostkový Sportovec – web, e-kniha pravidel a e-shop pro sporty hrané kostkami",
+  "scripts": {
+    "build": "node scripts/minify.mjs"
+  },
+  "devDependencies": {
+    "html-minifier-terser": "^7.2.0"
+  }
+}

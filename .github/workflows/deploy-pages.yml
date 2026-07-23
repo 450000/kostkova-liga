@@ -31,12 +31,16 @@ jobs:
         with:
           enablement: true
 
-      - name: Připrav statický web (_site)
-        run: |
-          mkdir -p _site
-          cp *.html _site/
-          # Bez Jekyll zpracování – jde o čisté statické HTML
-          touch _site/.nojekyll
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalace závislostí
+        run: npm ci
+
+      - name: Build – minifikace do _site
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
