@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>📖 Kostkový Sportovec – e-kniha pravidel</title>
 <meta name="description" content="E-kniha Kostkový Sportovec: 10 sportů a velký desetiboj hraných hracími kostkami d4–d100. Pravidla, ukázkové zápasy, matematická okénka, turnajové systémy a kodex fair play.">
+<meta name="author" content="Kostkový Sportovec">
+<meta name="theme-color" content="#14131c">
+<meta property="og:type" content="book">
+<meta property="og:site_name" content="Kostkový Sportovec">
+<meta property="og:title" content="E-kniha Kostkový Sportovec – pravidla">
+<meta property="og:description" content="11 kapitol sportů hraných kostkami, matematická okénka, turnajové systémy, kodex fair play a tisknutelné archy.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20x='3'%20y='3'%20width='26'%20height='26'%20rx='6'%20fill='%23f0b429'/%3E%3Cg%20fill='%230a0a12'%3E%3Ccircle%20cx='10'%20cy='10'%20r='2.6'/%3E%3Ccircle%20cx='22'%20cy='10'%20r='2.6'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='2.6'/%3E%3Ccircle%20cx='10'%20cy='22'%20r='2.6'/%3E%3Ccircle%20cx='22'%20cy='22'%20r='2.6'/%3E%3C/g%3E%3C/svg%3E">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -80,8 +87,18 @@ td.l,th.l{text-align:left}
   .page{box-shadow:none;margin:0;max-width:none;padding:10mm 6mm;border-radius:0}
   .page.chapter-page{page-break-before:always}
   .box,table,.info-strip{page-break-inside:avoid}
+  h3{page-break-after:avoid}
   a{color:inherit;text-decoration:none}
+  .cover{padding-top:60mm}
 }
+/* SCROLL TABLES ON NARROW SCREENS */
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0}
+.tbl-scroll table{margin:0}
+@media print{.tbl-scroll{overflow:visible}}
+/* A11Y */
+a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media(max-width:560px){#toolbar{gap:8px;padding:8px 10px}#toolbar .tb-links{width:100%;margin-left:0}}
 </style>
 </head>
 <body>
@@ -128,7 +145,7 @@ td.l,th.l{text-align:left}
     <li><a href="#biatlon">8 · Biatlon</a><span class="dots"></span>🎿</li>
     <li><a href="#atletika">9 · Atletika – sprint a skok daleký</a><span class="dots"></span>🏃</li>
     <li><a href="#sipky">10 · Šipky 301</a><span class="dots"></span>🎯</li>
-    <li><a href="#desetiboj">11 · Desetiboj – král atletiky</a><span class="dots"></span>🏅</li>
+    <li><a href="#desetiboj">11 · Desetiboj a sedmiboj – král atletiky</a><span class="dots"></span>🏅</li>
     <li class="toc-part">Hrajeme spolu</li>
     <li><a href="#turnaje">12 · Turnajové systémy – liga, pavouk, skupiny</a><span class="dots"></span>🏆</li>
     <li><a href="#fairplay">13 · Kodex fair play malého sportovce</a><span class="dots"></span>🤝</li>
@@ -702,6 +719,23 @@ td.l,th.l{text-align:left}
     bodů (100 až 600). Pak sečti pět čísel. Vítěz může mít až 3000 bodů – a sčítání do tří tisíc
     je pro prvňáka pořádný závod.</p>
   </div>
+  <h3>Sedmiboj – sedm disciplín</h3>
+  <p>Na opravdovém mistrovství mají ženy svůj vlastní víceboj: <strong>sedmiboj</strong>. Hraje se
+  úplně stejně, jen se sedmi disciplínami ve dvou dnech. Použijí se tytéž vzorce, takže když umíš
+  desetiboj, umíš i tenhle.</p>
+  <table>
+    <tr><th>Den</th><th class="l">Disciplína</th><th>Kostky</th><th class="l">Body za výkon</th></tr>
+    <tr><td>1.</td><td class="l">🚧 100 m překážky</td><td><span class="die">d20</span></td><td class="l">700 + hod × 15</td></tr>
+    <tr><td>1.</td><td class="l">⬆️ Skok vysoký</td><td><span class="die">d10</span></td><td class="l">700 + hod × 30</td></tr>
+    <tr><td>1.</td><td class="l">🔵 Vrh koulí</td><td><span class="die">d12</span></td><td class="l">640 + hod × 30</td></tr>
+    <tr><td>1.</td><td class="l">🏃 200 m</td><td><span class="die">d20</span></td><td class="l">700 + hod × 15</td></tr>
+    <tr><td>2.</td><td class="l">🤸 Skok daleký</td><td><span class="die">2×d20</span></td><td class="l">600 + součet × 10</td></tr>
+    <tr><td>2.</td><td class="l">🎯 Hod oštěpem</td><td><span class="die">d12</span></td><td class="l">640 + hod × 30</td></tr>
+    <tr><td>2.</td><td class="l">🏃 800 m</td><td><span class="die">d20</span></td><td class="l">700 + hod × 15</td></tr>
+  </table>
+  <p>Sedm disciplín, sedm bodových zápisů k sečtení – vítězka světové úrovně nasčítá kolem
+  6000–7000 bodů. Pro nejmenší funguje <strong>čtyřboj</strong>: 100 m překážky, skok vysoký,
+  skok daleký a 800 m, v každé hoď <span class="die">d6</span> a zapiš hod × 100 bodů.</p>
   <h3>Rozšíření</h3>
   <ul>
     <li><strong>Tři pokusy u vrhů a skoků:</strong> hoď třikrát a započítej nejlepší výsledek – jako na opravdovém stadionu. Napětí a ještě víc počítání.</li>
@@ -860,5 +894,16 @@ td.l,th.l{text-align:left}
   <p style="margin-top:30px;text-align:center;color:var(--ink2)"><em>Kostkový Sportovec · Nechť jsou kostky vrženy! 🎲</em></p>
 </div>
 
+<script>
+// Zabalí tabulky do posuvného kontejneru, aby se na úzkých displejích
+// daly rolovat vodorovně místo rozbití rozvržení stránky.
+document.querySelectorAll('.page table').forEach(function(t){
+  if(t.parentElement && t.parentElement.classList.contains('tbl-scroll')) return;
+  var w = document.createElement('div');
+  w.className = 'tbl-scroll';
+  t.parentNode.insertBefore(w, t);
+  w.appendChild(t);
+});
+</script>
 </body>
 </html>

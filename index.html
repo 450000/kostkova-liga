@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🎲 Kostkový Sportovec – sporty hrané kostkami</title>
 <meta name="description" content="Kostkový Sportovec – rodina her, ve kterých si pomocí hracích kostek d4 až d100 zahrajete fotbal, hokej, tenis, biatlon a další sporty. Zábavné odpojení dětí od online světa, trénink matematiky a fair play.">
+<meta name="author" content="Kostkový Sportovec">
+<meta name="theme-color" content="#0a0a12">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kostkový Sportovec">
+<meta property="og:title" content="Kostkový Sportovec – sporty hrané kostkami">
+<meta property="og:description" content="Celý svět sportu v hrsti kostek. E-kniha pravidel, online liga i e-shop s kostkami. Zábava pro děti bez obrazovky, s tužkou a papírem.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20x='3'%20y='3'%20width='26'%20height='26'%20rx='6'%20fill='%23f0b429'/%3E%3Cg%20fill='%230a0a12'%3E%3Ccircle%20cx='10'%20cy='10'%20r='2.6'/%3E%3Ccircle%20cx='22'%20cy='10'%20r='2.6'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='2.6'/%3E%3Ccircle%20cx='10'%20cy='22'%20r='2.6'/%3E%3Ccircle%20cx='22'%20cy='22'%20r='2.6'/%3E%3C/g%3E%3C/svg%3E">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -97,10 +104,18 @@ footer .container{display:flex;justify-content:space-between;gap:14px;flex-wrap:
   .hero{padding:46px 0 40px}
   .book-band{padding:24px}
   section{padding:40px 0}
+  .nav-links{gap:2px}
+  .nav-links a{padding:5px 8px;font-size:.8rem}
 }
+/* A11Y */
+a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:2px;border-radius:6px}
+.skip-link{position:absolute;left:-999px;top:8px;background:var(--accent);color:#000;padding:8px 14px;border-radius:6px;font-weight:700;z-index:100}
+.skip-link:focus{left:8px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.btn:hover{transform:none}}
 </style>
 </head>
 <body>
+<a href="#proc" class="skip-link">Přeskočit na obsah</a>
 
 <nav>
   <div class="nav-inner">

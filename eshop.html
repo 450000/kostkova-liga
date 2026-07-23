@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🛒 E-shop – Kostkový Sportovec</title>
 <meta name="description" content="E-shop Kostkový Sportovec: sady hracích kostek d4–d100, e-kniha i tištěná kniha pravidel, zápisové bloky a startovní balíčky pro sporty hrané kostkami.">
+<meta name="author" content="Kostkový Sportovec">
+<meta name="theme-color" content="#0a0a12">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kostkový Sportovec">
+<meta property="og:title" content="E-shop – Kostkový Sportovec">
+<meta property="og:description" content="Sady kostek, e-kniha i tištěná kniha pravidel, zápisové bloky a startovní balíčky. Vybavte se na kostkovou sezónu.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20x='3'%20y='3'%20width='26'%20height='26'%20rx='6'%20fill='%23f0b429'/%3E%3Cg%20fill='%230a0a12'%3E%3Ccircle%20cx='10'%20cy='10'%20r='2.6'/%3E%3Ccircle%20cx='22'%20cy='10'%20r='2.6'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='2.6'/%3E%3Ccircle%20cx='10'%20cy='22'%20r='2.6'/%3E%3Ccircle%20cx='22'%20cy='22'%20r='2.6'/%3E%3C/g%3E%3C/svg%3E">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -85,6 +92,10 @@ section h2{font-size:1.25rem;font-weight:800;margin-bottom:16px;color:var(--acce
 #toast.show{transform:translateX(-50%) translateY(0)}
 footer{border-top:1px solid var(--border);padding:26px 0;margin-top:20px;font-size:.82rem;color:var(--text2)}
 footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+/* A11Y */
+a:focus-visible,button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:640px){.nav-links{gap:2px}.nav-links a{padding:5px 7px;font-size:.8rem}}
 </style>
 </head>
 <body>
@@ -150,8 +161,8 @@ footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:
 
 <!-- CART -->
 <div id="overlay" onclick="toggleCart(false)"></div>
-<aside id="cart">
-  <div class="c-head"><h2>🛒 Váš košík</h2><button class="c-close" onclick="toggleCart(false)">✕</button></div>
+<aside id="cart" role="dialog" aria-modal="true" aria-label="Nákupní košík">
+  <div class="c-head"><h2>🛒 Váš košík</h2><button class="c-close" onclick="toggleCart(false)" aria-label="Zavřít košík">✕</button></div>
   <div id="cart-items"></div>
   <div class="c-foot">
     <div class="c-total"><span>Celkem</span><span class="val" id="cart-total">0 Kč</span></div>
@@ -215,7 +226,7 @@ function renderProducts(){
       <div class="p-tags">${p.tags.map(t=>`<span class="p-tag">${t}</span>`).join('')}</div>
       <div class="p-foot">
         <span class="p-price">${fmt(p.price)}</span>
-        <button class="add-btn" onclick="addToCart('${p.id}')">Do košíku</button>
+        <button class="add-btn" onclick="addToCart('${p.id}')" aria-label="Přidat do košíku: ${p.name}">Do košíku</button>
       </div>`;
     zones[p.cat].appendChild(el);
   });
@@ -248,7 +259,7 @@ function renderCart(){
         <span class="ci-ico">${p.ico}</span>
         <div class="ci-info"><div class="ci-name">${p.name}</div><div class="ci-price">${fmt(p.price)} / ks</div></div>
         <div class="ci-qty">
-          <button onclick="changeQty('${id}',-1)">−</button><span>${qty}</span><button onclick="changeQty('${id}',1)">+</button>
+          <button onclick="changeQty('${id}',-1)" aria-label="Ubrat kus: ${p.name}">−</button><span>${qty}</span><button onclick="changeQty('${id}',1)" aria-label="Přidat kus: ${p.name}">+</button>
         </div>
       </div>`;
     }).join('');
@@ -261,7 +272,12 @@ function renderCart(){
 function toggleCart(open){
   document.getElementById('cart').classList.toggle('open', open);
   document.getElementById('overlay').classList.toggle('open', open);
+  if(open){ const c=document.querySelector('#cart .c-close'); c && c.focus(); }
+  else { document.getElementById('cart-btn').focus(); }
 }
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && document.getElementById('cart').classList.contains('open')) toggleCart(false);
+});
 
 function sendOrder(){
   const ids = Object.keys(cart); if(!ids.length) return;
