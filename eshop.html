@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🛒 E-shop – Kostkový Sportovec</title>
+<meta name="description" content="E-shop Kostkový Sportovec: sady hracích kostek d4–d100, e-kniha i tištěná kniha pravidel, zápisové bloky a startovní balíčky pro sporty hrané kostkami.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a12;--bg2:#12121e;--bg3:#1a1a2a;--bg4:#222235;
+  --accent:#f0b429;--accent2:#c98d00;
+  --green:#22c55e;--red:#ef4444;
+  --text:#e2e8f0;--text2:#94a3b8;--border:#2a2a3e;
+  --shadow:0 4px 24px rgba(0,0,0,.6)
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1080px;margin:0 auto;padding:0 20px}
+/* NAV */
+nav{background:rgba(10,10,18,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.nav-inner{max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.nav-logo{font-size:1.15rem;font-weight:800;color:var(--accent);letter-spacing:-.5px;white-space:nowrap}
+.nav-logo a{color:inherit}
+.nav-links{margin-left:auto;display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-links a{color:var(--text2);font-size:.86rem;font-weight:600;padding:6px 12px;border-radius:6px;transition:all .15s}
+.nav-links a:hover{color:var(--text);background:var(--bg3)}
+#cart-btn{background:var(--accent);color:#000;border:none;border-radius:8px;padding:7px 14px;font-weight:800;font-size:.86rem;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .15s}
+#cart-btn:hover{background:var(--accent2);color:#fff}
+#cart-count{background:#000;color:var(--accent);border-radius:20px;padding:0 7px;font-size:.75rem;min-width:20px;text-align:center}
+/* HEADER */
+header{padding:44px 0 10px;text-align:center}
+header h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:900;letter-spacing:-.5px}
+header p{color:var(--text2);max-width:640px;margin:10px auto 0}
+/* GRID */
+section{padding:34px 0}
+section h2{font-size:1.25rem;font-weight:800;margin-bottom:16px;color:var(--accent)}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.product{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:all .18s}
+.product:hover{border-color:var(--accent);transform:translateY(-3px)}
+.product .p-ico{font-size:2.4rem}
+.product h3{font-size:1.02rem;font-weight:800}
+.product .p-desc{font-size:.84rem;color:var(--text2);flex:1}
+.product .p-tags{display:flex;gap:6px;flex-wrap:wrap}
+.product .p-tag{font-size:.68rem;font-weight:700;background:var(--bg4);border:1px solid var(--border);color:var(--text2);border-radius:20px;padding:2px 9px}
+.product .p-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px}
+.product .p-price{font-size:1.2rem;font-weight:900;color:var(--accent)}
+.add-btn{background:var(--bg4);border:1px solid var(--accent);color:var(--accent);border-radius:8px;padding:7px 14px;font-weight:700;font-size:.83rem;cursor:pointer;transition:all .15s}
+.add-btn:hover{background:var(--accent);color:#000}
+.badge{align-self:flex-start;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;border-radius:4px;padding:2px 8px;background:rgba(34,197,94,.15);color:var(--green);border:1px solid rgba(34,197,94,.4)}
+/* CART DRAWER */
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90;opacity:0;pointer-events:none;transition:opacity .2s}
+#overlay.open{opacity:1;pointer-events:auto}
+#cart{position:fixed;top:0;right:-420px;width:min(400px,94vw);height:100%;background:var(--bg2);border-left:1px solid var(--border);z-index:100;display:flex;flex-direction:column;transition:right .25s}
+#cart.open{right:0}
+#cart .c-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+#cart .c-head h2{font-size:1.05rem;color:var(--accent)}
+#cart .c-close{background:none;border:none;color:var(--text2);font-size:1.4rem;cursor:pointer}
+#cart-items{flex:1;overflow-y:auto;padding:14px 20px}
+.c-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.c-item .ci-ico{font-size:1.5rem}
+.c-item .ci-info{flex:1}
+.c-item .ci-name{font-size:.86rem;font-weight:700}
+.c-item .ci-price{font-size:.78rem;color:var(--text2)}
+.c-item .ci-qty{display:flex;align-items:center;gap:8px}
+.c-item .ci-qty button{background:var(--bg4);border:1px solid var(--border);color:var(--text);width:24px;height:24px;border-radius:5px;cursor:pointer;font-weight:700}
+.c-item .ci-qty button:hover{border-color:var(--accent);color:var(--accent)}
+.c-empty{text-align:center;color:var(--text2);padding:40px 0;font-size:.9rem}
+#cart .c-foot{padding:16px 20px;border-top:1px solid var(--border)}
+#cart .c-total{display:flex;justify-content:space-between;font-weight:800;margin-bottom:12px}
+#cart .c-total .val{color:var(--accent);font-size:1.15rem}
+.order-btn{width:100%;background:var(--accent);color:#000;border:none;border-radius:9px;padding:12px;font-weight:800;font-size:.95rem;cursor:pointer;transition:all .15s}
+.order-btn:hover{background:var(--accent2);color:#fff}
+.order-btn:disabled{opacity:.4;cursor:default}
+.c-note{font-size:.72rem;color:var(--text2);margin-top:10px;text-align:center}
+/* INFO BAND */
+.info-band{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.info-band .ib{display:flex;gap:12px;align-items:flex-start}
+.info-band .ib span{font-size:1.5rem}
+.info-band .ib h3{font-size:.9rem}
+.info-band .ib p{font-size:.8rem;color:var(--text2)}
+/* TOAST */
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--accent);color:#000;font-weight:800;padding:11px 22px;border-radius:10px;box-shadow:var(--shadow);transition:transform .25s;z-index:120}
+#toast.show{transform:translateX(-50%) translateY(0)}
+footer{border-top:1px solid var(--border);padding:26px 0;margin-top:20px;font-size:.82rem;color:var(--text2)}
+footer .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo"><a href="index.html">🎲 Kostkový Sportovec</a></div>
+    <div class="nav-links">
+      <a href="index.html">🏠 Web</a>
+      <a href="kniha.html">📖 E-kniha</a>
+      <a href="hra.html">⚽ Kostková liga</a>
+      <button id="cart-btn" onclick="toggleCart(true)">🛒 Košík <span id="cart-count">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <h1>🛒 Vybavte se na kostkovou sezónu</h1>
+    <p>Kostky, kniha pravidel i zápisové bloky. Vše, co potřebujete, aby u vás doma
+    o víkendu proběhlo mistrovství světa.</p>
+  </div>
+</header>
+
+<section id="kostky">
+  <div class="container">
+    <h2>🎲 Kostky a sady</h2>
+    <div class="products" id="products-dice"></div>
+  </div>
+</section>
+
+<section id="kniha">
+  <div class="container">
+    <h2>📖 Kniha pravidel</h2>
+    <div class="products" id="products-book"></div>
+  </div>
+</section>
+
+<section id="balicky">
+  <div class="container">
+    <h2>🏆 Balíčky a doplňky</h2>
+    <div class="products" id="products-bundle"></div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="info-band">
+      <div class="ib"><span>📦</span><div><h3>Doprava</h3><p>Zásilkovna od 79 Kč, osobní předání po domluvě. E-kniha ihned e-mailem.</p></div></div>
+      <div class="ib"><span>↩️</span><div><h3>Vrácení do 14 dnů</h3><p>Nesedla vám hra? Vraťte ji bez udání důvodu, kostkám se nic nestane.</p></div></div>
+      <div class="ib"><span>✉️</span><div><h3>Objednávka e-mailem</h3><p>Košík připraví souhrn objednávky a odešle ho z vašeho e-mailu. Ozveme se s potvrzením a platbou.</p></div></div>
+      <div class="ib"><span>🤝</span><div><h3>Pro školy a kroužky</h3><p>Chystáte kostkovou ligu pro celou třídu? Napište si o množstevní nabídku.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>🎲 <strong style="color:var(--accent)">Kostkový Sportovec</strong> · objednávky: <a href="mailto:mirosafc@gmail.com">mirosafc@gmail.com</a></div>
+    <div><a href="index.html">Web</a> · <a href="kniha.html">E-kniha</a> · <a href="hra.html">Kostková liga</a></div>
+  </div>
+</footer>
+
+<!-- CART -->
+<div id="overlay" onclick="toggleCart(false)"></div>
+<aside id="cart">
+  <div class="c-head"><h2>🛒 Váš košík</h2><button class="c-close" onclick="toggleCart(false)">✕</button></div>
+  <div id="cart-items"></div>
+  <div class="c-foot">
+    <div class="c-total"><span>Celkem</span><span class="val" id="cart-total">0 Kč</span></div>
+    <button class="order-btn" id="order-btn" onclick="sendOrder()">✉️ Objednat e-mailem</button>
+    <div class="c-note">Tlačítko otevře váš e-mail s hotovým souhrnem objednávky.<br>Odpovíme s potvrzením, dopravou a platebními údaji.</div>
+  </div>
+</aside>
+<div id="toast"></div>
+
+<script>
+const PRODUCTS = [
+  // kostky
+  { id:'set7', cat:'dice', ico:'🎲', name:'Sada 7 kostek (d4–d20)', price:149, badge:'Bestseller',
+    desc:'Klasická RPG sada: d4, d6, d8, 2×d10 (procentní), d12 a d20. Pokryje všech deset sportů z knihy.',
+    tags:['d4','d6','d8','d10','d12','d20'] },
+  { id:'liga4', cat:'dice', ico:'⚪', name:'Sada Kostková liga (4×d6)', price:99, badge:null,
+    desc:'Dvě bílé a dvě fialové šestistěnky – přesně ty, se kterými se hraje fotbal a hokej. Poznáte domácí od hostů na první pohled.',
+    tags:['2× bílá d6','2× fialová d6'] },
+  { id:'d100', cat:'dice', ico:'🔮', name:'Stostěnka d100', price:129, badge:null,
+    desc:'Legendární koule mezi kostkami. Procenta, losy, rekordy – a hlavně ohromný dojem na spoluhráče.',
+    tags:['d100'] },
+  { id:'set7x4', cat:'dice', ico:'🎨', name:'4× sada 7 kostek – rodinné balení', price:499, badge:'Výhodné',
+    desc:'Čtyři sady v různých barvách, aby každý člen rodiny házel svou. Základ pro turnaje a mistrovství.',
+    tags:['4 barvy','28 kostek'] },
+  // kniha
+  { id:'ebook', cat:'book', ico:'📖', name:'E-kniha Kostkový Sportovec (PDF)', price:199, badge:'Novinka',
+    desc:'10 sportů, pravidla krok za krokem, matematická okénka, turnajové systémy, kodex fair play a tisknutelné archy. Doručení ihned na e-mail.',
+    tags:['PDF','ihned','tisknutelné archy'] },
+  { id:'book', cat:'book', ico:'📚', name:'Tištěná kniha Kostkový Sportovec', price:349, badge:null,
+    desc:'Kroužková vazba, která vydrží na stole u stovky zápasů. Zápisové archy jako kopírovatelná příloha.',
+    tags:['tisk','kroužková vazba'] },
+  { id:'blok', cat:'book', ico:'📋', name:'Zápisový blok rozhodčího', price:89, badge:null,
+    desc:'50 listů: ligové tabulky, rozpisy zápasů, zápisy setů, výsledkové listiny i šipkové zůstatky.',
+    tags:['50 listů','A5'] },
+  // balíčky
+  { id:'start', cat:'bundle', ico:'🏆', name:'Startovní balíček', price:399, badge:'Nejoblíbenější',
+    desc:'Sada 7 kostek + e-kniha PDF + zápisový blok. Vše, co potřebuje jedna rodina na první sezónu. Zvlášť 437 Kč – v balíčku ušetříte.',
+    tags:['kostky','e-kniha','blok'] },
+  { id:'skola', cat:'bundle', ico:'🏫', name:'Balíček pro třídu / kroužek', price:1990, badge:null,
+    desc:'8× sada 7 kostek, tištěná kniha, e-kniha PDF a 4 zápisové bloky. Mistrovství světa pro 16 dětí během jedné družiny.',
+    tags:['8 sad','kniha','4 bloky'] },
+  { id:'darek', cat:'bundle', ico:'🎁', name:'Dárkové balení', price:599, badge:null,
+    desc:'Startovní balíček v pevné krabičce s věnováním. Dárek, který nepotřebuje nabíječku.',
+    tags:['krabička','věnování'] },
+];
+const ORDER_EMAIL = 'mirosafc@gmail.com';
+let cart = JSON.parse(localStorage.getItem('ks-cart')||'{}');
+
+function fmt(n){ return n.toLocaleString('cs-CZ') + ' Kč'; }
+
+function renderProducts(){
+  const zones = { dice:document.getElementById('products-dice'), book:document.getElementById('products-book'), bundle:document.getElementById('products-bundle') };
+  PRODUCTS.forEach(p=>{
+    const el = document.createElement('div');
+    el.className = 'product';
+    el.innerHTML = `
+      ${p.badge?`<span class="badge">${p.badge}</span>`:''}
+      <div class="p-ico">${p.ico}</div>
+      <h3>${p.name}</h3>
+      <div class="p-desc">${p.desc}</div>
+      <div class="p-tags">${p.tags.map(t=>`<span class="p-tag">${t}</span>`).join('')}</div>
+      <div class="p-foot">
+        <span class="p-price">${fmt(p.price)}</span>
+        <button class="add-btn" onclick="addToCart('${p.id}')">Do košíku</button>
+      </div>`;
+    zones[p.cat].appendChild(el);
+  });
+}
+
+function saveCart(){ localStorage.setItem('ks-cart', JSON.stringify(cart)); }
+
+function addToCart(id){
+  cart[id] = (cart[id]||0) + 1;
+  saveCart(); renderCart();
+  showToast('Přidáno do košíku 🎲');
+}
+function changeQty(id, d){
+  cart[id] = (cart[id]||0) + d;
+  if(cart[id] <= 0) delete cart[id];
+  saveCart(); renderCart();
+}
+
+function renderCart(){
+  const wrap = document.getElementById('cart-items');
+  const ids = Object.keys(cart);
+  let total = 0, count = 0;
+  if(!ids.length){
+    wrap.innerHTML = '<div class="c-empty">Košík je prázdný.<br>Nechť jsou kostky vloženy! 🎲</div>';
+  } else {
+    wrap.innerHTML = ids.map(id=>{
+      const p = PRODUCTS.find(x=>x.id===id); if(!p) return '';
+      const qty = cart[id]; total += p.price*qty; count += qty;
+      return `<div class="c-item">
+        <span class="ci-ico">${p.ico}</span>
+        <div class="ci-info"><div class="ci-name">${p.name}</div><div class="ci-price">${fmt(p.price)} / ks</div></div>
+        <div class="ci-qty">
+          <button onclick="changeQty('${id}',-1)">−</button><span>${qty}</span><button onclick="changeQty('${id}',1)">+</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('cart-total').textContent = fmt(total);
+  document.getElementById('cart-count').textContent = count;
+  document.getElementById('order-btn').disabled = !ids.length;
+}
+
+function toggleCart(open){
+  document.getElementById('cart').classList.toggle('open', open);
+  document.getElementById('overlay').classList.toggle('open', open);
+}
+
+function sendOrder(){
+  const ids = Object.keys(cart); if(!ids.length) return;
+  let total = 0;
+  const lines = ids.map(id=>{
+    const p = PRODUCTS.find(x=>x.id===id); const qty = cart[id];
+    total += p.price*qty;
+    return `• ${p.name} — ${qty}× ${fmt(p.price)} = ${fmt(p.price*qty)}`;
+  });
+  const body = [
+    'Dobrý den,','','objednávám z e-shopu Kostkový Sportovec:','',
+    ...lines,'',`Celkem: ${fmt(total)} (bez dopravy)`,'',
+    'Jméno a příjmení:','Doručovací adresa / Zásilkovna:','Telefon:','',
+    'Děkuji a sportu zdar!'
+  ].join('\n');
+  location.href = `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent('Objednávka – Kostkový Sportovec')}&body=${encodeURIComponent(body)}`;
+}
+
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 1800);
+}
+
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>

@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📖 Kostkový Sportovec – e-kniha pravidel</title>
+<meta name="description" content="E-kniha Kostkový Sportovec: 10 sportů hraných hracími kostkami d4–d100. Pravidla, ukázkové zápasy, matematická okénka, turnajové systémy a kodex fair play.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --paper:#fdfaf3;--ink:#1c1a14;--ink2:#5a554a;
+  --gold:#b07d10;--gold-bg:#f7edd2;
+  --line:#d8d2c0;--box:#f4efe2;
+  --blue:#1d4ed8;--green:#15803d;--red:#b91c1c
+}
+html{scroll-behavior:smooth}
+body{background:#e8e3d5;color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.65}
+/* TOOLBAR (screen only) */
+#toolbar{position:sticky;top:0;z-index:50;background:#14131c;color:#e2e8f0;padding:10px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Segoe UI',system-ui,sans-serif}
+#toolbar .tb-title{font-weight:800;color:#f0b429}
+#toolbar .tb-links{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+#toolbar a,#toolbar button{font-family:inherit;font-size:.83rem;font-weight:600;color:#e2e8f0;background:#222235;border:1px solid #2a2a3e;border-radius:6px;padding:6px 12px;cursor:pointer;text-decoration:none;transition:all .15s}
+#toolbar a:hover,#toolbar button:hover{background:#2e2e45}
+#toolbar button.tb-gold{background:#f0b429;color:#000;border-color:#f0b429}
+#toolbar button.tb-gold:hover{background:#c98d00;color:#fff}
+/* PAGE */
+.page{max-width:820px;margin:24px auto;background:var(--paper);box-shadow:0 6px 30px rgba(0,0,0,.25);padding:56px 64px;border-radius:4px}
+@media(max-width:700px){.page{padding:30px 22px;margin:12px 8px}}
+/* COVER */
+.cover{text-align:center;padding-top:90px;padding-bottom:90px}
+.cover .cv-dice{font-size:3rem;letter-spacing:14px;margin-bottom:26px}
+.cover h1{font-size:3rem;letter-spacing:2px;line-height:1.1;margin-bottom:10px}
+.cover .cv-sub{font-size:1.15rem;color:var(--ink2);font-style:italic;margin-bottom:36px}
+.cover .cv-rule{width:120px;height:3px;background:var(--gold);margin:0 auto 36px}
+.cover .cv-list{font-size:.98rem;color:var(--ink2);line-height:2}
+.cover .cv-foot{margin-top:70px;font-size:.85rem;color:var(--ink2);text-transform:uppercase;letter-spacing:3px}
+/* TYPO */
+h2.chapter{font-size:1.85rem;border-bottom:3px double var(--gold);padding-bottom:10px;margin-bottom:6px;letter-spacing:.5px}
+h2.chapter .ch-num{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:3px;color:var(--gold);font-family:'Segoe UI',system-ui,sans-serif;font-weight:700;margin-bottom:4px}
+h3{font-size:1.15rem;margin:26px 0 8px;color:var(--ink)}
+p{margin:10px 0}
+em{color:var(--ink)}
+ul,ol{margin:10px 0 10px 26px}
+li{margin:5px 0}
+/* INFO STRIP */
+.info-strip{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0;font-family:'Segoe UI',system-ui,sans-serif}
+.info-chip{background:var(--gold-bg);border:1px solid var(--gold);border-radius:20px;padding:5px 14px;font-size:.8rem;font-weight:700;color:#6b4c00}
+/* BOXES */
+.box{border:1px solid var(--line);background:var(--box);border-radius:8px;padding:16px 20px;margin:18px 0}
+.box .box-title{font-family:'Segoe UI',system-ui,sans-serif;font-weight:800;font-size:.8rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.box-example{border-left:4px solid var(--blue)}
+.box-example .box-title{color:var(--blue)}
+.box-math{border-left:4px solid var(--green)}
+.box-math .box-title{color:var(--green)}
+.box-kids{border-left:4px solid var(--gold)}
+.box-kids .box-title{color:var(--gold)}
+.box-fair{border-left:4px solid var(--red)}
+.box-fair .box-title{color:var(--red)}
+/* TABLES */
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:center}
+th{background:var(--gold-bg);font-family:'Segoe UI',system-ui,sans-serif;font-size:.78rem;text-transform:uppercase;letter-spacing:1px}
+td.l,th.l{text-align:left}
+.score{font-weight:bold;font-variant-numeric:tabular-nums}
+/* TOC */
+.toc{list-style:none;margin:20px 0 0}
+.toc li{display:flex;align-items:baseline;gap:8px;margin:9px 0;font-size:1.02rem}
+.toc li a{color:var(--ink);text-decoration:none}
+.toc li a:hover{color:var(--gold)}
+.toc .dots{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px)}
+.toc .toc-part{font-family:'Segoe UI',system-ui,sans-serif;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:800;margin-top:20px}
+/* DICE NOTATION */
+.die{display:inline-block;font-family:'Segoe UI',system-ui,sans-serif;font-weight:800;font-size:.8em;background:#fff;border:1.5px solid var(--gold);border-radius:5px;padding:1px 7px;color:#6b4c00;white-space:nowrap}
+/* SHEET (printable forms) */
+.sheet table td{height:26px}
+/* PRINT */
+@media print{
+  body{background:#fff}
+  #toolbar{display:none}
+  .page{box-shadow:none;margin:0;max-width:none;padding:10mm 6mm;border-radius:0}
+  .page.chapter-page{page-break-before:always}
+  .box,table,.info-strip{page-break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<div id="toolbar">
+  <span class="tb-title">📖 Kostkový Sportovec</span>
+  <div class="tb-links">
+    <a href="index.html">🏠 Web</a>
+    <a href="hra.html">⚽ Kostková liga</a>
+    <a href="eshop.html">🛒 E-shop</a>
+    <button class="tb-gold" onclick="window.print()">🖨️ Vytisknout / uložit PDF</button>
+  </div>
+</div>
+
+<!-- ═══════════ OBÁLKA ═══════════ -->
+<div class="page cover">
+  <div class="cv-dice">⚽ 🏒 🎾 🏀 🎿 🎯</div>
+  <h1>KOSTKOVÝ<br>SPORTOVEC</h1>
+  <div class="cv-sub">Deset sportů, které si zahrajete hracími kostkami</div>
+  <div class="cv-rule"></div>
+  <div class="cv-list">
+    pravidla krok za krokem · ukázkové zápasy<br>
+    matematická okénka · turnajové systémy<br>
+    kodex fair play · zápisové archy
+  </div>
+  <div class="cv-foot">Hra pro děti od 6 let · bez obrazovky · s tužkou a papírem</div>
+</div>
+
+<!-- ═══════════ OBSAH ═══════════ -->
+<div class="page">
+  <h2 class="chapter"><span class="ch-num">Kostkový sportovec</span>Obsah</h2>
+  <ul class="toc">
+    <li class="toc-part">Než začneme</li>
+    <li><a href="#uvod">Úvod – proč tahle kniha vznikla</a><span class="dots"></span>🎲</li>
+    <li><a href="#abeceda">Kostková abeceda a společná pravidla</a><span class="dots"></span>🎲</li>
+    <li class="toc-part">Sporty</li>
+    <li><a href="#fotbal">1 · Fotbal</a><span class="dots"></span>⚽</li>
+    <li><a href="#hokej">2 · Lední hokej</a><span class="dots"></span>🏒</li>
+    <li><a href="#tenis">3 · Tenis</a><span class="dots"></span>🎾</li>
+    <li><a href="#stolni-tenis">4 · Stolní tenis</a><span class="dots"></span>🏓</li>
+    <li><a href="#volejbal">5 · Volejbal</a><span class="dots"></span>🏐</li>
+    <li><a href="#hazena">6 · Házená</a><span class="dots"></span>🤾</li>
+    <li><a href="#basketbal">7 · Basketbal</a><span class="dots"></span>🏀</li>
+    <li><a href="#biatlon">8 · Biatlon</a><span class="dots"></span>🎿</li>
+    <li><a href="#atletika">9 · Atletika – sprint a skok daleký</a><span class="dots"></span>🏃</li>
+    <li><a href="#sipky">10 · Šipky 301</a><span class="dots"></span>🎯</li>
+    <li class="toc-part">Hrajeme spolu</li>
+    <li><a href="#turnaje">11 · Turnajové systémy – liga, pavouk, skupiny</a><span class="dots"></span>🏆</li>
+    <li><a href="#fairplay">12 · Kodex fair play malého sportovce</a><span class="dots"></span>🤝</li>
+    <li><a href="#archy">Příloha – zápisové archy</a><span class="dots"></span>📋</li>
+  </ul>
+</div>
+
+<!-- ═══════════ ÚVOD ═══════════ -->
+<div class="page chapter-page" id="uvod">
+  <h2 class="chapter"><span class="ch-num">Než začneme</span>Úvod – proč tahle kniha vznikla</h2>
+  <p>Tuhle hru jsem si jako dítě zamiloval. Stačily dvě obyčejné šestistěnné kostky, kus papíru
+  a tužka – a v dětském pokoji se hrála celá fotbalová liga. Kostky rozhodovaly o gólech,
+  tužka zapisovala tabulku a hlava počítala: kolik bodů potřebuje můj tým, aby přeskočil
+  soupeře? Co musí padnout, aby se poločas otočil?</p>
+  <p>Po letech jsem zjistil dvě věci. Za prvé: ta hra funguje pořád, děti u ní vydrží hodiny
+  a vůbec jim nechybí displej. Za druhé: dnes se dá koupit celá <em>rodina</em> kostek –
+  čtyřstěnka, osmistěnka, desetistěnka, dvanáctistěnka, dvacetistěnka, dokonce stostěnka.
+  A s takovým arzenálem už nejde hrát jen fotbal. Jde odehrát <em>skoro každý sport</em> –
+  tak, aby výsledky vypadaly jako ze skutečných zápasů a pravidla kopírovala ta opravdová.</p>
+  <p>Tato kniha je návod, jak na to. Každý sport má svou kapitolu: jaké kostky potřebujete,
+  jak se hraje krok za krokem, ukázkový zápas, <em>matematické okénko</em> (co přesně hra
+  procvičuje) a zjednodušenou variantu pro menší děti. Na konci najdete turnajové systémy,
+  kodex fair play a zápisové archy k tisku.</p>
+  <h3>Co děti hrou získají</h3>
+  <ul>
+    <li><strong>Odpojení od online světa.</strong> Hra nepotřebuje elektřinu ani wi-fi. Potřebuje stůl a kamaráda – nebo aspoň plyšového protihráče, za kterého hodíte.</li>
+    <li><strong>Matematiku mimochodem.</strong> Sčítání, odčítání, porovnávání, rozdíly, průměry, tabulky, zlomky štěstí. Nikdo tomu neříká „úloha“ – říká se tomu skóre.</li>
+    <li><strong>Pravidla skutečných sportů.</strong> Dítě, které odehraje kostkový Wimbledon, ví, co je game, set, tiebreak i mečbol.</li>
+    <li><strong>Fair play.</strong> Kostka nadržuje jen náhodě. Hráč se učí přijmout porážku, uznat výhru soupeře a nepodvádět, i když se nikdo nedívá.</li>
+  </ul>
+  <div class="box box-fair">
+    <div class="box-title">Pravidlo číslo nula</div>
+    <p style="margin:0">Hod platí tak, jak dopadl. Kostka spadlá ze stolu se hází znovu; kostka
+    „nakřivo“ o hranu knihy také. Nikdy se nehádáme o to, co padlo – proto házíme
+    <em>před oči soupeře</em>, ne do dlaně.</p>
+  </div>
+</div>
+
+<!-- ═══════════ ABECEDA ═══════════ -->
+<div class="page chapter-page" id="abeceda">
+  <h2 class="chapter"><span class="ch-num">Než začneme</span>Kostková abeceda a společná pravidla</h2>
+  <p>Písmeno <strong>d</strong> pochází z anglického <em>dice</em> (kostka) a číslo za ním říká,
+  kolik má kostka stěn. Zápis <span class="die">2×d6</span> znamená „hoď dvěma šestistěnkami“,
+  <span class="die">d20+10</span> znamená „hoď dvacetistěnkou a přičti deset“.</p>
+  <table>
+    <tr><th>Kostka</th><th>Rozsah</th><th>K čemu ji v knize použijeme</th></tr>
+    <tr><td><span class="die">d2</span></td><td>1–2</td><td class="l">Losování stran a výkopu (poslouží i mince: panna = 1, orel = 2)</td></tr>
+    <tr><td><span class="die">d4</span></td><td>1–4</td><td class="l">Krátké série a rozstřely v dětských variantách</td></tr>
+    <tr><td><span class="die">d6</span></td><td>1–6</td><td class="l">Základní kostka: fotbal, hokej, tenis, penalty, střelba v biatlonu</td></tr>
+    <tr><td><span class="die">d8</span></td><td>1–8</td><td class="l">Náhradnice za d6, když chcete divočejší výsledky</td></tr>
+    <tr><td><span class="die">d10</span></td><td>1–10 (0–9)</td><td class="l">Házená, biatlonové úseky, desetiny a setiny sekundy</td></tr>
+    <tr><td><span class="die">d12</span></td><td>1–12</td><td class="l">Volejbal, stolní tenis</td></tr>
+    <tr><td><span class="die">d20</span></td><td>1–20</td><td class="l">Basketbal, šipky, tiebreak, skok daleký</td></tr>
+    <tr><td><span class="die">d100</span></td><td>1–100</td><td class="l">Procenta a losy (dvě d10: jedna desítky, druhá jednotky)</td></tr>
+  </table>
+  <h3>Společná pravidla pro všechny sporty</h3>
+  <ol>
+    <li><strong>Losování.</strong> Před zápasem hodí oba hráči <span class="die">d6</span>. Vyšší hod si vybírá barvu kostek, stranu nebo kdo „nastupuje jako domácí“.</li>
+    <li><strong>Domácí a hosté.</strong> Každý hráč hází svojí kostkou (ideálně jinou barvou), vždy současně nebo domácí první – dohodněte se předem a držte se toho celý turnaj.</li>
+    <li><strong>Shoda.</strong> Pokud pravidlo říká „vyšší hod vyhrává“ a padne stejné číslo, hází se znovu (není-li v kapitole uvedeno jinak – například ve fotbale shoda znamená poločas bez branek).</li>
+    <li><strong>Zápis.</strong> Výsledky zapisujte hned. Půlka kouzla hry je v tabulkách, pořadích a rekordech – vzory najdete v <a href="#archy">příloze</a>.</li>
+    <li><strong>Rozhodčí.</strong> Hrají-li více než dva hráči, může se jeden střídat v roli rozhodčího: čte pravidla, hlídá zápis a řeší sporné hody. I to je sportovní role!</li>
+  </ol>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko: proč má d6 „spravedlivých“ šest stěn</div>
+    <p style="margin:0">Každá stěna kostky má stejnou šanci: u d6 je to 1 : 6, tedy asi 17 %.
+    Když hodíte dvěma kostkami proti sobě, vyhrajete, prohrajete i remizujete stejně často jako
+    soupeř. Říká se tomu <em>férová náhoda</em> – a je to důvod, proč může osmileté dítě porazit
+    tatínka a nikdo nemůže nic namítat.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 1 FOTBAL ═══════════ -->
+<div class="page chapter-page" id="fotbal">
+  <h2 class="chapter"><span class="ch-num">Kapitola 1</span>⚽ Fotbal</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 2×d6 (bílá a fialová)</span>
+    <span class="info-chip">👥 2 hráči</span>
+    <span class="info-chip">⏱️ zápas 2 minuty</span>
+    <span class="info-chip">🎂 od 6 let</span>
+  </div>
+  <p>Hra, kterou to všechno začalo. Jedna kostka je tým domácích (bílá), druhá tým hostů
+  (fialová). Zápas má dva poločasy a v každém rozhodne jediný souboj kostek.</p>
+  <h3>Pravidla</h3>
+  <ol>
+    <li>Každý poločas hodí oba hráči svou <span class="die">d6</span> – nejlépe současně.</li>
+    <li>Vyšší hod znamená, že tým v poločase <strong>skóroval</strong>. Počet gólů = <strong>rozdíl hodů</strong>.</li>
+    <li>Padne-li stejné číslo, je poločas bez branek (0:0).</li>
+    <li>Konečný výsledek je součtem obou poločasů. Remíza je platný výsledek – ve fotbale se za ni v lize dává bod.</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový zápas: Sparta – Slavia</div>
+    <p>1. poločas: bílá <strong>5</strong>, fialová <strong>2</strong> → rozdíl 3, Sparta vede <span class="score">3:0</span>.<br>
+    2. poločas: bílá <strong>2</strong>, fialová <strong>4</strong> → rozdíl 2 pro hosty, poločas 0:2.<br>
+    Konečný výsledek <span class="score">3:2</span> – derby má vítěze a diváci gólovou přestřelku.</p>
+  </div>
+  <h3>Penaltový rozstřel (pro pohárové zápasy)</h3>
+  <ol>
+    <li>Skončí-li pohárový zápas remízou, kope se 5 penalt na každé straně, hráči se střídají.</li>
+    <li>Penalta = hod <span class="die">d6</span>: <strong>1–5 gól</strong>, <strong>6 = brankář chytil</strong> (nebo tyčka!).</li>
+    <li>Je-li po pěti sériích stále shoda, kope se náhlá smrt po jedné penaltě.</li>
+  </ol>
+  <h3>Rozšíření: karty a forma</h3>
+  <ul>
+    <li><strong>Červená karta:</strong> po každém poločase hodí každý hráč <span class="die">d20</span>. Padne-li 20, jeho tým dohrává oslabený a v dalším poločase si od hodu odečte 1 (minimálně na 1).</li>
+    <li><strong>Kapitánská výhoda:</strong> v lize může tabulkově slabší tým jednou za zápas jeden svůj hod opakovat („burcování kapitána“). Skvělé vyrovnávání sil mezi sourozenci.</li>
+  </ul>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Dítě v každém poločase <em>porovnává</em> a <em>odčítá</em>: 5 − 2 = 3 góly.
+    Průměrný rozdíl dvou šestistěnek je zhruba 1,9 – zápas má proto v průměru necelé 4 góly,
+    podobně jako ofenzivní fotbalová liga. A protože remíza poločasu padne v 1 případě ze 6,
+    zhruba každý šestý poločas je „taktická nula“.</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Hrajte jen na jeden poločas a góly nepočítejte rozdílem – vyšší kostka
+    prostě dá 1 gól. Dítě trénuje jen porovnávání čísel a rychle zažije radost z výsledku.</p>
+  </div>
+  <p><em>Tip: Celou fotbalovou sezónu s tabulkami za vás zapíše naše online aplikace
+  <a href="hra.html">Kostková liga</a> – kostky ale házíte pořád vy, doma u stolu.</em></p>
+</div>
+
+<!-- ═══════════ 2 HOKEJ ═══════════ -->
+<div class="page chapter-page" id="hokej">
+  <h2 class="chapter"><span class="ch-num">Kapitola 2</span>🏒 Lední hokej</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 2×d6</span>
+    <span class="info-chip">👥 2 hráči</span>
+    <span class="info-chip">⏱️ zápas 3 minuty</span>
+    <span class="info-chip">🎂 od 6 let</span>
+  </div>
+  <p>Hokej se hraje stejným soubojem kostek jako fotbal – ale na <strong>tři třetiny</strong>.
+  Tím se zápasy gólově rozjedou: průměrně padne 5 až 6 branek, přesně jako v NHL nebo v extralize.
+  A protože hokej remízy nezná, přichází na řadu prodloužení a nájezdy.</p>
+  <h3>Pravidla</h3>
+  <ol>
+    <li>Každou třetinu hodí oba hráči <span class="die">d6</span>. Vyšší hod dává góly = rozdíl hodů; shoda = třetina 0:0.</li>
+    <li>Po třech třetinách sečtěte skóre.</li>
+    <li>Při nerozhodném stavu následuje <strong>prodloužení</strong> („náhlá smrt“): oba hodí <span class="die">d6</span>, při shodě znovu. Vyšší hod = vítězný gól, zápas končí výsledkem o jednu branku.</li>
+    <li>Hrajete-li s nájezdy místo prodloužení (nebo po něm), viz níže.</li>
+  </ol>
+  <h3>Samostatné nájezdy</h3>
+  <ol>
+    <li>Tři střelci na každé straně, hráči se střídají.</li>
+    <li>Nájezd = hod <span class="die">d6</span>: <strong>5 nebo 6 = gól</strong>, jinak brankář vykryl. (Šance 1 : 3 – stejná, jakou mají střelci v NHL!)</li>
+    <li>Po třech sériích shoda? Náhlá smrt po jednom nájezdu.</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový zápas: Litvínov – Pardubice</div>
+    <p>1. třetina: 3 proti 5 → hosté vedou <span class="score">0:2</span>.<br>
+    2. třetina: 6 proti 2 → domácí otáčí na <span class="score">4:2</span>.<br>
+    3. třetina: 1 proti 1 → bez branek.<br>
+    Konec <span class="score">4:2</span>. Kdyby třetí třetina skončila 1 : 3, šlo by se za stavu 4:4 do prodloužení.</p>
+  </div>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Tři třetiny místo dvou poločasů = o polovinu víc počítání i gólů.
+    Nájezdy učí <em>zlomky a šance</em>: gól padá na 2 čísla ze 6, tedy s pravděpodobností ⅓.
+    Zeptejte se dítěte: kolik gólů čekáš ze tří nájezdů? (Průměrně jeden!)</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Hrajte jen nájezdy: každý má 5 hodů <span class="die">d6</span>, góly dává
+    5 a 6. Kdo jich nastřílí víc, bere pohár. Jednoduché počítání do pěti a obrovské napětí.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 3 TENIS ═══════════ -->
+<div class="page chapter-page" id="tenis">
+  <h2 class="chapter"><span class="ch-num">Kapitola 3</span>🎾 Tenis</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 2×d6 + 2×d20</span>
+    <span class="info-chip">👥 2 hráči</span>
+    <span class="info-chip">⏱️ zápas 10–15 minut</span>
+    <span class="info-chip">🎂 od 7 let</span>
+  </div>
+  <p>Tenisový zápas je řetěz malých soubojů: game, set, zápas. Kouzlo kostkové verze je v tom,
+  že známá tenisová skóre – 6:4, 7:5, 7:6 – vznikají úplně sama.</p>
+  <h3>Pravidla</h3>
+  <ol>
+    <li><strong>Game:</strong> oba hráči hodí <span class="die">d6</span>. Vyšší hod bere game. Shoda = „shoda“ (deuce) – hází se znovu.</li>
+    <li><strong>Set:</strong> vyhrává, kdo první získá <strong>6 gamů s rozdílem alespoň dvou</strong> (6:4, 7:5…). Za stavu 6:6 se hraje tiebreak.</li>
+    <li><strong>Tiebreak:</strong> oba hodí <span class="die">d20</span>, vyšší hod bere set 7:6. Shoda = znovu („dramatická zkrácená hra“).</li>
+    <li><strong>Zápas:</strong> na 2 vítězné sety (velké finále klidně na 3 vítězné jako grandslam mužů).</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový set: Kvítek – Sinner</div>
+    <p>Gamy postupně vyhráli: K, K, S, K, S, K, K, K → <span class="score">6:2</span> pro Kvítka.
+    Druhý set došel za stavu 6:6 do tiebreaku: d20 hodila 14 proti 9 → set <span class="score">7:6</span>
+    a zápas 2:0 na sety. Zapisujte gamy čárkami – jako skuteční rozhodčí na umpiru.</p>
+  </div>
+  <h3>Nasazení hráči (handicap)</h3>
+  <p>Hraje-li zkušený hráč s menším dítětem, může si mladší hráč přičítat k hodu v game
+  <strong>+1</strong>. Turnajová „nasazení“ tak vyrovnají síly – a starší hráč se musí ohánět.</p>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Tenis učí <em>počítání sérií a podmínek</em>: „vedu 5:4, potřebuji ještě
+    jeden game, ale musím vyhrát o dva.“ Dítě neustále vyhodnocuje stav a cíl. Bonusová otázka:
+    proč je tiebreak na d20 napínavější než na d6? (Protože shoda padne jen v 1 případě z 20 –
+    a rozdíl bývá větší.)</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Hrajte jen jeden set do 4 gamů (bez pravidla o dvou rozdílových).
+    Místo zápisu čárkami posouvejte figurky nebo knoflíky po papírovém „kurtu“.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 4 STOLNÍ TENIS ═══════════ -->
+<div class="page chapter-page" id="stolni-tenis">
+  <h2 class="chapter"><span class="ch-num">Kapitola 4</span>🏓 Stolní tenis</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 2×d12</span>
+    <span class="info-chip">👥 2 hráči</span>
+    <span class="info-chip">⏱️ zápas 3 minuty</span>
+    <span class="info-chip">🎂 od 6 let</span>
+  </div>
+  <p>Nejrychlejší hra v knize – ideální „rozcvička“, když čekáte na oběd nebo na vlak.
+  Jeden hod za set, a přesto vzniknou věrohodné pingpongové výsledky jako 11:7 nebo 11:9.</p>
+  <h3>Pravidla</h3>
+  <ol>
+    <li>Set: oba hráči hodí <span class="die">d12</span>. Shoda = hází se znovu.</li>
+    <li>Vyšší hod set <strong>vyhrává 11 body</strong>.</li>
+    <li>Poražený získává tolik bodů, kolik hodil – nejvýše však 9 (hodí-li 10, 11 nebo 12, zapisuje se mu 9: „prohrál v koncovce“).</li>
+    <li>Zápas se hraje na <strong>3 vítězné sety</strong> (turnajové finále na 4).</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový zápas</div>
+    <p>Set 1: 12 proti 7 → <span class="score">11:7</span>. Set 2: 4 proti 9 → <span class="score">4:11</span>.
+    Set 3: 10 proti 11 → soupeř vyhrál, můj hod 10 se počítá jako 9 → <span class="score">9:11</span>.
+    Set 4: 8 proti 3 → <span class="score">11:3</span>. Set 5: 12 proti 2 → <span class="score">11:2</span>.
+    Vítězství 3:2 na sety – pravé pingpongové drama.</p>
+  </div>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Hra učí pravidlo <em>„nejvýše“</em> (zaokrouhlení shora na 9) a zápis
+    setů. Zkuste s dětmi spočítat celkové bodové skóre zápasu: 11+4+9+11+11 proti 7+11+11+3+2 –
+    kdo získal víc bodů? Může prohrát zápas hráč, který uhrál víc bodů? (Ano! Stejně jako v tenise.)</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Hrajte na 2 vítězné sety a body poraženého nezapisujte – jen čárky za sety.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 5 VOLEJBAL ═══════════ -->
+<div class="page chapter-page" id="volejbal">
+  <h2 class="chapter"><span class="ch-num">Kapitola 5</span>🏐 Volejbal</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 2×d6 + d12 (+ d6)</span>
+    <span class="info-chip">👥 2 hráči</span>
+    <span class="info-chip">⏱️ zápas 5 minut</span>
+    <span class="info-chip">🎂 od 7 let</span>
+  </div>
+  <p>Volejbalové sety se hrají do 25 bodů a rozhodující zkrácený set do 15. V kostkové verzi
+  o vítězi setu rozhodne souboj šestistěnek a dvanáctistěnka dopočítá, jak těsné to bylo.</p>
+  <h3>Pravidla</h3>
+  <ol>
+    <li>Set: oba hráči hodí <span class="die">d6</span>, shoda = znovu. Vyšší hod set vyhrává a zapisuje si <strong>25 bodů</strong>.</li>
+    <li>Poražený hodí <span class="die">d12</span> a zapíše si <strong>12 + hod</strong> bodů (13 až 24). Čím víc, tím větší bitva o koncovku!</li>
+    <li>Zápas se hraje na <strong>3 vítězné sety</strong> (s dětmi na 2).</li>
+    <li><strong>Pátý (rozhodující) set</strong> se hraje do 15: vítěz 15 bodů, poražený hodí <span class="die">d6</span> a zapíše 6 + hod (7 až 12).</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový zápas: Liberec – Karlovarsko</div>
+    <p>Set 1: vyhrál Liberec, d12 padla 9 → <span class="score">25:21</span>.
+    Set 2: Karlovarsko, d12 = 12 → <span class="score">24:26</span>? Ne – vítěz má vždy 25,
+    poražený 12+12 = 24, tedy <span class="score">24:25</span>… vidíte, jak těsné!
+    Set 3: Liberec <span class="score">25:14</span>. Set 4: Karlovarsko <span class="score">18:25</span>.
+    Pátý set: vyhrál Liberec, d6 = 5 → <span class="score">15:11</span>. Zápas 3:2.</p>
+  </div>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Sčítání „12 + hod“ a „6 + hod“ je nenápadný trénink přičítání přes
+    desítku. A položte záludnou otázku: proč poražený nikdy nemůže mít 25 bodů? A proč skutečný
+    volejbal umožňuje i výsledek 27:25? (Pravidlo dvou bodů rozdílu – klidně si ho přidejte
+    jako vlastní rozšíření: padne-li d12 = 12, hoďte znovu o „nastavení“ 26:24, 27:25…)</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Hrajte na 2 vítězné sety a body poraženého určete jednoduše hodem
+    <span class="die">d10</span> plus 10. Menší čísla, stejná zábava.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 6 HÁZENÁ ═══════════ -->
+<div class="page chapter-page" id="hazena">
+  <h2 class="chapter"><span class="ch-num">Kapitola 6</span>🤾 Házená</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 2×d10 (+ d6)</span>
+    <span class="info-chip">👥 2 hráči</span>
+    <span class="info-chip">⏱️ zápas 3 minuty</span>
+    <span class="info-chip">🎂 od 7 let</span>
+  </div>
+  <p>Házená je gólová smršť – zápasy končí třeba 31:28. Tady poprvé nastupují desetistěnky
+  a s nimi větší čísla a sčítání do šedesáti.</p>
+  <h3>Pravidla</h3>
+  <ol>
+    <li>Zápas má dva poločasy. V každém hodí <strong>každý tým</strong> svou <span class="die">d10</span> a vstřelí <strong>10 + hod</strong> branek (11 až 20).</li>
+    <li>Konečný výsledek = součet obou poločasů (22 až 40 branek na tým).</li>
+    <li>V lize je remíza platná (2 body za výhru, 1 za remízu).</li>
+    <li>V play-off rozhoduje <strong>sedmičkový rozstřel</strong>: 5 sedmiček na každé straně, sedmička = <span class="die">d6</span>, <strong>1–4 gól, 5–6 brankář chytil</strong>. Pak náhlá smrt.</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový zápas: Plzeň – Karviná</div>
+    <p>1. poločas: d10 padly 6 a 3 → <span class="score">16:13</span>.<br>
+    2. poločas: d10 padly 2 a 9 → 12:19, průběžně tedy 28:32.<br>
+    Konečný výsledek <span class="score">28:32</span> – hosté zápas otočili druhým poločasem.</p>
+  </div>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Dvouciferné sčítání (16 + 12, 13 + 19) a čtení průběžného stavu.
+    Skvělá otázka k druhému poločasu: „Prohráváš o tři. Co ti musí padnout, aby ses dostal
+    do vedení, když soupeř hodí 5?“ – dítě řeší nerovnici a ani o tom neví.</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Hrajte jeden poločas a bez přičítání desítky – góly = hod d10.
+    Výsledky jako 7:4 se snadno zapisují i porovnávají.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 7 BASKETBAL ═══════════ -->
+<div class="page chapter-page" id="basketbal">
+  <h2 class="chapter"><span class="ch-num">Kapitola 7</span>🏀 Basketbal</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 2×d20 (+ 2×d10)</span>
+    <span class="info-chip">👥 2 hráči</span>
+    <span class="info-chip">⏱️ zápas 5 minut</span>
+    <span class="info-chip">🎂 od 8 let</span>
+  </div>
+  <p>Čtyři čtvrtiny, velká čísla, průběžné skóre jako na světelné tabuli. Basketbal je v této
+  knize král sčítání – zápas končívá kolem 82:79.</p>
+  <h3>Pravidla</h3>
+  <ol>
+    <li>Zápas má 4 čtvrtiny. V každé hodí každý tým <span class="die">d20</span> a zapíše si <strong>10 + hod</strong> bodů (11 až 30).</li>
+    <li>Průběžné skóre sčítejte po každé čtvrtině – jako na tabuli v hale.</li>
+    <li>Basketbal nezná remízu: je-li po 4. čtvrtině shoda, hraje se <strong>prodloužení</strong> – každý hodí <span class="die">d10</span> a přičte <strong>2 + hod</strong> bodů (3 až 12). Trvá shoda? Další prodloužení.</li>
+    <li><strong>Trojkový bonus:</strong> padne-li týmu na d20 rovných 20, přičítá si ještě +3 („trojka s faulem v poslední vteřině!“) – čtvrtina za 33 bodů.</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový zápas: Nymburk – Opava</div>
+    <table>
+      <tr><th class="l">Čtvrtina</th><th>1.</th><th>2.</th><th>3.</th><th>4.</th><th>Celkem</th></tr>
+      <tr><td class="l">Nymburk (hody 14, 5, 20, 12)</td><td>24</td><td>15</td><td>30+3</td><td>22</td><td class="score">94</td></tr>
+      <tr><td class="l">Opava (hody 7, 18, 1, 12)</td><td>17</td><td>28</td><td>11</td><td>22</td><td class="score">78</td></tr>
+    </table>
+    <p style="margin:0">Ve třetí čtvrtině padla dvacítka – trojkový bonus! Konečný výsledek <span class="score">94:78</span>.</p>
+  </div>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Sčítání dvouciferných čísel pod časovým tlakem („rychle, kolik je
+    24 + 15 + 33?“) a čtení průběžného rozdílu. Průměrná čtvrtina je 20,5 bodu – zeptejte se dětí,
+    kolik tedy čekají za celý zápas, a pak si to společně ověřte v tabulce výsledků.</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Hrajte dva poločasy místo čtyř čtvrtin a bez přičítání: body = hod d20.
+    Výsledky kolem 25:31 se počítají snáz, napětí zůstává.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 8 BIATLON ═══════════ -->
+<div class="page chapter-page" id="biatlon">
+  <h2 class="chapter"><span class="ch-num">Kapitola 8</span>🎿 Biatlon</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 3×d10 + 5×d6</span>
+    <span class="info-chip">👥 1 a více hráčů</span>
+    <span class="info-chip">⏱️ závod 3 minuty na hráče</span>
+    <span class="info-chip">🎂 od 7 let</span>
+  </div>
+  <p>První závod v knize, kde nehrajete proti soupeřově kostce, ale proti trati – a proti vlastním
+  nervům na střelnici. Dá se hrát i sám: zkuste překonat vlastní rekord. Vyhrává <strong>nejnižší</strong> součet.</p>
+  <h3>Pravidla (sprint)</h3>
+  <ol>
+    <li><strong>Běh:</strong> trať má 3 úseky. Za každý úsek hoď <span class="die">d10</span> – to jsou minuty na trati (3 až 30 celkem). Nižší = rychlejší!</li>
+    <li><strong>Střelba vleže</strong> (po 1. úseku): 5 ran = 5 hodů <span class="die">d6</span>. <strong>Jednička = minutá rána</strong>, cokoli jiného zásah.</li>
+    <li><strong>Střelba vestoje</strong> (po 2. úseku): dalších 5 hodů d6, stejné pravidlo.</li>
+    <li>Za každou minutou ránu si přičti <strong>+2 trestné minuty</strong> (trestné kolo).</li>
+    <li>Výsledný čas = součet tří úseků + trestné minuty. Vyhrává nejnižší čas. Při shodě rozhodne dodatečný hod d10.</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový závod</div>
+    <p>Míra: úseky 4 + 7 + 9 = 20. Ležka čistá (žádná 1), stojka 3, <strong>1</strong>, 5, 6, 2 → jedna
+    trestná = +2. Celkem <span class="score">22 minut</span>.<br>
+    Terka: úseky 2 + 3 + 8 = 13 (letěla jako vítr!), ale ležka <strong>1</strong>, 4, <strong>1</strong>, 6, 3 a stojka
+    <strong>1</strong>, 2, 2, 5, 4 → tři trestné = +6. Celkem <span class="score">19 minut</span> – i tak zlato!</p>
+  </div>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Biatlon je malá lekce pravděpodobnosti: šance minout jednu ránu je 1 : 6,
+    ale šance, že z deseti ran mineš alespoň jednu, je už asi 84 %! Čistá střelba je proto vzácná
+    a zaslouží potlesk. K tomu sčítání a hlavně <em>strategie myšlení</em>: rychlý běžec se špatnou
+    muškou často prohraje s pomalým, ale přesným střelcem.</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Jen jedna střelba (5 ran) a 2 úseky. Trestná minuta za minutou ránu je +1.
+    Menší čísla, rychlejší závod – a stejné drama na střelnici.</p>
+  </div>
+  <h3>Rozšíření: štafeta</h3>
+  <p>Družstva po dvou: každý člen běží svůj sprint a časy se sčítají. Děti zažijí, jaké to je,
+  když „doháníš manko po kolegově trestném kole“ – týmový duch v kostce.</p>
+</div>
+
+<!-- ═══════════ 9 ATLETIKA ═══════════ -->
+<div class="page chapter-page" id="atletika">
+  <h2 class="chapter"><span class="ch-num">Kapitola 9</span>🏃 Atletika – sprint a skok daleký</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 2×d10 + 3×d20</span>
+    <span class="info-chip">👥 1 a více hráčů</span>
+    <span class="info-chip">⏱️ disciplína 2 minuty</span>
+    <span class="info-chip">🎂 od 8 let</span>
+  </div>
+  <p>Atletika přináší do hry desetinná čísla a jednotky: sekundy na setiny, metry na centimetry.
+  Ideální pro celou rodinu nebo třídu – každý závodí sám za sebe a vede se tabulka rekordů.</p>
+  <h3>Sprint na 100 m</h3>
+  <ol>
+    <li>Každý závodník hodí <strong>dvěma d10</strong> (nebo percentilovými kostkami): první hod jsou <strong>desetiny</strong>, druhý <strong>setiny</strong> sekundy. Desítka se počítá jako 0.</li>
+    <li>Čas = <strong>10, [desetiny][setiny] s</strong>. Příklad: hody 4 a 7 → čas 10,47 s. Hody 10 a 3 → 10,03 s, skoro světový rekord!</li>
+    <li>Nejnižší čas vyhrává. Při shodě časů rozhodne cílová fotografie: dodatečný hod d10.</li>
+    <li>Při 4 a více závodnících běhejte <strong>rozběhy</strong>: dva nejrychlejší z každého rozběhu postupují do finále, ve finále se hází znovu.</li>
+  </ol>
+  <h3>Skok daleký</h3>
+  <ol>
+    <li>Každý skokan má <strong>3 pokusy</strong>. Pokus = hod <strong>3×d20</strong>: délka skoku je <strong>700 cm + součet hodů</strong> (7,03 až 7,60 m).</li>
+    <li><strong>Přešlap:</strong> padne-li na kterékoli z kostek jednička, pokus je neplatný a nepočítá se!</li>
+    <li>Do výsledků se počítá <strong>nejdelší platný</strong> pokus. Vyhrává nejdelší skok; kdo přešlápl všechny tři, je „bez výkonu“.</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový skok</div>
+    <p>1. pokus: 12 + 5 + 18 = 35 → <span class="score">7,35 m</span>. 2. pokus: 20 + <strong>1</strong> + 9 → přešlap, neplatný.
+    3. pokus: 19 + 14 + 17 = 50 → <span class="score">7,50 m</span> – osobní rekord a vítězství!</p>
+  </div>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Sprint učí čtení desetinných čísel (je 10,47 méně než 10,5?), skok
+    převod centimetrů na metry (735 cm = 7,35 m) a hledání maxima. Přešlap je lekce rizika:
+    šance, že aspoň jedna ze tří d20 ukáže 1, je asi 14 % – zhruba každý sedmý pokus propadne.</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Sprint jen s jednou d10 (čas „10 a něco“ vteřin – 10,4 s) a skok
+    z 2×d6: délka = 3 metry + součet „decimetrů“ (3,2–4,2 m, jako skáčou děti na hřišti).</p>
+  </div>
+  <h3>Tabulka rekordů</h3>
+  <p>Zaveďte sešit rekordů: nejrychlejší stovka, nejdelší skok, nejčistší biatlon. Rekordy
+  vydrží týdny a dávají hře dlouhý příběh – jednou za čas padne „světový rekord“ 10,01 s
+  a ten den se slaví.</p>
+</div>
+
+<!-- ═══════════ 10 ŠIPKY ═══════════ -->
+<div class="page chapter-page" id="sipky">
+  <h2 class="chapter"><span class="ch-num">Kapitola 10</span>🎯 Šipky 301</h2>
+  <div class="info-strip">
+    <span class="info-chip">🎲 3×d20</span>
+    <span class="info-chip">👥 2 a více hráčů</span>
+    <span class="info-chip">⏱️ leg 5 minut</span>
+    <span class="info-chip">🎂 od 8 let</span>
+  </div>
+  <p>Nejlepší trénink odčítání zpaměti, jaký kdy děti dobrovolně podstoupí. Každý hráč začíná
+  na <strong>301 bodech</strong> a snaží se dostat <strong>přesně na nulu</strong>.</p>
+  <h3>Pravidla</h3>
+  <ol>
+    <li>V kole hodí hráč <strong>3×d20</strong> („tři šipky“), hody sečte a součet <strong>odečte</strong> od svého zůstatku.</li>
+    <li>Kdo první dosáhne <strong>přesně 0</strong>, vyhrává leg.</li>
+    <li><strong>Přehození (bust):</strong> pokud by součet srazil zůstatek pod nulu, celé kolo se nepočítá a zůstatek se nemění. (Zbývá-li 12 a hodíš 15, smůla – čekáš na další kolo.)</li>
+    <li><strong>Koncovka:</strong> zbývá-li hráči 20 nebo méně, hází už jen <strong>jednou d20</strong> za kolo a snaží se trefit přesný zbytek.</li>
+    <li>Zápas se hraje na 2 nebo 3 vítězné legy.</li>
+  </ol>
+  <div class="box box-example">
+    <div class="box-title">Ukázkový leg (jeden hráč)</div>
+    <table>
+      <tr><th>Kolo</th><th>Hody</th><th>Součet</th><th>Zůstatek</th></tr>
+      <tr><td>1</td><td>18, 11, 20</td><td>49</td><td class="score">252</td></tr>
+      <tr><td>2</td><td>20, 19, 16</td><td>55</td><td class="score">197</td></tr>
+      <tr><td>3</td><td>7, 14, 20</td><td>41</td><td class="score">156</td></tr>
+      <tr><td>4</td><td>20, 20, 20</td><td>60</td><td class="score">96 („STO ŠEDESÁT!“ … skoro)</td></tr>
+      <tr><td>5</td><td>19, 20, 20</td><td>59</td><td class="score">37</td></tr>
+      <tr><td>6</td><td>20, 18, …</td><td>38 &gt; 37</td><td class="score">37 – bust!</td></tr>
+      <tr><td>7</td><td>17, 15, 5</td><td>37</td><td class="score">0 – vítězství!</td></tr>
+    </table>
+  </div>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Sčítání tří čísel a odčítání od třímístného zůstatku – každé kolo,
+    zpaměti, dobrovolně a s radostí. Koncovka učí plánování: „zbývá mi 37, potřebuji součet
+    přesně 37 – mám házet všechny tři kostky, nebo risknu bust?“</p>
+  </div>
+  <div class="box box-kids">
+    <div class="box-title">Varianta pro nejmenší</div>
+    <p style="margin:0">Hra <strong>101</strong>: začíná se na 101 a hází se <strong>2×d10</strong>.
+    Menší čísla, stejná pravidla, stejný vítězný pokřik.</p>
+  </div>
+  <h3>Rozšíření pro velké počtáře: double out</h3>
+  <p>Jako profesionálové: poslední hod, který sráží zůstatek na nulu, musí být <strong>sudé
+  číslo</strong>. Najednou je potřeba plánovat o kolo dopředu – vítejte v lize mistrů odčítání.</p>
+</div>
+
+<!-- ═══════════ 11 TURNAJE ═══════════ -->
+<div class="page chapter-page" id="turnaje">
+  <h2 class="chapter"><span class="ch-num">Kapitola 11</span>🏆 Turnajové systémy – liga, pavouk, skupiny</h2>
+  <p>Jednotlivý zápas je zábava na pět minut. Turnaj je <em>příběh na celé prázdniny</em>.
+  Tři osvědčené systémy fungují pro každý sport z této knihy:</p>
+  <h3>1. Liga – každý s každým</h3>
+  <ul>
+    <li>Každý tým se utká s každým (doma a venku = dvoukolově, pro kratší hru jednokolově).</li>
+    <li>Bodování fotbal/volejbal: <strong>výhra 3, remíza 1, prohra 0</strong> (volejbal remízu nezná: výhra 3:0 a 3:1 = 3 body, 3:2 = 2 body, prohra 2:3 = 1 bod).</li>
+    <li>Bodování hokej/házená: <strong>výhra 2, remíza 1, prohra 0</strong>; hokej s prodloužením: výhra 2, výhra v prodloužení/nájezdech 2 : poražený 1.</li>
+    <li>O pořadí při shodě bodů rozhoduje: 1) vzájemný zápas, 2) rozdíl skóre, 3) vstřelené góly.</li>
+  </ul>
+  <div class="box box-example">
+    <div class="box-title">Ukázková tabulka mini-ligy čtyř týmů (fotbal, jednokolově)</div>
+    <table>
+      <tr><th>#</th><th class="l">Tým</th><th>Z</th><th>V</th><th>R</th><th>P</th><th>Skóre</th><th>Body</th></tr>
+      <tr><td>1</td><td class="l">Draci</td><td>3</td><td>2</td><td>1</td><td>0</td><td>7:3</td><td class="score">7</td></tr>
+      <tr><td>2</td><td class="l">Sokoli</td><td>3</td><td>2</td><td>0</td><td>1</td><td>5:4</td><td class="score">6</td></tr>
+      <tr><td>3</td><td class="l">Vlci</td><td>3</td><td>1</td><td>1</td><td>1</td><td>4:4</td><td class="score">4</td></tr>
+      <tr><td>4</td><td class="l">Ježci</td><td>3</td><td>0</td><td>0</td><td>3</td><td>2:7</td><td class="score">0</td></tr>
+    </table>
+    <p style="margin:0">Z = zápasy, V = výhry, R = remízy, P = prohry. Zkontrolujte s dětmi:
+    sedí součty? (Výher musí být v celé tabulce stejně jako proher a body Draků = 2×3 + 1×1 = 7.)</p>
+  </div>
+  <h3>2. Pavouk – vyřazovací systém</h3>
+  <ul>
+    <li>Pro 4, 8 nebo 16 účastníků. Dvojice nalosujte hodem kostkou (nejvyšší hod si vybírá soupeře – nebo losujte „spravedlivě naslepo“).</li>
+    <li>Vítěz postupuje, poražený vypadává (útěchou může být „malé finále“ o 3. místo).</li>
+    <li>Remízy neexistují: každý sport má v této knize svůj rozstřel – penalty, nájezdy, tiebreak, sedmičky, prodloužení.</li>
+  </ul>
+  <h3>3. Skupiny + play-off (mistrovství světa)</h3>
+  <ul>
+    <li>8 týmů rozdělte do dvou skupin po čtyřech. Ve skupině liga každý s každým.</li>
+    <li>První dva ze skupiny postupují do semifinále křížem: vítěz A proti druhému z B a naopak.</li>
+    <li>Semifinále, finále a zápas o bronz – kompletní šampionát za jedno odpoledne.</li>
+  </ul>
+  <div class="box box-math">
+    <div class="box-title">Matematické okénko</div>
+    <p style="margin:0">Turnaje jsou kombinatorika v praxi: kolik zápasů má liga šesti týmů
+    každý s každým? (6×5÷2 = 15.) Kolik kol potřebuje pavouk pro 16 hráčů? (4 – protože
+    16 → 8 → 4 → 2 → 1.) Nechte děti rozpis sestavit samy – je to nejlepší úloha celé knihy.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 12 FAIR PLAY ═══════════ -->
+<div class="page chapter-page" id="fairplay">
+  <h2 class="chapter"><span class="ch-num">Kapitola 12</span>🤝 Kodex fair play malého sportovce</h2>
+  <p>Kostka je nejspravedlivější rozhodčí na světě: nezná protekci, nedá se uplatit a nadržuje
+  jen náhodě. Ale fair play není v kostce – je v hráčích. Tenhle kodex si přečtěte nahlas
+  před prvním turnajem a klidně ho podepište jako opravdovou listinu.</p>
+  <div class="box box-fair">
+    <div class="box-title">Desatero kostkového sportovce</div>
+    <ol style="margin:0 0 0 20px">
+      <li>Hod platí, jak dopadl. I když se mi nehodí.</li>
+      <li>Házím před očima soupeře a jeho hod nikdy nezpochybňuji.</li>
+      <li>Pravidla si přečteme <em>před</em> zápasem a v půlce je neměníme.</li>
+      <li>Vyhrávám skromně: podám ruku a řeknu „dobrá hra“.</li>
+      <li>Prohrávám důstojně: podám ruku a řeknu „dobrá hra“. (Ano, je to stejná věta.)</li>
+      <li>Slabšímu soupeři nabídnu handicap, silnějšího se nebojím.</li>
+      <li>Chybu v zápisu přiznám – i tu, která byla v můj prospěch.</li>
+      <li>Když prohrávám, hraju dál. Otočené zápasy jsou ty nejslavnější.</li>
+      <li>Rozhodčího (maminku, tatínka, kamaráda) poslouchám, i když se mýlí míň často než kostka.</li>
+      <li>Hraju pro radost ze hry. Pohár je jen třešnička.</li>
+    </ol>
+  </div>
+  <h3>Pro rodiče a učitele</h3>
+  <ul>
+    <li><strong>Prohra je učivo.</strong> Nechte dítě prohrát a nechte ho to unést. Kostková
+    prohra je bezpečné hřiště pro emoce, které jednou přijdou v reálném sportu i životě.</li>
+    <li><strong>Handicapy jsou fér.</strong> „+1 k hodu“ pro mladšího hráče není podvod, ale
+    nasazení jako v tenise. Silnější hráč se učí vyhrávat s přirážkou, slabší věřit, že může vyhrát.</li>
+    <li><strong>Nechte děti vést zápis.</strong> Tabulka psaná dětskou rukou s přeškrtanými
+    čísly je cennější než vytištěná – je jejich.</li>
+    <li><strong>Slavte příběhy, ne jen vítěze.</strong> Obrat z 0:3, čistá střelba v biatlonu,
+    rekord 10,03 s – to jsou momenty, o kterých se u večeře vypráví.</li>
+  </ul>
+</div>
+
+<!-- ═══════════ PŘÍLOHA ARCHY ═══════════ -->
+<div class="page chapter-page sheet" id="archy">
+  <h2 class="chapter"><span class="ch-num">Příloha</span>📋 Zápisové archy</h2>
+  <p>Vytiskněte si tuto stránku (klidně vícekrát) – nebo si archy překreslete do sešitu,
+  což děti často baví nejvíc.</p>
+  <h3>Ligová tabulka</h3>
+  <table>
+    <tr><th>#</th><th class="l" style="width:34%">Tým</th><th>Z</th><th>V</th><th>R</th><th>P</th><th>Skóre</th><th>Body</th></tr>
+    <tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <h3>Rozpis zápasů</h3>
+  <table>
+    <tr><th>Kolo</th><th class="l" style="width:30%">Domácí</th><th class="l" style="width:30%">Hosté</th><th>Poločas</th><th>Výsledek</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <h3>Tenis / stolní tenis / volejbal – zápis setů</h3>
+  <table>
+    <tr><th class="l" style="width:28%">Hráč</th><th>1. set</th><th>2. set</th><th>3. set</th><th>4. set</th><th>5. set</th><th>Sety</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <h3>Biatlon / atletika – výsledková listina</h3>
+  <table>
+    <tr><th>#</th><th class="l" style="width:30%">Závodník</th><th>Úseky / pokusy</th><th>Trestné</th><th>Výsledek</th></tr>
+    <tr><td>1</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>4</td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <h3>Šipky 301 – zůstatky</h3>
+  <table>
+    <tr><th class="l" style="width:24%">Hráč</th><th>301</th><th></th><th></th><th></th><th></th><th></th><th></th><th>0!</th></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <p style="margin-top:30px;text-align:center;color:var(--ink2)"><em>Kostkový Sportovec · Nechť jsou kostky vrženy! 🎲</em></p>
+</div>
+
+</body>
+</html>
