@@ -16,8 +16,8 @@ function makeImages(count: number): GameImage[] {
   return Array.from({ length: count }, (_, index) => ({
     id: `img-${index}`,
     name: `Obrázek ${index}`,
-    category: 'objects' as const,
-    image: `/game-images/img-${index}.svg`,
+    category: 'everyday' as const,
+    image: `/cards/img-${index}.svg`,
   }));
 }
 

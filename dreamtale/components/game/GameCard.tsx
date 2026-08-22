@@ -20,8 +20,8 @@ const CARD_STYLE = {
   maxWidth: 'min(88%, 30rem)',
   // Strop výšky drží poměr stran i na tabletu, kde by karta jinak byla úzká a přetažená.
   maxHeight: '44rem',
-  // Užší poměr než klasická karta – na telefonu tak zabere 70–85 % dostupné výšky.
-  aspectRatio: '0.66',
+  // Shodné s plátnem ilustrace (240 × 364), aby karta byla celá vyplněná.
+  aspectRatio: '0.659',
 } as const;
 
 export function GameCard({ image, direction = 1, hidden = false, hiddenLabel }: GameCardProps) {
@@ -60,8 +60,8 @@ export function GameCard({ image, direction = 1, hidden = false, hiddenLabel }: 
           ? { duration: 0.18 }
           : { type: 'spring', stiffness: 260, damping: 28, mass: 0.7, opacity: { duration: 0.22 } }
       }
-      style={CARD_STYLE}
-      className="paper no-select absolute flex items-center justify-center overflow-hidden rounded-[2.25rem] shadow-[var(--shadow-card)] ring-1 ring-black/10"
+      style={{ ...CARD_STYLE, backgroundColor: hidden ? undefined : (image.tint ?? '#FBF3E4') }}
+      className={`no-select absolute flex items-center justify-center overflow-hidden rounded-[2.25rem] shadow-[var(--shadow-card)] ring-1 ring-black/15 ${hidden ? 'paper' : ''}`}
     >
       {hidden ? (
         <div className="flex flex-col items-center gap-4 px-8 text-center">
@@ -81,7 +81,7 @@ export function GameCard({ image, direction = 1, hidden = false, hiddenLabel }: 
           src={resolveAsset(image.image)}
           alt={image.name}
           draggable={false}
-          className="h-[74%] w-[86%] object-contain"
+          className="h-full w-full object-cover"
         />
       )}
     </motion.div>

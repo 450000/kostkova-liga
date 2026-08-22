@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 364" width="240" height="364">
+<defs><linearGradient id="g113" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#F0A57E"/><stop offset="1" stop-color="#F7D3A8"/></linearGradient></defs>
+<rect width="240" height="364" fill="url(#g113)"/><g transform="translate(194 92) scale(0.28) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="17.857142857142854" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="120" cy="120" r="52" fill="#F5C765"/>
+<path d="M120 32 v-16 M120 208 v16 M32 120 h-16 M208 120 h16 M58 58 L46 46 M182 182 l12 12 M182 58 l12 -12 M58 182 l-12 12" stroke-width="8"/></g>
+<path d="M0 252 H240 V364 H0 Z" fill="#4FA3A5"/>
+<path d="M0 252 H240" stroke="#2E2A45" stroke-width="4"/>
+<path d="M18 278 q16 -10 32 0 t32 0 M112 298 q16 -10 32 0 t32 0 M30 318 q16 -10 32 0 t32 0"
+ fill="none" stroke="#BFE0F0" stroke-width="4"/>
+<path d="M56 296 q64 -30 128 0 q-30 22 -64 22 q-34 0 -64 -22 Z" fill="#EBD9B4" stroke="#2E2A45" stroke-width="4"/>
+<g transform="translate(122 226) scale(0.62) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="8.064516129032258" stroke-linecap="round" stroke-linejoin="round">
+<path d="M108 206 q-18 -66 26 -104" fill="none" stroke-width="18" stroke="#A5713F"/>
+<path d="M108 206 q-18 -66 26 -104" fill="none" stroke-width="5"/>
+<path d="M136 98 q-46 -34 -74 -6 q34 -4 74 6 Z" fill="#6FAE7B"/>
+<path d="M136 98 q40 -40 74 -14 q-36 0 -74 14 Z" fill="#6FAE7B"/>
+<path d="M136 98 q-22 -48 8 -66 q6 32 -8 66 Z" fill="#8FBFA6"/>
+<path d="M136 98 q46 -18 56 14 q-30 -18 -56 -14 Z" fill="#8FBFA6"/>
+<circle cx="122" cy="116" r="10" fill="#A5713F"/>
+<circle cx="146" cy="120" r="9" fill="#A5713F"/></g>
+<path d="M0 330 q24 -14 48 0 t48 0 t48 0 t48 0 t48 0" fill="none" stroke="#BFE0F0" stroke-width="5"/>
+<defs><radialGradient id="g289" cx="0.5" cy="0.46" r="0.78">
+<stop offset="0.55" stop-color="#2E2A45" stop-opacity="0"/>
+<stop offset="1" stop-color="#2E2A45" stop-opacity="0.24"/></radialGradient></defs>
+<rect width="240" height="364" fill="url(#g289)"/>
+</svg>

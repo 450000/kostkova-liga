@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
-  <circle cx="120" cy="122" r="108" fill="#EFA0BE" opacity="0.14"/>
-  <g fill="none" stroke="#2E2A45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" transform="translate(120 122) scale(1.12) translate(-120 -122)"><path d="M44 124 q0 -84 76 -84 q76 0 76 84 q-20 18 -38 0 t-38 0 t-38 0 t-38 0 Z" fill="#EFA0BE"/>
-<path d="M74 140 q-8 32 8 46 q14 12 4 34 M108 142 q-8 34 4 52 M136 142 q8 34 -4 52 M168 140 q8 32 -8 46 q-14 12 -4 34" fill="none" stroke-width="5"/>
-<circle cx="102" cy="96" r="6" fill="#2E2A45" stroke="none"/>
-<circle cx="140" cy="96" r="6" fill="#2E2A45" stroke="none"/>
-  </g>
-</svg>

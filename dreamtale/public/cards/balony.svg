@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 364" width="240" height="364">
+<defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#F0A57E"/><stop offset="1" stop-color="#F7D3A8"/></linearGradient></defs>
+<rect width="240" height="364" fill="url(#g4)"/><g transform="translate(44 236) scale(0.6)">
+<path d="M-34 12 q-18 0 -18 -14 q0 -13 15 -14 q3 -19 24 -19 q18 0 22 16 q17 -2 20 12 q3 19 -17 19 Z" fill="#FFFCF5" stroke="#2E2A45" stroke-width="3.5"/></g>
+<path d="M-10 282 q40 -46 84 -6 q30 26 56 -14 q34 -50 116 6 V364 H-10 Z" fill="#C4693C"/>
+<path d="M-10 282 q40 -46 84 -6 q30 26 56 -14 q34 -50 116 6" fill="none" stroke="#2E2A45" stroke-width="4"/>
+<g transform="translate(94 130) scale(1) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M120 24 q60 0 60 62 q0 44 -60 76 q-60 -32 -60 -76 q0 -62 60 -62 Z" fill="#F2765C"/>
+<path d="M120 24 v138 M92 34 q-18 62 8 122 M148 34 q18 62 -8 122" stroke-width="4"/>
+<path d="M100 162 L106 190 M140 162 L134 190" stroke-width="4"/>
+<rect x="100" y="188" width="40" height="30" rx="6" fill="#A5713F"/></g>
+<g transform="translate(180 206) scale(0.6) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="8.333333333333334" stroke-linecap="round" stroke-linejoin="round">
+<path d="M120 24 q60 0 60 62 q0 44 -60 76 q-60 -32 -60 -76 q0 -62 60 -62 Z" fill="#F2765C"/>
+<path d="M120 24 v138 M92 34 q-18 62 8 122 M148 34 q18 62 -8 122" stroke-width="4"/>
+<path d="M100 162 L106 190 M140 162 L134 190" stroke-width="4"/>
+<rect x="100" y="188" width="40" height="30" rx="6" fill="#A5713F"/></g>
+<g transform="translate(42 220) scale(0.46) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="10.869565217391305" stroke-linecap="round" stroke-linejoin="round">
+<path d="M120 24 q60 0 60 62 q0 44 -60 76 q-60 -32 -60 -76 q0 -62 60 -62 Z" fill="#F2765C"/>
+<path d="M120 24 v138 M92 34 q-18 62 8 122 M148 34 q18 62 -8 122" stroke-width="4"/>
+<path d="M100 162 L106 190 M140 162 L134 190" stroke-width="4"/>
+<rect x="100" y="188" width="40" height="30" rx="6" fill="#A5713F"/></g>
+<defs><radialGradient id="g131" cx="0.5" cy="0.46" r="0.78">
+<stop offset="0.55" stop-color="#2E2A45" stop-opacity="0"/>
+<stop offset="1" stop-color="#2E2A45" stop-opacity="0.24"/></radialGradient></defs>
+<rect width="240" height="364" fill="url(#g131)"/>
+</svg>

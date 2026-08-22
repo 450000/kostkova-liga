@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 364" width="240" height="364">
+<defs><linearGradient id="g79" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#C9DCEF"/><stop offset="1" stop-color="#EAF1F8"/></linearGradient></defs>
+<rect width="240" height="364" fill="url(#g79)"/>
+<g fill="#5C9A5C"><circle cx="26" cy="120" r="58"/><circle cx="216" cy="150" r="62"/><circle cx="40" cy="240" r="46"/></g>
+<path d="M84 84 h72 v168 H84 Z" fill="#BFE0F0" stroke="#2E2A45" stroke-width="4"/>
+<path d="M104 104 v134 M136 104 v134" stroke="#FFFCF5" stroke-width="5"/>
+<ellipse cx="120" cy="270" rx="72" ry="26" fill="#4FA3A5" stroke="#2E2A45" stroke-width="4"/>
+<path d="M0 296 q30 -18 60 0 t60 0 t60 0 t60 0 V364 H0 Z" fill="#4FA3A5" stroke="#2E2A45" stroke-width="4"/>
+<g transform="translate(46 302) scale(0.3) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="16.666666666666668" stroke-linecap="round" stroke-linejoin="round">
+<path d="M52 188 q-14 -122 136 -136 q16 132 -136 136 Z" fill="#8FBFA6"/>
+<path d="M60 180 q60 -66 128 -136" stroke-width="5"/>
+<path d="M96 148 q6 -30 -6 -50 M132 118 q6 -30 -8 -48 M84 176 q-6 -28 -22 -40" stroke-width="4"/></g><g transform="translate(202 306) scale(0.24) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="20.833333333333336" stroke-linecap="round" stroke-linejoin="round">
+<path d="M120 96 v106" stroke-width="8"/>
+<path d="M120 150 q-34 -6 -40 -30 q30 -10 40 30 Z" fill="#8FBFA6"/>
+<circle cx="120" cy="56" r="24" fill="#EFA0BE"/>
+<circle cx="76" cy="88" r="24" fill="#EFA0BE"/>
+<circle cx="164" cy="88" r="24" fill="#EFA0BE"/>
+<circle cx="94" cy="132" r="24" fill="#EFA0BE"/>
+<circle cx="146" cy="132" r="24" fill="#EFA0BE"/>
+<circle cx="120" cy="96" r="26" fill="#F5C765"/></g>
+<defs><radialGradient id="g220" cx="0.5" cy="0.46" r="0.78">
+<stop offset="0.55" stop-color="#2E2A45" stop-opacity="0"/>
+<stop offset="1" stop-color="#2E2A45" stop-opacity="0.24"/></radialGradient></defs>
+<rect width="240" height="364" fill="url(#g220)"/>
+</svg>

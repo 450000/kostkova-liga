@@ -11,10 +11,10 @@ describe('katalog obrázků', () => {
   it('má unikátní id a vyplněná metadata', () => {
     const ids = new Set(IMAGE_CATALOG.map((image) => image.id));
     expect(ids.size).toBe(IMAGE_CATALOG.length);
-    expect(IMAGE_CATALOG.length).toBeGreaterThanOrEqual(200);
+    expect(IMAGE_CATALOG.length).toBeGreaterThanOrEqual(150);
     for (const image of IMAGE_CATALOG) {
       expect(image.name.length).toBeGreaterThan(0);
-      expect(image.image.startsWith('/game-images/')).toBe(true);
+      expect(image.image.startsWith('/cards/')).toBe(true);
     }
   });
 
@@ -81,9 +81,9 @@ describe('seed', () => {
 describe('LocalImageProvider', () => {
   it('dodá požadovaný počet obrázků z balíčku', async () => {
     const provider = new LocalImageProvider();
-    const images = await provider.getImages({ count: 12, packId: 'animals', seed: 'S1' });
+    const images = await provider.getImages({ count: 12, packId: 'creatures', seed: 'S1' });
     expect(images).toHaveLength(12);
     expect(new Set(images.map((image) => image.id)).size).toBe(12);
-    expect(await provider.capacity('animals')).toBeGreaterThan(12);
+    expect(await provider.capacity('creatures')).toBeGreaterThan(12);
   });
 });

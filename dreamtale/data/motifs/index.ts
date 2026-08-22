@@ -1,5 +1,4 @@
 import type { MotifArt } from './palette';
-import type { ImageCategory } from '@/types/images';
 import { animals } from './animals';
 import { nature } from './nature';
 import { sky } from './sky';
@@ -11,9 +10,17 @@ import { fantasy } from './fantasy';
 import { music } from './music';
 import { play } from './play';
 
-export type CategorizedMotif = MotifArt & { category: ImageCategory };
+/**
+ * Kresby předmětů. Nejsou to karty – scény v `data/cards` si je půjčují
+ * jako rekvizity. Skupina slouží jen k udržení pořádku v souborech.
+ */
+export type MotifGroup =
+  | 'animals' | 'nature' | 'sky' | 'places' | 'transport'
+  | 'food' | 'objects' | 'fantasy' | 'music' | 'play';
 
-const GROUPS: Array<[ImageCategory, MotifArt[]]> = [
+export type CategorizedMotif = MotifArt & { category: MotifGroup };
+
+const GROUPS: Array<[MotifGroup, MotifArt[]]> = [
   ['animals', animals],
   ['nature', nature],
   ['sky', sky],
@@ -26,7 +33,7 @@ const GROUPS: Array<[ImageCategory, MotifArt[]]> = [
   ['play', play],
 ];
 
-/** Kompletní zdroj pravdy: z tohoto seznamu se generují SVG i katalog obrázků. */
+/** Knihovna kreseb, ze které staví scény karet. */
 export const MOTIFS: CategorizedMotif[] = GROUPS.flatMap(([category, items]) =>
   items.map((motif) => ({ ...motif, category })),
 );

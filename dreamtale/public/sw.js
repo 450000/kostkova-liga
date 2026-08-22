@@ -1,5 +1,5 @@
 /* DREAMTALE service worker – lehké offline cachování bez build pluginů. */
-const CACHE = 'dreamtale-v1';
+const CACHE = 'dreamtale-v2';
 const SHELL = ['/', '/manifest.webmanifest', '/icons/icon.svg'];
 
 self.addEventListener('install', (event) => {
@@ -8,7 +8,7 @@ self.addEventListener('install', (event) => {
       const cache = await caches.open(CACHE);
       await cache.addAll(SHELL).catch(() => undefined);
       try {
-        const response = await fetch('/game-images/index.json');
+        const response = await fetch('/cards/index.json');
         const images = await response.json();
         await cache.addAll(images);
       } catch {

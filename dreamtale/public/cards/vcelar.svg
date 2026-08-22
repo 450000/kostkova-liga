@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 364" width="240" height="364">
+<defs><linearGradient id="g56" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#9CC6EE"/><stop offset="1" stop-color="#D8ECFB"/></linearGradient></defs>
+<rect width="240" height="364" fill="url(#g56)"/><g transform="translate(50 58) scale(0.7)">
+<path d="M-34 12 q-18 0 -18 -14 q0 -13 15 -14 q3 -19 24 -19 q18 0 22 16 q17 -2 20 12 q3 19 -17 19 Z" fill="#FFFCF5" stroke="#2E2A45" stroke-width="3.5"/></g>
+<path d="M0 318 Q120 266 240 318 V364 H0 Z" fill="#7FB877"/>
+<path d="M0 318 Q120 266 240 318" fill="none" stroke="#2E2A45" stroke-width="4"/>
+<rect x="156" y="228" width="66" height="64" rx="6" fill="#EBD9B4" stroke="#2E2A45" stroke-width="4"/>
+<path d="M152 228 h74 M156 250 h66 M156 270 h66" fill="none" stroke="#2E2A45" stroke-width="3.4"/>
+<g transform="translate(92 320) scale(1.6)">
+<path d="M-10 -34 V-6" fill="none" stroke="#FFFCF5" stroke-width="14" stroke-linecap="round"/><path d="M10 -34 V-6" fill="none" stroke="#FFFCF5" stroke-width="14" stroke-linecap="round"/><ellipse cx="-10" cy="-4" rx="9" ry="5.5" fill="#2E2A45"/><ellipse cx="10" cy="-4" rx="9" ry="5.5" fill="#2E2A45"/><path d="M-20 -68 L-24 -46" fill="none" stroke="#FFFCF5" stroke-width="13" stroke-linecap="round"/>
+<path d="M-20 -68 L-24 -46" fill="none" stroke="#2E2A45" stroke-width="3.4" stroke-linecap="round" opacity="0.28"/><path d="M20 -68 L24 -46" fill="none" stroke="#FFFCF5" stroke-width="13" stroke-linecap="round"/>
+<path d="M20 -68 L24 -46" fill="none" stroke="#2E2A45" stroke-width="3.4" stroke-linecap="round" opacity="0.28"/><circle cx="-24" cy="-46" r="7.5" fill="#F2C6A0" stroke="#2E2A45" stroke-width="3"/><circle cx="24" cy="-46" r="7.5" fill="#F2C6A0" stroke="#2E2A45" stroke-width="3"/>
+<path d="M-21 -34 V-64 q0 -16 21 -16 q21 0 21 16 v30 Z" fill="#FFFCF5" stroke="#2E2A45" stroke-width="3.6"/><rect x="-6" y="-84" width="12" height="10" fill="#F2C6A0"/><circle cx="0" cy="-100" r="24" fill="#F2C6A0" stroke="#2E2A45" stroke-width="3.6"/>
+
+<path d="M-15 -104 q6 7 12 0" fill="none" stroke="#2E2A45" stroke-width="3" stroke-linecap="round"/><path d="M3 -104 q6 7 12 0" fill="none" stroke="#2E2A45" stroke-width="3" stroke-linecap="round"/><path d="M-10 -91 q10 10 20 0" fill="none" stroke="#2E2A45" stroke-width="3.2" stroke-linecap="round"/>
+<circle cx="0" cy="-100" r="30" fill="#FBF3E4" opacity="0.5" stroke="#2E2A45" stroke-width="3.4"/>
+<path d="M-30 -110 h60" stroke="#2E2A45" stroke-width="3"/></g>
+<g transform="translate(172 168) scale(0.28) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="17.857142857142854" stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="120" cy="136" rx="52" ry="42" fill="#F5C765"/>
+<path d="M104 98 v76 M132 96 v80" stroke-width="12" stroke="#2E2A45"/>
+<ellipse cx="120" cy="136" rx="52" ry="42" fill="none"/>
+<ellipse cx="86" cy="86" rx="26" ry="18" fill="#FFFCF5" transform="rotate(-24 86 86)"/>
+<ellipse cx="154" cy="86" rx="26" ry="18" fill="#FFFCF5" transform="rotate(24 154 86)"/>
+<path d="M172 132 l24 6" stroke-width="5"/></g><g transform="translate(66 152) scale(0.22) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="22.727272727272727" stroke-linecap="round" stroke-linejoin="round">
+<ellipse cx="120" cy="136" rx="52" ry="42" fill="#F5C765"/>
+<path d="M104 98 v76 M132 96 v80" stroke-width="12" stroke="#2E2A45"/>
+<ellipse cx="120" cy="136" rx="52" ry="42" fill="none"/>
+<ellipse cx="86" cy="86" rx="26" ry="18" fill="#FFFCF5" transform="rotate(-24 86 86)"/>
+<ellipse cx="154" cy="86" rx="26" ry="18" fill="#FFFCF5" transform="rotate(24 154 86)"/>
+<path d="M172 132 l24 6" stroke-width="5"/></g>
+<path d="M150 190 q22 -16 34 6" fill="none" stroke="#2E2A45" stroke-width="3" stroke-dasharray="6 6"/>
+<defs><radialGradient id="g190" cx="0.5" cy="0.46" r="0.78">
+<stop offset="0.55" stop-color="#2E2A45" stop-opacity="0"/>
+<stop offset="1" stop-color="#2E2A45" stop-opacity="0.24"/></radialGradient></defs>
+<rect width="240" height="364" fill="url(#g190)"/>
+</svg>

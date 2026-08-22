@@ -1,31 +1,31 @@
 /**
- * Vygeneruje SVG assety do public/game-images/ z jediného zdroje pravdy (data/motifs).
+ * Vygeneruje SVG karty do public/cards/ z definic v data/cards.
  *
  * Spuštění: npm run images:build
  *
- * Až budou k dispozici finální ilustrace, stačí soubory nahradit
- * (např. fox.svg → fox.webp) a upravit příponu v data/catalog.ts.
+ * Každá karta je celoplošná ilustrace v poměru karty (240 × 364).
+ * Kresby jednotlivých předmětů žijí v data/motifs a scény si je půjčují.
  */
 import { mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { MOTIFS, C } from '../data/motifs/index';
+import { CARDS } from '../data/cards/index';
+import { W, H, vignette } from '../data/cards/scene';
 
-const OUT_DIR = join(process.cwd(), 'public', 'game-images');
+const OUT_DIR = join(process.cwd(), 'public', 'cards');
 
-function renderSvg(tint: string, art: string): string {
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
-  <circle cx="120" cy="122" r="108" fill="${tint}" opacity="0.14"/>
-  <g fill="none" stroke="${C.ink}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" transform="translate(120 122) scale(1.12) translate(-120 -122)">${art.trim()}
-  </g>
+function renderSvg(art: string): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
+${art.trim()}
+${vignette()}
 </svg>
 `;
 }
 
 function main(): void {
   const seen = new Set<string>();
-  for (const motif of MOTIFS) {
-    if (seen.has(motif.id)) throw new Error(`Duplicitní id motivu: ${motif.id}`);
-    seen.add(motif.id);
+  for (const card of CARDS) {
+    if (seen.has(card.id)) throw new Error(`Duplicitní id karty: ${card.id}`);
+    seen.add(card.id);
   }
 
   mkdirSync(OUT_DIR, { recursive: true });
@@ -33,18 +33,18 @@ function main(): void {
     if (file.endsWith('.svg')) rmSync(join(OUT_DIR, file));
   }
 
-  for (const motif of MOTIFS) {
-    writeFileSync(join(OUT_DIR, `${motif.id}.svg`), renderSvg(motif.tint, motif.art), 'utf8');
+  for (const card of CARDS) {
+    writeFileSync(join(OUT_DIR, `${card.id}.svg`), renderSvg(card.art), 'utf8');
   }
 
   // Seznam assetů pro service worker – díky němu je hra po první návštěvě offline.
   writeFileSync(
     join(OUT_DIR, 'index.json'),
-    `${JSON.stringify(MOTIFS.map((motif) => `/game-images/${motif.id}.svg`), null, 2)}\n`,
+    `${JSON.stringify(CARDS.map((card) => `/cards/${card.id}.svg`), null, 2)}\n`,
     'utf8',
   );
 
-  console.log(`Vygenerováno ${MOTIFS.length} obrázků do public/game-images/`);
+  console.log(`Vygenerováno ${CARDS.length} karet do public/cards/`);
 }
 
 main();

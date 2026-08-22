@@ -1,24 +1,24 @@
 /** Kategorie slouží k vyvážené randomizaci – ne k zobrazení hráči. */
 export type ImageCategory =
-  | 'animals'
-  | 'nature'
-  | 'sky'
   | 'places'
-  | 'transport'
-  | 'food'
-  | 'objects'
+  | 'people'
+  | 'animals'
   | 'fantasy'
-  | 'music'
-  | 'play';
+  | 'nature'
+  | 'adventure'
+  | 'feelings'
+  | 'everyday'
+  | 'family'
+  | 'school';
 
 export type GameImage = {
   id: string;
-  /** Český název motivu. Slouží jen pro alt text a případný debug – ve hře se nikdy nezobrazuje. */
+  /** Český název karty. Slouží jen pro alt text – ve hře se nikdy nezobrazuje. */
   name: string;
   category: ImageCategory;
-  /** Cesta k assetu. Výměna `fox.svg` → `fox.webp` je jen změna této hodnoty. */
+  /** Cesta k assetu. Výměna `rytir.svg` → `rytir.webp` je jen změna této hodnoty. */
   image: string;
-  /** Dominantní barva – používá se pro plynulé ladění pozadí karty během načítání. */
+  /** Dominantní barva scény – karta ji ukáže, než se ilustrace načte. */
   tint?: string;
 };
 
@@ -48,7 +48,7 @@ export type ImageRequest = {
 export interface ImageProvider {
   readonly id: ImageProviderId;
   readonly name: string;
-  /** Kolik obrázků umí provider maximálně dodat (pro validaci nastavení). */
+  /** Kolik karet umí provider maximálně dodat (pro validaci nastavení). */
   capacity(packId?: string): Promise<number>;
   getImages(request: ImageRequest): Promise<GameImage[]>;
 }

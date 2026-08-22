@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 364" width="240" height="364">
+<defs><linearGradient id="g93" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#C9DCEF"/><stop offset="1" stop-color="#EAF1F8"/></linearGradient></defs>
+<rect width="240" height="364" fill="url(#g93)"/><rect x="0" y="284" width="240" height="80" fill="#CBD6E4"/><path d="M0 284 H240" stroke="#2E2A45" stroke-width="4"/>
+<rect x="76" y="164" width="120" height="86" rx="8" fill="#3B4A78" stroke="#2E2A45" stroke-width="4"/>
+<rect x="88" y="176" width="96" height="62" rx="4" fill="#6E8FD6"/>
+<path d="M120 250 h32 v18 h-32 Z" fill="#8A90A8" stroke="#2E2A45" stroke-width="3.4"/>
+<path d="M104 268 h64" stroke="#2E2A45" stroke-width="4"/>
+<g transform="translate(58 254) scale(0.56) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="8.928571428571427" stroke-linecap="round" stroke-linejoin="round">
+<path d="M78 104 L84 50 L120 80 Z" fill="#BFC3D4"/>
+<path d="M162 104 L156 50 L120 80 Z" fill="#BFC3D4"/>
+<circle cx="120" cy="132" r="56" fill="#BFC3D4"/>
+<circle cx="100" cy="124" r="7" fill="#2E2A45" stroke="none"/>
+<circle cx="140" cy="124" r="7" fill="#2E2A45" stroke="none"/>
+<path d="M112 148 L128 148 L120 158 Z" fill="#EFA0BE"/>
+<path d="M64 140 H88 M64 160 H88 M176 140 H152 M176 160 H152" stroke-width="4"/></g>
+<g transform="translate(136 208) scale(0.2) translate(-120 -122)" fill="none"
+ stroke="#2E2A45" stroke-width="25" stroke-linecap="round" stroke-linejoin="round">
+<path d="M56 120 q46 -56 100 0 q-54 56 -100 0 Z" fill="#4FA3A5"/>
+<path d="M156 120 l40 -32 v64 Z" fill="#6E8FD6"/>
+<circle cx="88" cy="112" r="7" fill="#2E2A45" stroke="none"/>
+<path d="M116 92 q10 28 0 56" stroke-width="4"/>
+<path d="M132 100 q10 20 0 40" stroke-width="4"/></g>
+<defs><radialGradient id="g264" cx="0.5" cy="0.46" r="0.78">
+<stop offset="0.55" stop-color="#2E2A45" stop-opacity="0"/>
+<stop offset="1" stop-color="#2E2A45" stop-opacity="0.24"/></radialGradient></defs>
+<rect width="240" height="364" fill="url(#g264)"/>
+</svg>

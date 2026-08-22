@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 364" width="240" height="364">
+<defs><linearGradient id="g104" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#C9DCEF"/><stop offset="1" stop-color="#EAF1F8"/></linearGradient></defs>
+<rect width="240" height="364" fill="url(#g104)"/><rect x="0" y="284" width="240" height="80" fill="#CBD6E4"/><path d="M0 284 H240" stroke="#2E2A45" stroke-width="4"/>
+<g transform="translate(120 206)">
+<path d="M-26 -62 L-70 -34 l18 44 l20 -12 v100 h104 v-100 l20 12 l18 -44 L26 -62 Z" fill="#4FA3A5" stroke="#2E2A45" stroke-width="4"/>
+<path d="M-26 -62 q26 26 52 0" fill="none" stroke="#2E2A45" stroke-width="3.4"/>
+<path d="M0 -50 v130" fill="none" stroke="#2E2A45" stroke-width="3.4"/>
+<g fill="#E0A93B"><circle cx="-8" cy="-20" r="4"/><circle cx="-8" cy="10" r="4"/><circle cx="-8" cy="40" r="4"/></g></g>
+<defs><radialGradient id="g286" cx="0.5" cy="0.46" r="0.78">
+<stop offset="0.55" stop-color="#2E2A45" stop-opacity="0"/>
+<stop offset="1" stop-color="#2E2A45" stop-opacity="0.24"/></radialGradient></defs>
+<rect width="240" height="364" fill="url(#g286)"/>
+</svg>

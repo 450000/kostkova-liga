@@ -1,52 +1,53 @@
 import type { ImagePack } from '@/types/images';
-import { IMAGE_CATALOG, imagesByCategories } from './catalog';
+import { IMAGE_CATALOG, imagesByCategories, imagesByIds } from './catalog';
+import { ADVENTURE_IDS } from './cards/index';
 
 /**
- * Balíčky obrázků. Nový tematický balíček = jeden záznam v tomto poli
+ * Balíčky karet. Nový tematický balíček = jeden záznam v tomto poli
  * (ať už z lokálního katalogu, nebo později z AI generování).
  */
 export const IMAGE_PACKS: ImagePack[] = [
   {
     id: 'classic',
-    name: 'Klasický mix',
-    description: 'Vyvážená směs ze všech světů. Doporučeno pro první hru.',
-    coverImage: '/game-images/moon.svg',
+    name: 'Velký mix',
+    description: 'Všechny karty pohromadě. Doporučeno pro první hru.',
+    coverImage: '/cards/socha-svobody.svg',
     images: IMAGE_CATALOG,
   },
   {
-    id: 'animals',
-    name: 'Zvířata a příroda',
-    description: 'Les, louka i moře – klidnější tempo pro nejmenší.',
-    coverImage: '/game-images/fox.svg',
-    images: imagesByCategories(['animals', 'nature']),
-  },
-  {
-    id: 'fairytale',
-    name: 'Pohádky',
-    description: 'Draci, koruny a kouzla. Příběhy se vyprávějí samy.',
-    coverImage: '/game-images/dragon.svg',
-    images: imagesByCategories(['fantasy', 'places']),
-  },
-  {
-    id: 'journey',
-    name: 'Cesta kolem světa',
-    description: 'Vlaky, lodě, obloha a všechno mezi tím.',
-    coverImage: '/game-images/balloon.svg',
-    images: imagesByCategories(['transport', 'sky', 'places']),
-  },
-  {
-    id: 'cosmos',
-    name: 'Vesmír a kouzla',
-    description: 'Rakety, mimozemšťané a všechno nemožné.',
-    coverImage: '/game-images/ufo.svg',
-    images: imagesByCategories(['sky', 'fantasy']),
+    id: 'adventure',
+    name: 'Dobrodružství',
+    description: 'Daleké kraje, povolání a fantazie.',
+    coverImage: '/cards/piratska-lod.svg',
+    images: imagesByIds(ADVENTURE_IDS),
   },
   {
     id: 'everyday',
-    name: 'Každý den',
-    description: 'Jídlo, věci a drobnosti, které znáte odjakživa.',
-    coverImage: '/game-images/cake.svg',
-    images: imagesByCategories(['food', 'objects', 'music', 'play']),
+    name: 'Všední den',
+    description: 'Pocity, rodina, škola a obyčejné chvíle.',
+    coverImage: '/cards/objeti.svg',
+    images: IMAGE_CATALOG.filter((image) => !ADVENTURE_IDS.has(image.id)),
+  },
+  {
+    id: 'feelings',
+    name: 'Co cítím',
+    description: 'Radost, obavy, smíření. Pro klidnější vyprávění.',
+    coverImage: '/cards/objeti.svg',
+    images: imagesByCategories(['feelings', 'family', 'school']),
+  },
+  {
+    id: 'world',
+    name: 'Kolem světa',
+    description: 'Místa, stavby a cesty, kam se dá doletět.',
+    coverImage: '/cards/katedrala.svg',
+    images: imagesByCategories(['places', 'adventure', 'nature']),
+  },
+  {
+    id: 'creatures',
+    name: 'Zvířata a bytosti',
+    description: 'Od tučňáka po draka.',
+    coverImage: '/cards/drak-hory.svg',
+    images: imagesByCategories(['animals', 'fantasy']),
   },
 ];
 

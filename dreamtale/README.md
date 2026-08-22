@@ -47,7 +47,7 @@ Aplikace poběží na <http://localhost:3000>.
 | `npm run lint` | ESLint |
 | `npm run typecheck` | kontrola typů (`tsc --noEmit`) |
 | `npm test` | unit testy herního enginu (Vitest) |
-| `npm run images:build` | vygeneruje SVG assety z `data/motifs` do `public/game-images` |
+| `npm run images:build` | vygeneruje karty z `data/cards` do `public/cards` |
 | `npm run build:single` | složí celou hru do jednoho souboru `dist/dreamtale.html` |
 
 ---
@@ -94,10 +94,11 @@ lib/
   game/                 engine (reducer), rng, selection, scoring, ordinal, storage
   images/               ImageProvider abstrakce: local / external / ai + preload
 data/
-  motifs/               zdroj pravdy pro ilustrace (SVG kresba každého motivu)
-  catalog.ts            katalog obrázků odvozený z motivů
+  cards/                karty: paleta, scény, postavy, rekvizity a obě sady
+  motifs/               knihovna kreseb předmětů, které si scény půjčují
+  catalog.ts            katalog karet
   packs.ts              tematické balíčky
-public/game-images/     vygenerované assety + index.json pro service worker
+public/cards/           vygenerované karty + index.json pro service worker
 scripts/                generate-images.ts, build-single-file.ts
 tests/                  unit testy enginu
 types/                  game.ts, images.ts
@@ -145,48 +146,49 @@ nespustí bez obrázků.
 
 ---
 
-## Jak přidat nový obrázek
+## Jak jsou karty postavené
 
-1. Otevřete odpovídající soubor v `data/motifs/` (např. `animals.ts`).
-2. Přidejte záznam:
+Karty nejsou ikony, ale celoplošné scény v poměru karty (240 × 364). Skládají se
+ze čtyř vrstev, které drží celou sadu v jednom rukopisu:
 
-   ```ts
-   {
-     id: 'squirrel',
-     name: 'Veverka',
-     tint: C.brown,
-     art: `
-   <ellipse cx="110" cy="150" rx="46" ry="40" fill="${C.brown}"/>
-   <circle cx="150" cy="100" r="30" fill="${C.brown}"/>`,
-   }
-   ```
+| Soubor | Co obsahuje |
+| --- | --- |
+| `data/cards/palette.ts` | barvy scén, odstíny pleti, vlasů a triček |
+| `data/cards/scene.ts` | pozadí (obloha, pokoj, moře, hory), mraky, hvězdy, stromy, vinětace |
+| `data/cards/people.ts` | parametrická postava – deset výrazů a jedenáct póz |
+| `data/cards/props.ts` | rekvizity; vkládají kresby z `data/motifs` |
 
-   Kresba používá souřadnice `0 0 240 240`, barvy výhradně z palety
-   `data/motifs/palette.ts` a dědí obrys (`stroke`) z generátoru.
-3. Spusťte `npm run images:build`. Vygeneruje se `public/game-images/squirrel.svg`
-   a obrázek se sám objeví v katalogu i v balíčcích.
+Karta je pak jen kompozice:
 
-### Výměna za finální ilustrace
+```ts
+{
+  id: 'rytir',
+  name: 'Rytíř',
+  category: 'people',
+  tint: P.stone,
+  art: `${sky('day')}${hills(238)}${ground(280, P.grass)}
+${person({ x: 112, y: 316, s: 1.7, mood: 'proud', pose: 'hold', extras: helmet })}
+${prop('sword', 176, 244, 0.56)}`,
+}
+```
 
-Knihovna má **232 obrázků** v deseti kategoriích (zvířata, příroda, obloha, místa,
-doprava, jídlo, věci, fantazie, hudba, hry).
+Nová karta = jeden takový záznam v některém souboru `data/cards/adventure-*.ts`
+nebo `everyday-*.ts` a `npm run images:build`. Katalog i balíčky se doplní samy.
 
-Assety jsou v `public/game-images/` a v datech jsou vedené jen cestou.
-Až budou hotové ilustrace (`fox.webp` místo `fox.svg`), stačí soubory nahradit
-a v `data/catalog.ts` změnit jedinou konstantu:
+**Sady:** *Dobrodružství* (96 karet – místa, povolání, zvířata, fantazie) a
+*Všední den* (94 karet – pocity, rodina, škola, obyčejné chvíle), celkem **190 karet**.
+
+### Výměna za jiné ilustrace
+
+Karty jsou v `public/cards/` a v datech vedené jen cestou. Pokud budete mít
+vlastní obrázky (třeba malované), stačí soubory nahradit a v `data/catalog.ts`
+změnit jedinou konstantu:
 
 ```ts
 export const IMAGE_EXTENSION = 'webp';
 ```
 
 Game engine se nemění.
-
-**Doporučený vizuální styl finálních ilustrací:** jednoduchý rozpoznatelný objekt,
-měkké zaoblené tvary, teplé moderní barvy, lehce ručně kreslené, minimální pozadí,
-vycentrovaná kompozice, bez textu a rámečku, jednotný vizuální jazyk napříč sadou.
-Každý obrázek musí být čitelný do půl vteřiny.
-
----
 
 ## Jak přidat nový balíček
 
@@ -197,8 +199,8 @@ Každý obrázek musí být čitelný do půl vteřiny.
   id: 'winter',
   name: 'Zima',
   description: 'Sníh, svíčky a teplý čaj.',
-  coverImage: '/game-images/snowflake.svg',
-  images: imagesByCategories(['sky', 'nature']),   // nebo vlastní výběr obrázků
+  coverImage: '/cards/prvni-snih.svg',
+  images: imagesByCategories(['nature', 'family']),   // nebo vlastní výběr karet
 }
 ```
 
@@ -224,8 +226,8 @@ se propisují přes `@theme inline`. Změna palety = změna jednoho bloku:
 ```
 
 Písma se nastavují v `app/layout.tsx` (`next/font/google`) a mapují na
-`--font-display` a `--font-sans`. Barvy ilustrací mají vlastní paletu v
-`data/motifs/palette.ts` – po její změně spusťte `npm run images:build`.
+`--font-display` a `--font-sans`. Ilustrace mají vlastní paletu v
+`data/cards/palette.ts` – po její změně spusťte `npm run images:build`.
 
 ---
 
@@ -250,8 +252,8 @@ budoucí funkci „sdílet hru“.
   (včetně maskable).
 - `public/sw.js` – service worker registrovaný v produkci
   (`components/ServiceWorkerRegistrar.tsx`).
-  - Při instalaci předcachuje skořápku aplikace a **všechny herní obrázky**
-    podle `public/game-images/index.json` (generuje se spolu s assety).
+  - Při instalaci předcachuje skořápku aplikace a **všechny karty**
+    podle `public/cards/index.json` (generuje se spolu s assety).
   - Navigace: network-first s fallbackem na uloženou skořápku.
   - Assety: cache-first s doplněním na pozadí.
 - Díky tomu je hra po první návštěvě plně hratelná offline a jde ji přidat na
@@ -326,7 +328,7 @@ npm run build:single
 ```
 
 Vznikne `dist/dreamtale.html` (~2,3 MB) – celá hra v jediném souboru včetně
-stylů, skriptů, fontů i všech 232 obrázků. Nepotřebuje server ani síť, dá se
+stylů, skriptů, fontů i všech 190 karet. Nepotřebuje server ani síť, dá se
 poslat e-mailem, otevřít z disku nebo nahrát kamkoliv.
 
 Jak to funguje:

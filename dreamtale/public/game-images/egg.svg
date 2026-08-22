@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
-  <circle cx="120" cy="122" r="108" fill="#FBF3E4" opacity="0.14"/>
-  <g fill="none" stroke="#2E2A45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" transform="translate(120 122) scale(1.12) translate(-120 -122)"><path d="M120 30 q56 46 56 100 q0 52 -56 52 q-56 0 -56 -52 q0 -54 56 -100 Z" fill="#FFFCF5"/>
-<ellipse cx="120" cy="132" rx="30" ry="26" fill="#F5C765"/>
-  </g>
-</svg>

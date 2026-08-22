@@ -99,7 +99,7 @@ function main(): void {
   });
 
   // 4) Obrázky hry → mapa data URI, kterou si aplikace vyzvedne přes resolveAsset()
-  const catalog = JSON.parse(readAsset('/game-images/index.json').toString('utf8')) as string[];
+  const catalog = JSON.parse(readAsset('/cards/index.json').toString('utf8')) as string[];
   const assets = Object.fromEntries(catalog.map((path) => [path, dataUri(path)]));
   // Obálky balíčků jsou v HTML jako obyčejné cesty – ty stačí nahradit přímo.
   // Musí to proběhnout dřív, než se vloží mapa, jinak by se přepsaly i její klíče.
