@@ -10,6 +10,7 @@
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+const APP_NAME = 'DREAMTALE';
 const ROOT = process.cwd();
 const OUT_DIR = join(ROOT, 'out');
 const DIST_DIR = join(ROOT, 'dist');
@@ -71,7 +72,9 @@ function main(): void {
   // Vložený skript žádný `src` nemá, proto mu podstrčíme odpojený <script>
   // element se správnou adresou – jinak runtime skončí chybou a hra se nespustí.
   let chunkIndex = 0;
-  html = html.replace(/<script[^>]*src="([^"]+)"[^>]*><\/script>/g, (_, src: string) => {
+  html = html.replace(/<script[^>]*src="([^"]+)"[^>]*><\/script>/g, (tag, src: string) => {
+    // `noModule` polyfill je pro prohlížeče bez ES modulů – ty tuhle hru stejně nespustí.
+    if (/\bnoModule\b/i.test(tag)) return '';
     const marker = `__dreamtaleChunk${chunkIndex++}`;
     const relative = JSON.stringify(src.replace(/^\//, ''));
     const preamble =
@@ -123,6 +126,9 @@ function main(): void {
   for (const icon of ['/icons/icon.svg', '/icons/apple-touch-icon.png']) {
     if (existsSync(join(OUT_DIR, icon.slice(1)))) html = html.split(icon).join(dataUri(icon));
   }
+
+  // Sdílený soubor se pozná podle názvu hry, ne podle celého titulku s podtitulem.
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${APP_NAME}</title>`);
 
   mkdirSync(DIST_DIR, { recursive: true });
   writeFileSync(DIST_FILE, html, 'utf8');
