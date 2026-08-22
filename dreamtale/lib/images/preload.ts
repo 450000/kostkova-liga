@@ -1,4 +1,5 @@
 import type { GameImage } from '@/types/images';
+import { resolveAsset } from './assets';
 
 /**
  * Předem načte všechny obrázky kola. Story mode se spustí až potom –
@@ -32,7 +33,7 @@ export function preloadImages(
       element.onload = done;
       // Chybějící asset nesmí hru zablokovat – karta se prostě zobrazí s pozadím.
       element.onerror = done;
-      element.src = image.image;
+      element.src = resolveAsset(image.image);
       if (element.complete) done();
     }
   });

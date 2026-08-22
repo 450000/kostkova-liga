@@ -96,4 +96,54 @@ export const sky: MotifArt[] = [
 <path d="M36 128 h134 q30 0 30 22 q0 22 -24 22 q-20 0 -22 -18" fill="none" stroke-width="9"/>
 <path d="M36 174 h74 q26 0 26 18" fill="none" stroke-width="9"/>`,
   },
+
+  {
+    id: 'constellation',
+    name: 'Souhvězdí',
+    tint: C.lavender,
+    art: `
+<path d="M60 56 L112 96 L96 158 L166 178 M112 96 L184 74 M96 158 L48 190" fill="none" stroke-width="4"/>
+<g fill="${C.yellow}">
+<circle cx="60" cy="56" r="13"/><circle cx="112" cy="96" r="16"/><circle cx="184" cy="74" r="11"/>
+<circle cx="96" cy="158" r="14"/><circle cx="166" cy="178" r="10"/><circle cx="48" cy="190" r="9"/>
+</g>`,
+  },
+  {
+    id: 'aurora',
+    name: 'Polární záře',
+    tint: C.teal,
+    art: `
+<path d="M46 42 q-14 76 6 130" fill="none" stroke-width="20" stroke="${C.sage}"/>
+<path d="M86 34 q-12 84 8 142" fill="none" stroke-width="20" stroke="${C.teal}"/>
+<path d="M128 40 q-12 78 6 132" fill="none" stroke-width="20" stroke="${C.lavender}"/>
+<path d="M170 34 q-12 84 8 140" fill="none" stroke-width="20" stroke="${C.sage}"/>
+<path d="M30 196 L60 168 L92 190 L124 164 L156 190 L186 166 L212 196 Z" fill="${C.navy}"/>`,
+  },
+  {
+    id: 'tornado',
+    name: 'Tornádo',
+    tint: C.stone,
+    art: `
+<path d="M32 46 h176 q-18 26 -60 30 q42 8 26 34 q-14 22 -50 26 q30 12 14 32 q-12 16 -34 18 q18 14 4 28 q-10 10 -22 4" fill="${C.stone}"/>
+<path d="M32 46 h176" fill="none" stroke-width="5"/>
+<path d="M60 78 h96 M78 112 h72 M92 146 h44" fill="none" stroke-width="4" stroke="${C.cream}"/>`,
+  },
+  {
+    id: 'raindrop',
+    name: 'Kapka',
+    tint: C.blue,
+    art: `
+<path d="M120 26 q64 82 64 122 q0 54 -64 54 q-64 0 -64 -54 q0 -40 64 -122 Z" fill="${C.blue}"/>
+<path d="M92 148 q-6 32 22 42" fill="none" stroke-width="8" stroke="${C.cream}"/>`,
+  },
+  {
+    id: 'sunset',
+    name: 'Západ slunce',
+    tint: C.coral,
+    art: `
+<path d="M56 148 a64 64 0 0 1 128 0 Z" fill="${C.yellow}"/>
+<path d="M20 148 h200" stroke-width="7" stroke="${C.coral}"/>
+<path d="M36 172 h168 M52 196 h136" stroke-width="7" stroke="${C.coral}"/>
+<path d="M28 124 h34 M178 124 h34 M40 100 h26 M174 100 h26" stroke-width="6" stroke="${C.peach}"/>`,
+  },
 ];

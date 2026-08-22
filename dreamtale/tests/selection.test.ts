@@ -3,23 +3,33 @@ import { pickBalancedImages } from '@/lib/game/selection';
 import { createRng, createSeed, hashSeed, normalizeSeed, shuffle } from '@/lib/game/rng';
 import { IMAGE_CATALOG } from '@/data/catalog';
 import { IMAGE_PACKS } from '@/data/packs';
+import { GAME_LIMITS, IMAGE_COUNT_PRESETS } from '@/lib/config';
+import { effectiveImageCount } from '@/lib/game/engine';
 import { LocalImageProvider } from '@/lib/images/localProvider';
 
 describe('katalog obrázků', () => {
   it('má unikátní id a vyplněná metadata', () => {
     const ids = new Set(IMAGE_CATALOG.map((image) => image.id));
     expect(ids.size).toBe(IMAGE_CATALOG.length);
-    expect(IMAGE_CATALOG.length).toBeGreaterThanOrEqual(100);
+    expect(IMAGE_CATALOG.length).toBeGreaterThanOrEqual(200);
     for (const image of IMAGE_CATALOG) {
       expect(image.name.length).toBeGreaterThan(0);
       expect(image.image.startsWith('/game-images/')).toBe(true);
     }
   });
 
-  it('každý balíček uveze i nejdelší hru', () => {
+  it('každý balíček zvládne i nejdelší předvolbu', () => {
+    const longestPreset = Math.max(...IMAGE_COUNT_PRESETS.map((preset) => preset.count));
     for (const pack of IMAGE_PACKS) {
-      expect(pack.images.length).toBeGreaterThanOrEqual(20);
+      expect(pack.images.length).toBeGreaterThanOrEqual(longestPreset);
     }
+  });
+
+  it('menší balíček zkrátí požadovaný počet obrázků', () => {
+    expect(effectiveImageCount(60, 39)).toBe(39);
+    expect(effectiveImageCount(20, 232)).toBe(20);
+    expect(effectiveImageCount(999, GAME_LIMITS.maxImages)).toBe(GAME_LIMITS.maxImages);
+    expect(effectiveImageCount(1, 232)).toBe(GAME_LIMITS.minImages);
   });
 });
 

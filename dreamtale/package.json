@@ -11,7 +11,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "images:build": "tsx scripts/generate-images.ts"
+    "images:build": "tsx scripts/generate-images.ts",
+    "build:single": "ARTIFACT_BUILD=1 next build && tsx scripts/build-single-file.ts"
   },
   "dependencies": {
     "framer-motion": "^12.23.12",

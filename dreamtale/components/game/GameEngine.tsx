@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useReducer } from 'react';
 import type { GameSettings, GameState, Player } from '@/types/game';
 import {
-  clampImageCount,
   createInitialState,
   createPlayers,
+  effectiveImageCount,
   gameReducer,
   isGameActive,
 } from '@/lib/game/engine';
@@ -131,7 +131,7 @@ export function GameEngine() {
       uiDispatch({ type: 'LOAD_STARTED' });
       try {
         const capacity = await imageProvider.capacity(packId);
-        const count = Math.min(clampImageCount(imageCount), capacity);
+        const count = effectiveImageCount(imageCount, capacity);
         const images = await imageProvider.getImages({
           count,
           packId,

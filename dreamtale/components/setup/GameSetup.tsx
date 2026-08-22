@@ -5,7 +5,7 @@ import { useState, type ReactNode } from 'react';
 import type { GameSettings, Player, RecallMode, ScoringMode } from '@/types/game';
 import { GAME_LIMITS, IMAGE_COUNT_PRESETS } from '@/lib/config';
 import { IMAGE_PACKS } from '@/data/packs';
-import { clampImageCount } from '@/lib/game/engine';
+import { effectiveImageCount } from '@/lib/game/engine';
 import { Button } from '@/components/ui/Button';
 import { OptionCard } from '@/components/ui/OptionCard';
 import { Segmented } from '@/components/ui/Segmented';
@@ -55,10 +55,10 @@ export function GameSetup({
   );
 
   const maxImages = Math.min(GAME_LIMITS.maxImages, packCapacity);
-  const imageCount = Math.min(settings.imageCount, maxImages);
+  const imageCount = effectiveImageCount(settings.imageCount, packCapacity);
 
   const setImageCount = (count: number) => {
-    onSettingsChange({ imageCount: Math.min(clampImageCount(count), maxImages) });
+    onSettingsChange({ imageCount: effectiveImageCount(count, packCapacity) });
   };
 
   return (

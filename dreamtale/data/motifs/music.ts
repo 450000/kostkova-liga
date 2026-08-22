@@ -91,4 +91,78 @@ export const music: MotifArt[] = [
 <path d="M112 96 v78 M128 96 v78" stroke-width="3"/>
 <path d="M180 40 L206 190" stroke-width="7" stroke="${C.sand}"/>`,
   },
+
+  {
+    id: 'saxophone',
+    name: 'Saxofon',
+    tint: C.yellow,
+    art: `
+<path d="M144 46 v92 q0 46 -48 46 q-40 0 -40 -34 q0 -30 32 -32" fill="none" stroke-width="26" stroke="${C.yellow}"/>
+<path d="M144 46 v92 q0 46 -48 46 q-40 0 -40 -34 q0 -30 32 -32" fill="none" stroke-width="5"/>
+<path d="M144 50 q0 -26 22 -28" fill="none" stroke-width="18" stroke="${C.yellow}"/>
+<rect x="160" y="10" width="24" height="20" rx="7" fill="${C.ink}"/>
+<ellipse cx="82" cy="106" rx="34" ry="26" fill="${C.yellow}" transform="rotate(-52 82 106)"/>
+<g fill="${C.ink}" stroke="none">
+<circle cx="144" cy="74" r="7"/><circle cx="144" cy="106" r="7"/><circle cx="144" cy="138" r="7"/>
+</g>`,
+  },
+  {
+    id: 'harp',
+    name: 'Harfa',
+    tint: C.sand,
+    art: `
+<path d="M62 202 q-8 -140 96 -180" fill="none" stroke-width="18" stroke="${C.brown}"/>
+<path d="M62 202 q-8 -140 96 -180" fill="none" stroke-width="5"/>
+<path d="M62 202 h108" stroke-width="18" stroke="${C.brown}"/>
+<path d="M62 202 h108" stroke-width="5"/>
+<path d="M158 22 v180" stroke-width="10" stroke="${C.brown}"/>
+<path d="M78 150 h80 M76 176 h82 M92 118 h66 M112 86 h46 M134 56 h24" fill="none" stroke-width="4" stroke="${C.sand}"/>`,
+  },
+  {
+    id: 'flute',
+    name: 'Flétna',
+    tint: C.sand,
+    art: `
+<path d="M28 148 L200 76 q18 -8 26 10 q8 18 -10 26 L72 184 q-18 8 -26 -10 q-8 -18 10 -26 Z" fill="${C.sand}"/>
+<g fill="${C.ink}" stroke="none">
+<circle cx="96" cy="150" r="7"/><circle cx="130" cy="136" r="7"/><circle cx="164" cy="122" r="7"/>
+<circle cx="196" cy="108" r="7"/>
+</g>`,
+  },
+  {
+    id: 'tambourine',
+    name: 'Tamburína',
+    tint: C.red,
+    art: `
+<circle cx="120" cy="128" r="76" fill="${C.cream}"/>
+<circle cx="120" cy="128" r="76" fill="none" stroke-width="16" stroke="${C.red}"/>
+<circle cx="120" cy="128" r="76" fill="none" stroke-width="5"/>
+<g fill="${C.yellow}">
+<circle cx="120" cy="46" r="14"/><circle cx="178" cy="70" r="14"/><circle cx="202" cy="128" r="14"/>
+<circle cx="178" cy="186" r="14"/><circle cx="120" cy="210" r="14"/><circle cx="62" cy="186" r="14"/>
+<circle cx="38" cy="128" r="14"/><circle cx="62" cy="70" r="14"/>
+</g>`,
+  },
+  {
+    id: 'microphone',
+    name: 'Mikrofon',
+    tint: C.stone,
+    art: `
+<rect x="88" y="26" width="64" height="106" rx="32" fill="${C.stone}"/>
+<path d="M92 62 h56 M92 86 h56 M92 110 h56" fill="none" stroke-width="4"/>
+<path d="M62 112 q0 58 58 58 q58 0 58 -58" fill="none" stroke-width="8"/>
+<path d="M120 170 v34" stroke-width="10"/>
+<path d="M84 206 h72" stroke-width="10"/>`,
+  },
+  {
+    id: 'vinyl',
+    name: 'Gramofonová deska',
+    tint: C.ink,
+    art: `
+<circle cx="120" cy="128" r="88" fill="${C.ink}"/>
+<circle cx="120" cy="128" r="62" fill="none" stroke-width="3" stroke="${C.stone}"/>
+<circle cx="120" cy="128" r="46" fill="none" stroke-width="3" stroke="${C.stone}"/>
+<circle cx="120" cy="128" r="30" fill="${C.coral}"/>
+<circle cx="120" cy="128" r="7" fill="${C.cream}"/>`,
+  },
 ];

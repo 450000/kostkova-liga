@@ -151,4 +151,151 @@ export const fantasy: MotifArt[] = [
 <path d="M120 40 q0 -22 -20 -22" fill="none" stroke-width="6"/>
 <path d="M120 88 v46" stroke-width="5"/>`,
   },
+
+  {
+    id: 'ufo',
+    name: 'Létající talíř',
+    tint: C.teal,
+    art: `
+<path d="M78 106 q0 -40 42 -40 q42 0 42 40 Z" fill="${C.cream}"/>
+<path d="M20 122 q0 -22 100 -22 q100 0 100 22 q0 26 -100 26 q-100 0 -100 -26 Z" fill="${C.teal}"/>
+<circle cx="62" cy="128" r="8" fill="${C.yellow}"/>
+<circle cx="120" cy="134" r="8" fill="${C.yellow}"/>
+<circle cx="178" cy="128" r="8" fill="${C.yellow}"/>
+<path d="M92 150 L64 214 h112 L148 150 Z" fill="${C.yellow}" opacity="0.55"/>
+<path d="M92 150 L64 214 h112 L148 150" fill="none" stroke-width="4"/>`,
+  },
+  {
+    id: 'alien',
+    name: 'Mimozemšťan',
+    tint: C.green,
+    art: `
+<path d="M78 42 q-14 -22 4 -30 q16 -6 20 22 M162 42 q14 -22 -4 -30 q-16 -6 -20 22" fill="none" stroke-width="5"/>
+<circle cx="82" cy="26" r="9" fill="${C.yellow}"/>
+<circle cx="158" cy="26" r="9" fill="${C.yellow}"/>
+<path d="M120 44 q68 0 68 68 q0 78 -68 92 q-68 -14 -68 -92 q0 -68 68 -68 Z" fill="${C.green}"/>
+<ellipse cx="94" cy="112" rx="18" ry="26" fill="${C.ink}" transform="rotate(-18 94 112)"/>
+<ellipse cx="146" cy="112" rx="18" ry="26" fill="${C.ink}" transform="rotate(18 146 112)"/>
+<path d="M104 160 q16 12 32 0" fill="none" stroke-width="5"/>`,
+  },
+  {
+    id: 'skull',
+    name: 'Lebka',
+    tint: C.white,
+    art: `
+<path d="M120 34 q74 0 74 76 q0 40 -26 56 v20 q0 14 -18 14 h-60 q-18 0 -18 -14 v-20 q-26 -16 -26 -56 q0 -76 74 -76 Z" fill="${C.white}"/>
+<ellipse cx="94" cy="112" rx="20" ry="24" fill="${C.ink}"/>
+<ellipse cx="146" cy="112" rx="20" ry="24" fill="${C.ink}"/>
+<path d="M110 148 l10 -18 l10 18 Z" fill="${C.ink}"/>
+<path d="M100 174 v26 M120 174 v26 M140 174 v26" fill="none" stroke-width="5"/>`,
+  },
+  {
+    id: 'fairy',
+    name: 'Víla',
+    tint: C.pink,
+    art: `
+<path d="M100 122 q-46 -36 -62 -8 q-12 26 24 34 q-22 20 6 30 q24 8 38 -28 Z" fill="${C.lavender}"/>
+<path d="M140 122 q46 -36 62 -8 q12 26 -24 34 q22 20 -6 30 q-24 8 -38 -28 Z" fill="${C.lavender}"/>
+<path d="M120 104 q32 0 32 48 q0 48 -32 66 q-32 -18 -32 -66 q0 -48 32 -48 Z" fill="${C.pink}"/>
+<circle cx="120" cy="76" r="28" fill="${C.sand}"/>
+<circle cx="111" cy="72" r="4" fill="${C.ink}" stroke="none"/>
+<circle cx="129" cy="72" r="4" fill="${C.ink}" stroke="none"/>
+<path d="M110 84 q10 8 20 0" fill="none" stroke-width="4"/>
+<path d="M96 46 q24 -16 48 0" fill="none" stroke-width="6" stroke="${C.yellow}"/>
+<path d="M150 140 l34 -30" stroke-width="6"/>
+<path d="M190 92 l5 14 14 5 -14 5 -5 14 -5 -14 -14 -5 14 -5 Z" fill="${C.yellow}"/>`,
+  },
+  {
+    id: 'cauldron',
+    name: 'Kotlík',
+    tint: C.navy,
+    art: `
+<path d="M34 124 h172 q0 82 -86 82 q-86 0 -86 -82 Z" fill="${C.navy}"/>
+<ellipse cx="120" cy="124" rx="86" ry="22" fill="${C.sage}"/>
+<path d="M34 124 q0 -22 86 -22 q86 0 86 22" fill="none" stroke-width="5"/>
+<path d="M86 96 q-10 -24 6 -36 M120 92 q-12 -28 4 -44 M154 96 q10 -24 -6 -36" fill="none" stroke-width="5" stroke="${C.sage}"/>
+<circle cx="88" cy="46" r="8" fill="${C.sage}"/>
+<circle cx="152" cy="52" r="7" fill="${C.sage}"/>
+<path d="M60 206 l-14 20 M180 206 l14 20" stroke-width="6"/>`,
+  },
+  {
+    id: 'crystalball',
+    name: 'Křišťálová koule',
+    tint: C.lavender,
+    art: `
+<circle cx="120" cy="112" r="72" fill="${C.lavender}"/>
+<path d="M84 76 q14 -20 36 -24" fill="none" stroke-width="8" stroke="${C.cream}"/>
+<path d="M62 186 q0 -18 58 -18 q58 0 58 18 q0 18 -58 18 q-58 0 -58 -18 Z" fill="${C.brown}"/>
+<path d="M78 168 q42 -14 84 0" fill="none" stroke-width="4"/>
+<circle cx="150" cy="80" r="6" fill="${C.cream}" stroke="none"/>
+<circle cx="98" cy="132" r="5" fill="${C.cream}" stroke="none"/>`,
+  },
+  {
+    id: 'carpet',
+    name: 'Létající koberec',
+    tint: C.coral,
+    art: `
+<path d="M34 96 q56 -26 92 0 q36 26 88 0 v58 q-52 26 -88 0 q-36 -26 -92 0 Z" fill="${C.coral}"/>
+<path d="M34 114 q56 -26 92 0 q36 26 88 0 M34 138 q56 -26 92 0 q36 26 88 0" fill="none" stroke-width="4" stroke="${C.cream}"/>
+<path d="M34 96 l-20 -8 M34 116 h-22 M34 136 h-22 M34 154 l-20 8" stroke-width="4"/>
+<path d="M214 96 l20 -8 M214 116 h22 M214 136 h22 M214 154 l20 8" stroke-width="4"/>
+<path d="M66 186 q26 -14 40 6 M136 180 q26 -14 40 6" fill="none" stroke-width="5" stroke="${C.lavender}"/>`,
+  },
+  {
+    id: 'genielamp',
+    name: 'Kouzelná lampa',
+    tint: C.yellow,
+    art: `
+<path d="M50 168 q-14 -66 60 -66 h40 q34 0 34 26 q0 40 -60 40 h-74 Z" fill="${C.yellow}"/>
+<path d="M44 168 h132 q10 0 10 14 H34 q0 -14 10 -14 Z" fill="${C.yellow}"/>
+<path d="M176 122 q40 -8 44 22 q-24 14 -44 -22 Z" fill="${C.yellow}"/>
+<circle cx="112" cy="94" r="14" fill="${C.yellow}"/>
+<path d="M50 140 h120" fill="none" stroke-width="4"/>
+<path d="M188 92 q10 -22 -6 -34 q26 6 22 34 Z" fill="${C.teal}"/>`,
+  },
+  {
+    id: 'shield',
+    name: 'Štít',
+    tint: C.blue,
+    art: `
+<path d="M120 26 l82 26 v66 q0 66 -82 96 q-82 -30 -82 -96 V52 Z" fill="${C.blue}"/>
+<path d="M120 52 l56 18 v52 q0 46 -56 68 q-56 -22 -56 -68 V70 Z" fill="${C.cream}"/>
+<path d="M120 78 l14 30 32 4 -24 22 6 32 -28 -16 -28 16 6 -32 -24 -22 32 -4 Z" fill="${C.coral}"/>`,
+  },
+  {
+    id: 'bow',
+    name: 'Luk',
+    tint: C.brown,
+    art: `
+<path d="M78 24 q76 42 76 104 q0 62 -76 104" fill="none" stroke-width="14" stroke="${C.brown}"/>
+<path d="M78 24 q76 42 76 104 q0 62 -76 104" fill="none" stroke-width="4"/>
+<path d="M78 24 L78 232" fill="none" stroke-width="4"/>
+<path d="M78 128 h132" stroke-width="7"/>
+<path d="M210 128 l-22 -14 v28 Z" fill="${C.stone}"/>
+<path d="M92 116 l-16 12 16 12" fill="none" stroke-width="5"/>`,
+  },
+  {
+    id: 'scroll',
+    name: 'Svitek',
+    tint: C.sand,
+    art: `
+<path d="M62 62 h116 v132 H62 Z" fill="${C.cream}"/>
+<path d="M62 62 q-24 0 -24 -20 q0 -20 24 -20 h116 q24 0 24 20 q0 20 -24 20" fill="${C.sand}"/>
+<path d="M62 194 q-24 0 -24 20 q0 20 24 20 h116 q24 0 24 -20 q0 -20 -24 -20" fill="${C.sand}"/>
+<path d="M84 100 h72 M84 128 h72 M84 156 h48" fill="none" stroke-width="5"/>`,
+  },
+  {
+    id: 'dinosaur',
+    name: 'Dinosaurus',
+    tint: C.sage,
+    art: `
+<path d="M40 178 q-32 6 -34 -14 q22 -16 40 -6 Z" fill="${C.sage}"/>
+<ellipse cx="106" cy="164" rx="66" ry="38" fill="${C.sage}"/>
+<path d="M84 194 v18 M132 194 v18" stroke-width="14" stroke="${C.sage}"/>
+<path d="M150 156 q30 -52 24 -96" fill="none" stroke-width="28" stroke="${C.sage}"/>
+<path d="M150 156 q30 -52 24 -96" fill="none" stroke-width="5"/>
+<path d="M148 60 q14 -30 46 -22 q28 8 18 32 q-12 26 -44 18 Z" fill="${C.sage}"/>
+<circle cx="182" cy="52" r="6" fill="${C.ink}" stroke="none"/>
+<path d="M96 126 l10 -20 l12 20 Z M124 122 l10 -22 l12 22 Z" fill="${C.green}"/>`,
+  },
 ];

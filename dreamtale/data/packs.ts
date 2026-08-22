@@ -34,6 +34,20 @@ export const IMAGE_PACKS: ImagePack[] = [
     coverImage: '/game-images/balloon.svg',
     images: imagesByCategories(['transport', 'sky', 'places']),
   },
+  {
+    id: 'cosmos',
+    name: 'Vesmír a kouzla',
+    description: 'Rakety, mimozemšťané a všechno nemožné.',
+    coverImage: '/game-images/ufo.svg',
+    images: imagesByCategories(['sky', 'fantasy']),
+  },
+  {
+    id: 'everyday',
+    name: 'Každý den',
+    description: 'Jídlo, věci a drobnosti, které znáte odjakživa.',
+    coverImage: '/game-images/cake.svg',
+    images: imagesByCategories(['food', 'objects', 'music', 'play']),
+  },
 ];
 
 export const DEFAULT_PACK_ID = 'classic';

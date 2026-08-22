@@ -53,6 +53,11 @@ export function clampImageCount(count: number): number {
   return Math.min(GAME_LIMITS.maxImages, Math.max(GAME_LIMITS.minImages, Math.round(count)));
 }
 
+/** Kolik obrázků skutečně rozdáme: přání hráče omezené limity hry i velikostí balíčku. */
+export function effectiveImageCount(requested: number, packCapacity: number): number {
+  return Math.max(0, Math.min(clampImageCount(requested), Math.floor(packCapacity)));
+}
+
 function emptyScores(players: readonly Player[]): Record<string, number> {
   return Object.fromEntries(players.map((player) => [player.id, 0]));
 }

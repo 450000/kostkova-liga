@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
+  <circle cx="120" cy="122" r="108" fill="#A5713F" opacity="0.14"/>
+  <g fill="none" stroke="#2E2A45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" transform="translate(120 122) scale(1.12) translate(-120 -122)"><path d="M120 202 q-54 -36 -54 -94 q0 -52 54 -74 q54 22 54 74 q0 58 -54 94 Z" fill="#A5713F"/>
+<path d="M77 62 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M115 62 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M58 96 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M96 96 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M134 96 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M58 130 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M96 130 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M134 130 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M77 164 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M115 164 q24 -24 48 0 q-24 18 -48 0 Z" fill="#EBD9B4"/>
+<path d="M120 34 v-14" stroke-width="6"/>
+  </g>
+</svg>

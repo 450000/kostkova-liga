@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import type { GameImage } from '@/types/images';
 import { usePrefersReducedMotion } from '@/hooks/useReducedMotion';
+import { resolveAsset } from '@/lib/images/assets';
 
 type GameCardProps = {
   image: GameImage;
@@ -77,7 +78,7 @@ export function GameCard({ image, direction = 1, hidden = false, hiddenLabel }: 
         </div>
       ) : (
         <img
-          src={image.image}
+          src={resolveAsset(image.image)}
           alt={image.name}
           draggable={false}
           className="h-[74%] w-[86%] object-contain"

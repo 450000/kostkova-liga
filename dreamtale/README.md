@@ -48,6 +48,7 @@ Aplikace poběží na <http://localhost:3000>.
 | `npm run typecheck` | kontrola typů (`tsc --noEmit`) |
 | `npm test` | unit testy herního enginu (Vitest) |
 | `npm run images:build` | vygeneruje SVG assety z `data/motifs` do `public/game-images` |
+| `npm run build:single` | složí celou hru do jednoho souboru `dist/dreamtale.html` |
 
 ---
 
@@ -55,7 +56,8 @@ Aplikace poběží na <http://localhost:3000>.
 
 1. **Domovská obrazovka** – noční obloha, jemné animace, nápověda a nastavení zvuku.
 2. **Nastavení hry** – 1–12 hráčů s vlastními jmény, počet obrázků (5–60, předvolby
-   10 / 20 / 30 nebo vlastní), výběr balíčku, bodování, režim vybavování, časový limit.
+   10 / 20 / 30 nebo vlastní), výběr z šesti balíčků, bodování, režim vybavování, časový limit.
+   Menší balíček automaticky zkrátí požadovaný počet obrázků.
 3. **Příprava snu** – výběr obrázků, preload všech assetů, teprve pak start hry.
 4. **Story mode** – jedna velká karta, decentní počítadlo, tap / klik / mezerník /
    šipka vpřed, swipe doleva dál a doprava zpět.
@@ -96,7 +98,7 @@ data/
   catalog.ts            katalog obrázků odvozený z motivů
   packs.ts              tematické balíčky
 public/game-images/     vygenerované assety + index.json pro service worker
-scripts/                generate-images.ts
+scripts/                generate-images.ts, build-single-file.ts
 tests/                  unit testy enginu
 types/                  game.ts, images.ts
 ```
@@ -165,6 +167,9 @@ nespustí bez obrázků.
    a obrázek se sám objeví v katalogu i v balíčcích.
 
 ### Výměna za finální ilustrace
+
+Knihovna má **232 obrázků** v deseti kategoriích (zvířata, příroda, obloha, místa,
+doprava, jídlo, věci, fantazie, hudba, hry).
 
 Assety jsou v `public/game-images/` a v datech jsou vedené jen cestou.
 Až budou hotové ilustrace (`fox.webp` místo `fox.svg`), stačí soubory nahradit
@@ -314,10 +319,29 @@ Zbývá jen upravit texty v `public/manifest.webmanifest`.
 
 ---
 
+## Jednosouborová verze ke sdílení
+
+```bash
+npm run build:single
+```
+
+Vznikne `dist/dreamtale.html` (~2,3 MB) – celá hra v jediném souboru včetně
+stylů, skriptů, fontů i všech 232 obrázků. Nepotřebuje server ani síť, dá se
+poslat e-mailem, otevřít z disku nebo nahrát kamkoliv.
+
+Jak to funguje:
+
+- statický export (`ARTIFACT_BUILD=1 next build`) → `scripts/build-single-file.ts`
+  vloží CSS, JS, fonty a obrázky přímo do HTML;
+- obrázky se předávají jako mapa `window.__DREAMTALE_ASSETS__`, kterou čte
+  `lib/images/assets.ts` – běžný build ji nemá a používá normální cesty;
+- runtime Next.js si odvozuje adresu chunku z `document.currentScript`, proto
+  vložené skripty dostanou odpojený `<script>` element se správnou adresou.
+
 ## Testy a kontroly
 
 ```bash
-npm test        # 27 unit testů: engine, fáze, skóre, round-robin, randomizace, seed
+npm test        # 28 unit testů: engine, fáze, skóre, round-robin, randomizace, seed
 npm run lint
 npm run typecheck
 npm run build
