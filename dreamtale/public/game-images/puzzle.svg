@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" fill="none">
+  <circle cx="120" cy="122" r="108" fill="#8FBFA6" opacity="0.14"/>
+  <g fill="none" stroke="#2E2A45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" transform="translate(120 122) scale(1.12) translate(-120 -122)"><path d="M56 56 h50 q-10 -26 14 -26 q24 0 14 26 h50 v50 q26 -10 26 14 q0 24 -26 14 v50 h-50 q10 26 -14 26 q-24 0 -14 -26 H56 v-50 q-26 10 -26 -14 q0 -24 26 -14 Z" fill="#8FBFA6"/>
+  </g>
+</svg>
