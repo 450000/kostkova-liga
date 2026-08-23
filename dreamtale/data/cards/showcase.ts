@@ -139,9 +139,16 @@ function sushiMistr(): string {
 <path d="M120 158 q54 0 54 54 q0 18 -8 32 q-8 -46 -46 -46 q-38 0 -46 46 q-8 -14 -8 -32 q0 -54 54 -54 Z"
  fill="#241A14" opacity="0.14"/>
 <path d="M72 182 q48 -34 96 0 q6 -44 -48 -44 q-54 0 -48 44 Z" fill="#231A14" ${line(2.4, '#150F0C')}/>
-<g fill="#231A14"><path d="M74 186 q-8 -14 -4 -26 q8 10 10 20 Z"/><path d="M166 186 q8 -14 4 -26 q-8 10 -10 20 Z"/></g>
-<path d="M64 184 h112 q8 0 8 11 v11 q0 8 -8 8 H64 q-8 0 -8 -8 v-11 q0 -11 8 -11 Z" fill="#FFFFFF" ${line(2.6, '#6B5A42')}/>
-<path d="M64 206 h112" fill="none" stroke="#D8CDB6" stroke-width="2"/>
+<g fill="#231A14"><path d="M74 186 q-8 -14 -4 -26 q8 10 10 20 Z"/><path d="M166 186 q8 -14 4 -26 q-8 10 -10 20 Z"/>
+<path d="M104 140 q6 -14 20 -16 q-8 8 -10 18 Z"/><path d="M132 138 q10 -12 22 -8 q-12 4 -16 14 Z"/>
+<path d="M84 152 q4 -14 16 -18 q-8 10 -8 20 Z"/></g>
+<g fill="none" stroke="#5A423A" stroke-width="2" opacity="0.5">
+<path d="M86 168 q30 -22 62 -12 M96 156 q26 -14 48 -6"/></g>
+<path d="M172 190 q22 -4 30 8 q7 11 -2 18 l-9 -4 q5 -8 -1 -12 q-7 -5 -18 -2 Z" fill="#F0E7D6" ${line(2.4, '#6B5A42')}/>
+<path d="M196 210 q12 10 6 24 l-11 -4 q4 -10 -3 -16 Z" fill="#E4D9C4" ${line(2.2, '#6B5A42')}/>
+<path d="M70 182 h100 q7 0 7 10 v12 q0 7 -7 7 H70 q-7 0 -7 -7 v-12 q0 -10 7 -10 Z" fill="#FFFFFF" ${line(2.6, '#6B5A42')}/>
+<path d="M70 204 h100" fill="none" stroke="#D8CDB6" stroke-width="2"/>
+<path d="M70 182 h100 q7 0 7 10 v4 q-58 -8 -114 2 v-6 q0 -10 7 -10 Z" ${lit(0.35)}/>
 <circle cx="120" cy="200" r="10" fill="#C0392B" ${line(2, '#7A2016')}/>
 <path d="M166 202 q14 26 -2 50" fill="none" stroke="#FFE3B0" stroke-width="4" opacity="0.4"/>
 <g>
@@ -177,68 +184,80 @@ ${vignetteDeep(0.36)}${frame()}`;
 
 /* ── 007 Drak ──────────────────────────────────────────────────────────── */
 function drak(): string {
-  const [skyDef, skyFill] = linear([[0, '#CFE2EC'], [0.6, '#E8EFDE'], [1, '#F0E7CA']]);
-  const [bodyDef, bodyFill] = linear([[0, '#93C96A'], [0.45, '#5F9E45'], [1, '#37682A']], 0.1, 0, 0.9, 1);
-  const [grassDef, grassFill] = linear([[0, '#82AC50'], [1, '#476E30']]);
-  const [farDef, farBlur] = blur(0.9);
+  const [skyDef, skyFill] = linear([[0, '#CFE2EC'], [0.58, '#E8EFDE'], [1, '#F0E7CA']]);
+  const [bodyDef, bodyFill] = linear([[0, '#93C96A'], [0.42, '#5F9E45'], [1, '#2F5C24']], 0.1, 0, 0.9, 1);
+  const [headDef, headFill] = linear([[0, '#A2D477'], [0.5, '#68A94B'], [1, '#3A6B2B']], 0.1, 0, 0.9, 1);
+  const [wingDef, wingFill] = linear([[0, '#8CC06A'], [1, '#3F7030']], 0, 0, 0.6, 1);
+  const [grassDef, grassFill] = linear([[0, '#82AC50'], [1, '#3F6329']]);
+  const [scaleDef, scaleFill] = hatch('#2C5522', 7, 30, 1.2, 0.18);
+  const [farDef, farBlur] = blur(1);
 
-  return `<defs>${skyDef}${bodyDef}${grassDef}${farDef}</defs>
+  return `<defs>${skyDef}${bodyDef}${headDef}${wingDef}${grassDef}${scaleDef}${farDef}</defs>
 <rect width="${W}" height="${H}" fill="${skyFill}"/>
 <g fill="#FFFFFF" opacity="0.7">
-<path d="M28 58 q-11 0 -11 -8 q0 -7 9 -8 q3 -11 15 -11 q11 0 14 10 q10 -2 12 7 q2 10 -10 10 Z"/>
-<path d="M190 92 q-8 0 -8 -6 q0 -5 7 -6 q2 -8 11 -8 q8 0 10 7 q8 -1 9 5 q1 8 -7 8 Z" opacity="0.7"/></g>
-<g filter="${farBlur}" opacity="0.45">
-<path d="M-10 236 L38 172 L86 236 Z" fill="#93A9BE"/>
-<path d="M62 238 L112 164 L164 238 Z" fill="#8399B0"/>
-<path d="M150 236 L196 176 L250 236 Z" fill="#93A9BE"/></g>
-<path d="M0 252 q40 -14 80 -6 q44 10 80 -4 q40 -16 80 -2 V${H} H0 Z" fill="${grassFill}"/>
-<path d="M0 252 q40 -14 80 -6 q44 10 80 -4 q40 -16 80 -2" fill="none" stroke="#3E6029" stroke-width="2.4"/>
-<g stroke="#88BC5E" stroke-width="2" stroke-linecap="round" opacity="0.8">
-<path d="M14 288 v-11 M22 292 v-13 M30 288 v-10 M198 302 v-11 M206 306 v-13 M214 302 v-10
- M52 330 v-11 M60 334 v-13 M172 340 v-11 M180 344 v-12"/></g>
+<path d="M26 62 q-11 0 -11 -8 q0 -7 9 -8 q3 -11 15 -11 q11 0 14 10 q10 -2 12 7 q2 10 -10 10 Z"/>
+<path d="M196 108 q-8 0 -8 -6 q0 -5 7 -6 q2 -8 11 -8 q8 0 10 7 q8 -1 9 5 q1 8 -7 8 Z" opacity="0.7"/></g>
+<g filter="${farBlur}" opacity="0.4">
+<path d="M-10 264 L36 190 L84 264 Z" fill="#93A9BE"/>
+<path d="M58 266 L108 182 L160 266 Z" fill="#8399B0"/>
+<path d="M148 264 L198 194 L252 264 Z" fill="#93A9BE"/></g>
+<path d="M0 274 q40 -12 80 -4 q44 10 80 -4 q40 -14 80 0 V${H} H0 Z" fill="${grassFill}"/>
+<path d="M0 274 q40 -12 80 -4 q44 10 80 -4 q40 -14 80 0" fill="none" stroke="#37561F" stroke-width="2.4"/>
+<g stroke="#96C76A" stroke-width="2" stroke-linecap="round" opacity="0.75">
+<path d="M12 306 v-11 M20 310 v-13 M28 306 v-10 M206 316 v-11 M214 320 v-13 M222 316 v-10
+ M40 348 v-11 M48 352 v-13 M186 352 v-11 M194 356 v-12"/></g>
 <g fill="#8E8778" stroke="#5A5449" stroke-width="1.8">
-<ellipse cx="36" cy="322" rx="19" ry="9"/><ellipse cx="204" cy="336" rx="15" ry="7"/></g>
-<ellipse cx="112" cy="322" rx="72" ry="14" fill="#2E4A22" opacity="0.22"/>
+<ellipse cx="28" cy="336" rx="17" ry="8"/><ellipse cx="214" cy="346" rx="14" ry="6"/></g>
+<ellipse cx="122" cy="330" rx="86" ry="15" fill="#2E4A22" opacity="0.24"/>
 
 <g>
-<path d="M64 262 q-40 8 -50 -18 q-6 -16 10 -20 q12 -3 15 10 q4 14 25 12 Z" fill="#4F8A38" ${line(2.6, '#254A1E')}/>
-<g fill="#7FB259" stroke="#254A1E" stroke-width="1.8">
-<path d="M30 236 l-6 -14 l12 6 Z"/><path d="M46 244 l-4 -14 l12 8 Z"/></g>
+<path d="M78 262 q-32 -4 -50 16 q-18 20 -2 34 q14 12 26 -2 q-14 -2 -12 -14 q2 -16 40 -8 Z"
+ fill="#4A8434" ${line(2.6, '#22461B')}/>
+<g fill="#7FB259" stroke="#22461B" stroke-width="1.8">
+<path d="M60 256 l-4 -15 l13 8 Z"/><path d="M40 264 l-8 -13 l14 4 Z"/><path d="M24 280 l-13 -8 l12 -2 Z"/></g>
 
-<path d="M92 268 q-8 34 2 48 h22 q-10 -20 -6 -44 Z" fill="#4F8A38" ${line(2.6, '#254A1E')}/>
-<path d="M146 270 q-8 34 2 48 h22 q-10 -20 -6 -44 Z" fill="#5F9E45" ${line(2.6, '#254A1E')}/>
-<g fill="#EFE0B4" stroke="#254A1E" stroke-width="1.6">
-<path d="M94 312 l-7 8 h10 Z"/><path d="M105 312 l-7 8 h10 Z"/><path d="M116 312 l-7 8 h10 Z"/>
-<path d="M150 314 l-7 8 h10 Z"/><path d="M161 314 l-7 8 h10 Z"/><path d="M172 314 l-7 8 h10 Z"/></g>
+<path d="M106 238 q-46 -12 -64 -56 q-8 -20 8 -26 q16 -6 22 12 q6 18 20 30
+ q-4 -22 6 -38 q10 20 26 30 q-2 -20 8 -32 q6 22 20 34 q10 10 8 24 Z" fill="${wingFill}" ${line(2.8, '#22461B')}/>
+<g fill="none" stroke="#2F5C24" stroke-width="2.2" opacity="0.8">
+<path d="M56 162 q16 34 44 60 M78 148 q10 34 26 54 M100 152 q4 30 12 48"/></g>
 
-<ellipse cx="112" cy="234" rx="58" ry="48" fill="${bodyFill}" ${line(2.8, '#254A1E')}/>
-<path d="M112 186 q-58 0 -58 48 q0 20 10 32 q-16 -46 12 -68 q14 -11 36 -12 Z" ${lit(0.16)}/>
-<g fill="#EFD79A" stroke="#254A1E" stroke-width="1.6">
-<path d="M92 268 h50 v-14 H92 Z"/><path d="M86 252 h56 v-14 H86 Z"/>
-<path d="M86 236 h54 v-14 H86 Z"/><path d="M92 220 h46 v-14 H92 Z"/></g>
+<path d="M92 274 q-10 26 -4 42 q2 8 -6 12 h34 q-8 -8 -4 -20 q4 -16 10 -28 Z" fill="#4A8434" ${line(2.6, '#22461B')}/>
+<path d="M86 316 q-14 4 -16 12 q-1 6 8 6 h36 q6 -12 -8 -18 Z" fill="#4A8434" ${line(2.4, '#22461B')}/>
+<g fill="#EFE0B4" stroke="#22461B" stroke-width="1.5">
+<path d="M72 330 l-8 6 h9 Z"/><path d="M84 332 l-8 6 h9 Z"/><path d="M96 332 l-8 6 h9 Z"/></g>
 
-<path d="M96 196 q-6 -46 34 -52 q-18 30 -6 56 Z" fill="#4F8A38" ${line(2.4, '#254A1E')}/>
-<path d="M104 190 q22 -34 52 -20 q26 12 20 40 q-6 26 -34 24 q-30 -2 -38 -44 Z" fill="#7FB259" ${line(2.6, '#254A1E')}/>
-<g fill="none" stroke="#3E6E2E" stroke-width="2"><path d="M120 178 q22 -12 40 2 M116 200 q26 6 46 -8"/></g>
+<ellipse cx="112" cy="248" rx="52" ry="44" fill="${bodyFill}" ${line(2.8, '#22461B')}/>
+<ellipse cx="112" cy="248" rx="52" ry="44" fill="${scaleFill}"/>
+<path d="M112 204 q-52 0 -52 44 q0 18 10 30 q-16 -44 12 -62 q12 -9 30 -10 Z" ${lit(0.16)}/>
+<g fill="#EFD79A" stroke="#22461B" stroke-width="1.6">
+<path d="M110 288 h44 q6 -6 4 -11 h-48 Z"/><path d="M104 274 h54 q4 -6 2 -11 h-56 Z"/>
+<path d="M102 259 h54 q2 -6 0 -11 h-54 Z"/><path d="M104 244 h48 q0 -6 -2 -11 h-46 Z"/></g>
 
-<g fill="#4F8A38" stroke="#254A1E" stroke-width="2">
-<path d="M76 202 l-10 -18 l20 8 Z"/><path d="M96 184 l-8 -20 l20 12 Z"/>
-<path d="M118 172 l-4 -22 l18 14 Z"/><path d="M142 166 l0 -22 l18 16 Z"/></g>
+<path d="M142 268 q-8 22 -2 38 q2 8 -6 12 h32 q-8 -8 -4 -20 q4 -14 10 -26 Z" fill="#5F9E45" ${line(2.6, '#22461B')}/>
+<path d="M138 306 q-14 4 -16 12 q-1 6 8 6 h36 q6 -12 -8 -18 Z" fill="#5F9E45" ${line(2.4, '#22461B')}/>
+<g fill="#EFE0B4" stroke="#22461B" stroke-width="1.5">
+<path d="M124 320 l-8 6 h9 Z"/><path d="M136 322 l-8 6 h9 Z"/><path d="M148 322 l-8 6 h9 Z"/></g>
 
-<path d="M150 152 q30 -22 56 4 q22 22 6 46 q-18 26 -50 14 q-28 -12 -24 -36 q4 -22 12 -28 Z"
- fill="${bodyFill}" ${line(2.8, '#254A1E')}/>
-<path d="M196 176 q28 4 30 22 q2 20 -24 24 q-20 2 -26 -12 q-6 -16 20 -34 Z" fill="#93C96A" ${line(2.6, '#254A1E')}/>
-<path d="M222 194 q12 2 12 10 M220 210 q12 0 12 8" fill="none" ${line(2, '#254A1E')}/>
-<g fill="#FFFFFF" stroke="#254A1E" stroke-width="1.4">
-<path d="M212 214 l4 9 l7 -9 Z"/><path d="M226 216 l4 9 l7 -9 Z"/></g>
-<path d="M168 146 l-6 -24 l18 14 Z" fill="#EFD79A" ${line(2, '#254A1E')}/>
-<path d="M188 142 l2 -24 l16 18 Z" fill="#EFD79A" ${line(2, '#254A1E')}/>
-<circle cx="192" cy="180" r="11" fill="#FFFFFF" ${line(2.2, '#254A1E')}/>
-<circle cx="194" cy="181" r="5.6" fill="#1F2A16"/>
-<circle cx="196" cy="179" r="1.9" fill="#FFFFFF"/>
-<circle cx="224" cy="192" r="2.4" fill="#254A1E"/>
-<path d="M182 204 q20 10 38 2" fill="none" ${line(2.4, '#254A1E')}/>
-<path d="M188 206 l3 8 l5 -8 Z M206 208 l3 8 l5 -8 Z" fill="#FFFFFF" stroke="#254A1E" stroke-width="1.2"/></g>
+<path d="M132 220 q10 -44 34 -64 q16 -14 30 -8 l-6 34 q-20 12 -28 44 Z" fill="${bodyFill}" ${line(2.8, '#22461B')}/>
+<path d="M132 220 q10 -44 34 -64 q8 -7 16 -9 q-24 22 -32 76 Z" ${lit(0.14)}/>
+<g fill="#4A8434" stroke="#22461B" stroke-width="2">
+<path d="M104 210 l-6 -20 l18 12 Z"/><path d="M124 190 l-4 -22 l18 14 Z"/>
+<path d="M140 166 l-2 -22 l18 14 Z"/><path d="M158 144 l2 -22 l17 16 Z"/></g>
+
+<g transform="translate(198 116) scale(1.14) translate(-198 -116)">
+<path d="M158 132 q-8 -30 18 -42 q26 -12 46 4 q16 14 8 30 l-16 6 q4 12 -10 16 q-18 6 -34 -2 q-12 -6 -12 -12 Z"
+ fill="${headFill}" ${line(2.8, '#22461B')}/>
+<path d="M212 124 q22 -2 22 12 q0 12 -18 14 q-16 2 -22 -6 q-4 -12 18 -20 Z" fill="#A2D477" ${line(2.6, '#22461B')}/>
+<circle cx="226" cy="132" r="2.6" fill="#22461B"/>
+<path d="M196 152 q20 8 34 -2" fill="none" ${line(2.4, '#22461B')}/>
+<g fill="#FFFFFF" stroke="#22461B" stroke-width="1.3">
+<path d="M202 152 l3 9 l6 -8 Z"/><path d="M216 154 l3 9 l6 -8 Z"/><path d="M190 148 l2 9 l7 -7 Z"/></g>
+<circle cx="192" cy="112" r="11" fill="#FFFFFF" ${line(2.2, '#22461B')}/>
+<circle cx="194" cy="113" r="5.6" fill="#1F2A16"/>
+<circle cx="196" cy="111" r="2" fill="#FFFFFF"/>
+<g fill="#EFD79A" stroke="#22461B" stroke-width="2">
+<path d="M172 92 l-8 -24 l20 14 Z"/><path d="M194 86 l4 -24 l16 18 Z"/></g>
+<path d="M166 108 q-14 4 -16 16" fill="none" ${line(2.2, '#22461B')}/></g></g>
 ${vignetteDeep(0.3)}${frame()}`;
 }
 
@@ -291,6 +310,7 @@ function ustaranyDetail(): string {
 <g transform="translate(0 34)">
 <path d="M18 364 q-2 -66 34 -86 q18 -10 32 4 l10 14 q-30 16 -34 68 Z" fill="${skinFill}" ${line(2.8, '#8A5A34')}/>
 <path d="M222 364 q2 -66 -34 -86 q-18 -10 -32 4 l-10 14 q30 16 34 68 Z" fill="${skinFill}" ${line(2.8, '#8A5A34')}/>
+<g transform="translate(120 0) scale(0.82 1) translate(-120 0)">
 <path d="M60 244 q-8 -34 8 -46 q14 -10 28 -2 l24 14 q12 8 6 22 l-10 26 q-6 14 -22 12 l-22 -4 q-10 -2 -12 -22 Z"
  fill="${handFill}" ${line(2.6, '#8A5A34')}/>
 <path d="M180 244 q8 -34 -8 -46 q-14 -10 -28 -2 l-24 14 q-12 8 -6 22 l10 26 q6 14 22 12 l22 -4 q10 -2 12 -22 Z"
@@ -305,7 +325,7 @@ function ustaranyDetail(): string {
 <g fill="none" stroke="#B57C4A" stroke-width="2" opacity="0.85" stroke-linecap="round">
 <path d="M74 176 h11 M91 172 h11 M108 174 h11 M125 178 h11 M142 174 h11 M159 176 h11"/></g>
 <path d="M60 244 q-8 -34 8 -46 q10 -8 20 -4 q-22 12 -18 50 Z" ${lit(0.2)}/>
-<path d="M180 244 q8 -34 -8 -46 q-10 -8 -20 -4 q22 12 18 50 Z" ${shade(0.1)}/>
+<path d="M180 244 q8 -34 -8 -46 q-10 -8 -20 -4 q22 12 18 50 Z" ${shade(0.1)}/></g>
 <g fill="#3A6EA8" stroke="#1F3E62" stroke-width="1.8">
 <rect x="34" y="306" width="30" height="11" rx="5"/><rect x="176" y="306" width="30" height="11" rx="5"/></g></g>
 ${vignetteDeep(0.3)}${frame()}`;
@@ -313,45 +333,48 @@ ${vignetteDeep(0.3)}${frame()}`;
 
 /* ── 194 Velká vlna ────────────────────────────────────────────────────── */
 function velkaVlna(): string {
-  const [skyDef, skyFill] = linear([[0, '#0D2242'], [0.5, '#1C4270'], [1, '#39779F']]);
-  const [faceDef, faceFill] = linear([[0, '#5FB0D8'], [0.35, '#2C79B0'], [1, '#0E3358']], 0.2, 0, 0.9, 1);
-  const [barrelDef, barrelFill] = radial([[0, '#CFF0FA'], [0.4, '#63ADD6'], [1, '#154A79']], 0.44, 0.5, 0.66);
-  const [deepDef, deepFill] = linear([[0, '#215688'], [1, '#0A2440']]);
-  const [foamDef, foamFill] = linear([[0, '#FFFFFF'], [1, '#C8E7F6']]);
+  const [skyDef, skyFill] = linear([[0, '#061428'], [0.6, '#0F3055'], [1, '#1D5480']]);
+  const [faceDef, faceFill] = linear([[0, '#7FCDEC'], [0.32, '#3E93C8'], [1, '#17527F']], 0.15, 0, 0.85, 1);
+  const [barrelDef, barrelFill] = radial([[0, '#061A31'], [0.5, '#0E3A63'], [1, '#2E7FB8']], 0.52, 0.5, 0.6);
+  const [deepDef, deepFill] = linear([[0, '#1C5384'], [1, '#06172B']]);
+  const [foamDef, foamFill] = linear([[0, '#FFFFFF'], [1, '#CDEBF9']], 0, 0, 0.4, 1);
+  const [mistDef, mistBlur] = blur(2.6);
 
-  return `<defs>${skyDef}${faceDef}${barrelDef}${deepDef}${foamDef}</defs>
+  return `<defs>${skyDef}${faceDef}${barrelDef}${deepDef}${foamDef}${mistDef}</defs>
 <rect width="${W}" height="${H}" fill="${skyFill}"/>
-<g fill="#A8D6EC" opacity="0.3">
-<circle cx="30" cy="30" r="2.6"/><circle cx="64" cy="18" r="2"/><circle cx="196" cy="22" r="2.4"/>
-<circle cx="18" cy="72" r="2"/><circle cx="146" cy="16" r="1.8"/></g>
+<g fill="#A8D6EC" opacity="0.35">
+<circle cx="26" cy="32" r="2.6"/><circle cx="58" cy="18" r="2"/><circle cx="150" cy="22" r="2.2"/>
+<circle cx="14" cy="74" r="2"/><circle cx="96" cy="14" r="1.8"/><circle cx="212" cy="30" r="2.4"/></g>
+<g filter="${mistBlur}" fill="#9FCDE8" opacity="0.22">
+<ellipse cx="176" cy="150" rx="70" ry="60"/><ellipse cx="54" cy="238" rx="70" ry="40"/></g>
 
-<path d="M-10 364 V292 C24 250 52 206 96 166 C140 126 190 96 222 118 C250 138 250 186 224 212
- C198 238 158 234 144 210 C132 190 144 168 166 164 C142 164 124 188 134 216 C146 248 196 258 226 228
- C246 208 252 176 250 150 V364 Z" fill="${faceFill}"/>
-<path d="M96 166 C140 126 190 96 222 118 C250 138 250 186 224 212 C198 238 158 234 144 210
- C132 190 144 168 166 164 C146 172 140 194 156 208 C176 226 208 218 220 190 C234 156 210 128 178 126
- C146 124 118 142 96 166 Z" fill="${barrelFill}" opacity="0.95"/>
+<path d="M-14 364 V226 C26 218 62 186 92 146 C122 106 152 66 190 62 C226 58 246 88 242 126
+ C238 166 208 196 172 198 C146 200 128 184 130 162 C132 142 152 132 170 140
+ C146 126 116 146 114 180 C111 222 152 250 194 238 C228 228 248 196 252 162 V364 Z" fill="${faceFill}"/>
+<path d="M190 62 C226 58 246 88 242 126 C238 166 208 196 172 198 C146 200 128 184 130 162
+ C132 142 152 132 170 140 C150 140 140 154 142 170 C145 190 168 198 190 190
+ C220 178 234 144 230 116 C226 86 212 68 190 62 Z" fill="${barrelFill}"/>
+<g fill="none" stroke="#8FCFEC" stroke-width="2.4" opacity="0.45" stroke-linecap="round">
+<path d="M214 92 C232 112 234 148 216 172 M198 86 C218 108 220 146 202 168"/></g>
 
-<path d="M-10 292 C24 250 52 206 96 166 C140 126 190 96 222 118 C196 84 148 96 106 134
- C62 174 20 236 -10 282 Z" fill="${foamFill}"/>
-<path d="M-10 316 C22 268 54 218 100 176 C56 226 18 280 -10 330 Z" fill="#E8F6FC" opacity="0.75"/>
-<g fill="#FFFFFF">
-<path d="M236 132 C258 168 250 208 220 230 C192 250 158 242 144 218 C166 240 202 240 222 216
- C244 190 246 158 236 132 Z"/>
-<path d="M104 142 C142 112 186 100 216 116 C184 108 144 118 110 148 Z" opacity="0.85"/></g>
-<g fill="none" stroke="#F4FBFE" stroke-width="3.6" opacity="0.75" stroke-linecap="round">
-<path d="M6 292 C40 240 76 194 122 156 M-6 330 C32 268 74 216 122 178 M46 268 C74 226 106 192 140 168"/></g>
-<g fill="none" stroke="#CFEAF6" stroke-width="2.2" opacity="0.55" stroke-linecap="round">
-<path d="M168 148 q30 -4 40 20 M162 186 q30 10 46 -10 M180 132 q26 0 34 16"/></g>
+<path d="M-14 226 C26 218 62 186 92 146 C122 106 152 66 190 62 C210 60 226 70 234 88
+ C220 66 198 62 176 78 C142 104 110 156 74 196 C48 224 14 248 -14 256 Z" fill="${foamFill}"/>
+<path d="M234 88 C252 120 248 164 220 192 C196 216 160 222 136 208 C166 216 198 206 216 182
+ C240 150 246 116 234 88 Z" fill="#FFFFFF"/>
+<path d="M-14 268 C18 250 52 214 82 176 C52 224 16 268 -14 292 Z" fill="#E8F6FC" opacity="0.6"/>
+<g fill="none" stroke="#F4FBFE" stroke-width="4.4" opacity="0.65" stroke-linecap="round">
+<path d="M4 250 C36 212 66 172 100 132 M-6 288 C28 240 62 196 100 156 M40 244 C66 208 90 180 118 156"/></g>
+<g fill="none" stroke="#DCF1FB" stroke-width="2.6" opacity="0.4" stroke-linecap="round">
+<path d="M150 226 q36 4 60 -22 M132 240 q44 12 76 -18"/></g>
 
-<path d="M0 300 q34 -22 68 -4 q36 20 70 -2 q36 -24 72 -2 q18 10 30 4 V${H} H0 Z" fill="${deepFill}"/>
-<g fill="none" stroke="#8FCCE6" stroke-width="2.6" opacity="0.45" stroke-linecap="round">
-<path d="M12 322 q32 -14 62 0 M94 336 q32 -14 62 0 M150 352 q32 -14 62 0 M28 352 q28 -12 54 0"/></g>
+<path d="M0 306 q34 -20 68 -2 q36 20 70 -2 q36 -22 72 -2 q18 10 30 4 V${H} H0 Z" fill="${deepFill}"/>
+<g fill="none" stroke="#8FCCE6" stroke-width="2.6" opacity="0.4" stroke-linecap="round">
+<path d="M10 328 q32 -14 62 0 M92 342 q32 -14 62 0 M148 356 q32 -14 62 0 M26 356 q28 -12 54 0"/></g>
 <g fill="#FFFFFF" opacity="0.9">
-<circle cx="212" cy="92" r="4.4"/><circle cx="230" cy="72" r="3"/><circle cx="196" cy="66" r="2.8"/>
-<circle cx="234" cy="110" r="2.4"/><circle cx="176" cy="52" r="2.2"/><circle cx="152" cy="72" r="2.6"/>
-<circle cx="124" cy="94" r="2.2"/><circle cx="92" cy="120" r="2"/><circle cx="66" cy="150" r="1.8"/></g>
-${vignetteDeep(0.3)}${frame()}`;
+<circle cx="228" cy="52" r="4.2"/><circle cx="242" cy="34" r="2.8"/><circle cx="208" cy="40" r="2.6"/>
+<circle cx="184" cy="30" r="2.2"/><circle cx="150" cy="48" r="2.6"/><circle cx="118" cy="78" r="2.2"/>
+<circle cx="86" cy="112" r="2"/><circle cx="56" cy="150" r="1.8"/><circle cx="32" cy="188" r="1.6"/></g>
+${vignetteDeep(0.32)}${frame()}`;
 }
 
 export const SHOWCASE_CARDS: Card[] = [
