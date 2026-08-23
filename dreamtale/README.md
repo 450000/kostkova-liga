@@ -97,7 +97,6 @@ data/
   cards/                metadata karet (manifest.ts se generuje)
   catalog.ts            katalog karet
 public/cards/           herní karty ve WebP + index.json pro service worker
-cards-src/              dodané originály v plném rozlišení (mimo public – nedeployují se)
 scripts/                generate-images.ts, build-single-file.ts
 tests/                  unit testy enginu
 types/                  game.ts, images.ts
@@ -148,8 +147,14 @@ nespustí bez obrázků.
 ## Jak jsou karty postavené
 
 Karty jsou malované ilustrace v poměru **2 : 3** – jedna scéna na kartu, na spad,
-bez textu. Originály v plném rozlišení (1024 × 1536 PNG) leží v
-`cards-src/` pod pořadovými čísly, jak přišly z generátoru.
+bez textu. Originály v plném rozlišení (1024 × 1536 PNG) jsou v repozitáři jen
+v historii (commit `085c908`, složka `dreamtale/public/cards-src/`) – v pracovním
+stromu nejsou, aby klonování a CI netahaly půl giga navíc. Když je potřebuješ:
+
+```bash
+git checkout 085c908 -- dreamtale/public/cards-src
+mv dreamtale/public/cards-src dreamtale/cards-src
+```
 
 Převod na herní assety dělá `npm run images:build` (Python + Pillow):
 
