@@ -20,8 +20,8 @@ const CARD_STYLE = {
   maxWidth: 'min(88%, 30rem)',
   // Strop výšky drží poměr stran i na tabletu, kde by karta jinak byla úzká a přetažená.
   maxHeight: '44rem',
-  // Shodné s plátnem ilustrace (240 × 364), aby karta byla celá vyplněná.
-  aspectRatio: '0.659',
+  // Shodné s poměrem ilustrací (2 : 3), aby karta byla celá vyplněná.
+  aspectRatio: '0.6667',
 } as const;
 
 export function GameCard({ image, direction = 1, hidden = false, hiddenLabel }: GameCardProps) {

@@ -2,7 +2,7 @@ import type { GameImage, ImageCategory } from '@/types/images';
 import { CARDS } from './cards/index';
 
 /** Přípona assetů. Po dodání jiných ilustrací stačí změnit na `webp`. */
-export const IMAGE_EXTENSION = 'svg';
+export const IMAGE_EXTENSION = 'webp';
 
 export const IMAGE_CATALOG: GameImage[] = CARDS.map((card) => ({
   id: card.id,

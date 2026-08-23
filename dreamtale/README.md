@@ -47,7 +47,7 @@ Aplikace poběží na <http://localhost:3000>.
 | `npm run lint` | ESLint |
 | `npm run typecheck` | kontrola typů (`tsc --noEmit`) |
 | `npm test` | unit testy herního enginu (Vitest) |
-| `npm run images:build` | vygeneruje karty z `data/cards` do `public/cards` |
+| `npm run images:build` | převede originály z `public/cards-src` na herní karty |
 | `npm run build:single` | složí celou hru do jednoho souboru `dist/dreamtale.html` |
 
 ---
@@ -94,11 +94,11 @@ lib/
   game/                 engine (reducer), rng, selection, scoring, ordinal, storage
   images/               ImageProvider abstrakce: local / external / ai + preload
 data/
-  cards/                karty: paleta, scény, postavy, rekvizity a obě sady
-  motifs/               knihovna kreseb předmětů, které si scény půjčují
+  cards/                metadata karet (manifest.ts se generuje)
   catalog.ts            katalog karet
   packs.ts              tematické balíčky
-public/cards/           vygenerované karty + index.json pro service worker
+public/cards/           herní karty ve WebP + index.json pro service worker
+public/cards-src/       dodané originály v plném rozlišení
 scripts/                generate-images.ts, build-single-file.ts
 tests/                  unit testy enginu
 types/                  game.ts, images.ts
@@ -148,41 +148,36 @@ nespustí bez obrázků.
 
 ## Jak jsou karty postavené
 
-Karty nejsou ikony, ale celoplošné scény v poměru karty (240 × 364). Skládají se
-ze čtyř vrstev, které drží celou sadu v jednom rukopisu:
+Karty jsou malované ilustrace v poměru **2 : 3** – jedna scéna na kartu, na spad,
+bez textu. Originály v plném rozlišení (1024 × 1536 PNG) leží v
+`public/cards-src/` pod pořadovými čísly, jak přišly z generátoru.
 
-| Soubor | Co obsahuje |
+Převod na herní assety dělá `npm run images:build` (Python + Pillow):
+
+| Vstup / výstup | Co to je |
 | --- | --- |
-| `data/cards/palette.ts` | barvy scén, odstíny pleti, vlasů a triček |
-| `data/cards/scene.ts` | pozadí (obloha, pokoj, moře, hory), mraky, hvězdy, stromy, vinětace |
-| `data/cards/people.ts` | parametrická postava – deset výrazů a jedenáct póz |
-| `data/cards/props.ts` | rekvizity; vkládají kresby z `data/motifs` |
+| `public/cards-src/CDO_###.png` | dodané originály, 1024 × 1536 |
+| `scripts/cards-map.tsv` | číslo → `id`, název, kategorie; prázdné `id` = vyřazený duplicitní motiv |
+| `public/cards/<id>.webp` | 720 × 1080, to co hraje web |
+| `.cards-small/<id>.webp` | 512 × 768, jen pro jednosouborovou verzi |
+| `public/cards/index.json` | seznam assetů pro service worker |
+| `data/cards/manifest.ts` | generovaná metadata: id, název, kategorie, barva |
 
-Karta je pak jen kompozice:
+Barva (`tint`) se z každé ilustrace dopočítá jako průměrný odstín a drží místo,
+než se karta načte. Názvy karet se hráčům nikdy nezobrazují, slouží jen jako
+alt text.
 
-```ts
-{
-  id: 'rytir',
-  name: 'Rytíř',
-  category: 'people',
-  tint: P.stone,
-  art: `${sky('day')}${hills(238)}${ground(280, P.grass)}
-${person({ x: 112, y: 316, s: 1.7, mood: 'proud', pose: 'hold', extras: helmet })}
-${prop('sword', 176, 244, 0.56)}`,
-}
-```
+**Přidání karty:** nahrát PNG do `public/cards-src/`, dopsat řádek do
+`scripts/cards-map.tsv` a spustit `npm run images:build`. Katalog i balíčky se
+doplní samy – kategorie určuje, do kterých balíčků karta spadne.
 
-Nová karta = jeden takový záznam v některém souboru `data/cards/adventure-*.ts`
-nebo `everyday-*.ts` a `npm run images:build`. Katalog i balíčky se doplní samy.
-
-**Sady:** *Dobrodružství* (96 karet – místa, povolání, zvířata, fantazie) a
-*Všední den* (94 karet – pocity, rodina, škola, obyčejné chvíle), celkem **190 karet**.
+**Rozsah:** 211 dodaných ilustrací, z toho 26 vyřazených duplicitních motivů,
+ve hře **185 karet**.
 
 ### Výměna za jiné ilustrace
 
-Karty jsou v `public/cards/` a v datech vedené jen cestou. Pokud budete mít
-vlastní obrázky (třeba malované), stačí soubory nahradit a v `data/catalog.ts`
-změnit jedinou konstantu:
+Karty jsou v datech vedené jen cestou a příponou. Pro jiný formát stačí změnit
+jedinou konstantu v `data/catalog.ts`:
 
 ```ts
 export const IMAGE_EXTENSION = 'webp';
@@ -199,7 +194,7 @@ Game engine se nemění.
   id: 'winter',
   name: 'Zima',
   description: 'Sníh, svíčky a teplý čaj.',
-  coverImage: '/cards/prvni-snih.svg',
+  coverImage: '/cards/prvni-snih.webp',
   images: imagesByCategories(['nature', 'family']),   // nebo vlastní výběr karet
 }
 ```
@@ -226,8 +221,8 @@ se propisují přes `@theme inline`. Změna palety = změna jednoho bloku:
 ```
 
 Písma se nastavují v `app/layout.tsx` (`next/font/google`) a mapují na
-`--font-display` a `--font-sans`. Ilustrace mají vlastní paletu v
-`data/cards/palette.ts` – po její změně spusťte `npm run images:build`.
+`--font-display` a `--font-sans`. Ilustrace si barvy nesou samy; po jejich
+výměně stačí spustit `npm run images:build`.
 
 ---
 
@@ -328,7 +323,7 @@ npm run build:single
 ```
 
 Vznikne `dist/dreamtale.html` (~2,3 MB) – celá hra v jediném souboru včetně
-stylů, skriptů, fontů i všech 190 karet. Nepotřebuje server ani síť, dá se
+stylů, skriptů, fontů i všech karet. Nepotřebuje server ani síť, dá se
 poslat e-mailem, otevřít z disku nebo nahrát kamkoliv.
 
 Jak to funguje:

@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "images:build": "tsx scripts/generate-images.ts",
+    "images:build": "python3 scripts/build-cards.py",
     "build:single": "ARTIFACT_BUILD=1 next build && tsx scripts/build-single-file.ts"
   },
   "dependencies": {

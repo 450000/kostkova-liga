@@ -10,14 +10,3 @@ export type CardCategory =
   | 'everyday'
   | 'family'
   | 'school';
-
-export type Card = {
-  id: string;
-  /** Český název – jen pro alt text, ve hře se nikdy nezobrazuje. */
-  name: string;
-  category: CardCategory;
-  /** Dominantní barva scény, používá se při načítání karty. */
-  tint: string;
-  /** Vnitřek SVG v souřadnicích 0 0 240 364. */
-  art: string;
-};

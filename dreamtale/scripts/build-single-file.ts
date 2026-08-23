@@ -28,8 +28,19 @@ const MIME: Record<string, string> = {
   '.jpg': 'image/jpeg',
 };
 
+/**
+ * Karty se do jednoho souboru vkládají v úspornější variantě z `.cards-small`
+ * (512 × 768). Ve dvojnásobném rozlišení by sdílený soubor přerostl limit.
+ */
+const SMALL_CARDS = join(ROOT, '.cards-small');
+
 function readAsset(urlPath: string): Buffer {
-  return readFileSync(join(OUT_DIR, urlPath.replace(/^\//, '').split('?')[0]));
+  const relative = urlPath.replace(/^\//, '').split('?')[0];
+  if (relative.startsWith('cards/')) {
+    const small = join(SMALL_CARDS, relative.slice('cards/'.length));
+    if (existsSync(small)) return readFileSync(small);
+  }
+  return readFileSync(join(OUT_DIR, relative));
 }
 
 function dataUri(urlPath: string): string {

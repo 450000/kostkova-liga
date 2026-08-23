@@ -1,0 +1,212 @@
+# číslo	id	název	kategorie   (prázdné id = vyřazený duplicitní motiv)
+1	socha-svobody	Socha svobody	places
+2	flamenco	Flamenco	people
+3	sushi-mistr	Sushi mistr	people
+4	maly-vedec	Malý vědec	people
+5	vetrny-mlyn	Větrný mlýn	places
+6	balony	Horkovzdušné balóny	adventure
+7	drak	Drak s vejcem	fantasy
+8	potapec	Potápěč	adventure
+9	cirkus	Cirkusový stan	places
+10	rytir	Rytíř	people
+11	indian	Indián	people
+12	stonehenge	Stonehenge	places
+13	babicka	Babička s vnukem	family
+14	detektiv	Detektiv	people
+15	katedrala	Katedrála	places
+16	let-na-balonkach	Let na balóncích	fantasy
+17	panda	Panda u brány	animals
+18	sakura	Rozkvetlá třešeň	nature
+19			
+20	tucnak-kra	Tučňák na kře	animals
+21	moai	Sochy Moai	places
+22	rover	Vozítko na Marsu	adventure
+23	carodejka	Čarodějka	fantasy
+24	potopene-mesto	Potopené město	fantasy
+25	rogalo	Rogalo nad kaňonem	adventure
+26	saxofonista	Saxofonista	people
+27	majak-boure	Maják v bouři	places
+28	ledni-medved	Lední medvěd	animals
+29	baletka	Baletka	people
+30	hvezdarna	Hvězdárna	places
+31	valecnik	Válečník	people
+32	piratska-lod	Pirátská loď	adventure
+33	ponorka	Ponorka	adventure
+34	kouzelnik	Kouzelník	fantasy
+35	svatba	Svatba	family
+36	basket-vozik	Basketbal na vozíku	people
+37	domek-na-strome	Domek na stromě	places
+38	velbloud	Velbloud v poušti	animals
+39	start-rakety	Start rakety	adventure
+40	samuraj	Samuraj	people
+41	vanoce	Vánoce u krbu	family
+42	krabice-hra	Hra v krabici	family
+43	podzemi	Průzkum podzemí	adventure
+44			
+45	tukan	Tukan v džungli	animals
+46	brankar	Hokejový brankář	people
+47	obri-zelva	Obří želva	animals
+48	snezitko	Sněžítko	fantasy
+49	benatska-maska	Benátská maska	people
+50	mayska-pyramida	Mayská pyramida	places
+51	gondola	Gondola	places
+52	parni-vlak	Parní vlak	adventure
+53	veterinarka	Veterinářka	people
+54	morska-panna	Mořská panna	fantasy
+55			
+56	dalekohled-noc	Noc s dalekohledem	adventure
+57	kouzelna-kniha	Kouzelná kniha	fantasy
+58	muchomurka	Domek z muchomůrky	fantasy
+59	hodinar	Hodinář	people
+60	truhla-pokladu	Truhla pokladu	fantasy
+61	yeti	Yeti	fantasy
+62	malir	Malíř v krajině	people
+63	ohnostroj	Ohňostroj	places
+64	provazochodec	Provazochodec	people
+65	kral	Král na trůně	fantasy
+66	mimozemstan	Setkání s mimozemšťanem	fantasy
+67	horska-chata	Horská chata	places
+68	nalez-pokladu	Nález pokladu	adventure
+69			
+70			
+71			
+72	skotsky-byk	Skotský býk	animals
+73	chobotnice	Chobotnice	animals
+74	cesta-pousti	Cesta pouští	adventure
+75	pod-hvezdami	Pod hvězdami	family
+76	rybar	Rybář na molu	people
+77	santa	Santa	fantasy
+78	pohadkovy-zamek	Pohádkový zámek	places
+79	jeskyne-lucerna	Jeskyně s lucernou	adventure
+80	letajici-koberec	Létající koberec	fantasy
+81	lano-nad-kanonem	Lano mezi věžemi	adventure
+82	morska-zelva	Mořská želva	animals
+83	bonsaj	Bonsaj	nature
+84			
+85			
+86	horolezec	Horolezec	nature
+87	robot-z-krabice	Krabice s překvapením	family
+88	bublina	Bublina s motýlem	feelings
+89	dilna-s-robotem	Dílna s robotem	family
+90	sopka-pokus	Sopka na stole	school
+91	svetlusky	Světlušky	nature
+92	superhrdina	Superhrdina	fantasy
+93	velky-dort	Velký dort	family
+94	kytara	Kytara navečer	people
+95	klid-v-sede	Klid v sedě	feelings
+96	houslista	Houslistka	people
+97	stavitel	Stavitel modelu	everyday
+98	filmova-kamera	Filmová kamera	places
+99	letajici-zamek	Létající zámek	fantasy
+100	papirovy-drak	Papírový drak	adventure
+101	klavir	Klavír	everyday
+102	vodopad-dzungle	Vodopád v džungli	nature
+103	majak-ostrov	Maják na ostrově	places
+104	peceni	Pečení	family
+105	nerozhodnost	Nerozhodnost	feelings
+106			
+107	zlomene-srdce	Zlomené srdce	feelings
+108	lampion-prani	Lampion přání	feelings
+109	hadka	Hádka	feelings
+110	drevene-letadlo	Dřevěné letadlo	everyday
+111	zmeskany-autobus	Zmeškaný autobus	everyday
+112	kresleni	Kreslení	school
+113			
+114	zamotana-sluchatka	Zamotaná sluchátka	everyday
+115	kolo	Kolo	everyday
+116	pod-dekami	Pod dekami	feelings
+117	tajemne-dvere	Tajemné dveře	fantasy
+118	malovani-na-zed	Malování na zeď	everyday
+119	kos-pradla	Koš s prádlem	everyday
+120	kocka-akvarium	Kočka u akvária	animals
+121	sluchatka-hudba	Hudba do sluchátek	everyday
+122	odchod-s-batohem	Odchod s batohem	feelings
+123	promin	Promiň	feelings
+124	objeti	Objetí	family
+125	darek	Dárek	family
+126	budik	Budík	everyday
+127	skladacka	Skládačka	school
+128	houpaci-sit	Houpací síť	everyday
+129			
+130	strach-ve-tme	Strach ve tmě	feelings
+131	penezenka	Ztracená peněženka	everyday
+132	kamaradky	Kamarádky u branky	family
+133	trofej	Trofej	school
+134	spatna-znamka	Špatná známka	school
+135	fotografovani	Fotografování	everyday
+136	uschla-rostlina	Uschlá rostlina	nature
+137	v-desti	V dešti	everyday
+138			
+139			
+140	stehovani	Stěhování krabic	everyday
+141			
+142	rozsypane-papiry	Rozsypané papíry	school
+143	s-mapou	S mapou v lese	adventure
+144	zmeskany-vlak	Zmeškaný vlak	everyday
+145	rozmotavani	Rozmotávání drátů	everyday
+146	vareni	Vaření	family
+147	snidane	Snídaně	family
+148	spadla-zmrzlina	Spadlá zmrzlina	feelings
+149			
+150	odneseny-destnik	Odnesený deštník	everyday
+151	vecerni-ulice	Večerní ulice	feelings
+152	sber-ovoce	Sběr ovoce	nature
+153	stara-dilna	Stará dílna	family
+154	otevrene-dvere	Otevřené dveře	adventure
+155	liska-radio	Liška u rádia	animals
+156	svicka-na-dortu	Svíčka na dortu	family
+157	bludiste	Bludiště	adventure
+158	hra-kaminky	Hra s kamínky	family
+159	zrcadlo	U zrcadla	feelings
+160	rodinna-vecere	Rodinná večeře	family
+161	kouzelna-krabicka	Kouzelná krabička	fantasy
+162	fotoaparat	Starý fotoaparát	everyday
+163	lahev-s-dopisem	Láhev s dopisem	adventure
+164	kameny-vez	Věž z kamenů	everyday
+165	pizza-online	Pizza z obrazovky	everyday
+166	rozlite-piti	Rozlité pití	everyday
+167	lupa-badatel	Badatel s lupou	school
+168			
+169			
+170	kouzelny-kour	Kouzelný kouř	fantasy
+171	loutka	Loutka	fantasy
+172	prani	Přání	feelings
+173	telefon-zprava	Zpráva v telefonu	everyday
+174			
+175	dvere-motyli	Dveře s motýly	fantasy
+176			
+177			
+178	cekani-na-tramvaj	Čekání na tramvaj	everyday
+179	velka-vlna	Velká vlna	nature
+180	sdileni	Sdílení	family
+181	sazeni	Sázení	nature
+182	bunda	Bunda na věšáku	everyday
+183	hrad-z-pisku	Hrad z písku	nature
+184	horska-draha	Horská dráha	adventure
+185	astronaut	Astronaut	adventure
+186	ostrov-s-palmou	Ostrov s palmou	nature
+187			
+188	vyrobce-hracek	Výrobce hraček	people
+189	nastenka-s-fotkami	Nástěnka s fotkami	school
+190			
+191	spici-stene	Spící štěně	animals
+192	medvidek	S medvídkem	feelings
+193	promoce	Promoce	school
+194	kocka-v-krabici	Kočka v krabici	animals
+195	doktor-pro-rostliny	Doktor pro rostliny	school
+196	kouzelne-zrcadlo	Kouzelné zrcadlo	fantasy
+197			
+198	vahy	Váhy	school
+199	napad	Nápad	feelings
+200	trezor	Trezor	fantasy
+201			
+202	kouzelny-kotlik	Kouzelný kotlík	fantasy
+203	ocenena-kresba	Oceněná kresba	school
+204	zivy-plot	Živý plot	fantasy
+205	brusleni	Bruslení	everyday
+206	stin	Stín	feelings
+207	skok-pres-potok	Skok přes potok	adventure
+208	duha	Duha	nature
+209	balonky	Kluk s balónky	feelings
+210			
+211			
