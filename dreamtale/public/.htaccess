@@ -1,0 +1,19 @@
+# DREAMTALE – statická hra, žádné PHP.
+
+# Service worker se nesmí cachovat, jinak se aktualizace hry nedostane k hráčům.
+<Files "sw.js">
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+</Files>
+
+# Obrázky karet a build assety se nemění – ať je prohlížeč drží dlouho.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType application/manifest+json .webmanifest
+</IfModule>

@@ -19,6 +19,7 @@ notebooku i televizi. Po prvním načtení běží offline.
 - [Architektura](#architektura)
 - [Herní stav](#herní-stav)
 - [Jak přidat nový obrázek](#jak-přidat-nový-obrázek)
+- [Nasazení na vlastní hosting](#nasazení-na-vlastní-hosting)
 - [Jak změnit design](#jak-změnit-design)
 - [Jak funguje randomizace](#jak-funguje-randomizace)
 - [Jak funguje PWA a offline režim](#jak-funguje-pwa-a-offline-režim)
@@ -182,6 +183,23 @@ export const IMAGE_EXTENSION = 'webp';
 ```
 
 Game engine se nemění.
+
+## Nasazení na vlastní hosting
+
+Hra je statický web – žádné Node ani PHP na serveru, stačí soubory nahrát.
+
+```bash
+# do podadresáře, např. https://example.cz/dreamtale/
+STATIC_EXPORT=1 NEXT_PUBLIC_BASE_PATH=/dreamtale npm run build
+
+# do kořene domény nebo na subdoménu
+STATIC_EXPORT=1 npm run build
+```
+
+Obsah složky `out/` se nahraje na server (FTP, rsync, cokoli). `NEXT_PUBLIC_BASE_PATH`
+musí přesně odpovídat cestě, na které web běží – propíše se do adres karet,
+service workeru i manifestu. Přiložený `.htaccess` na Apachi vypne cachování
+`sw.js` a zapne dlouhou cache pro karty.
 
 ## Jak změnit design
 
