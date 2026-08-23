@@ -22,7 +22,6 @@ export type Player = {
 
 export type GameSettings = {
   imageCount: number;
-  packId: string;
   scoring: ScoringMode;
   recallMode: RecallMode;
   /** Volitelný limit na kartu ve story mode (sekundy). 0 = bez limitu. */

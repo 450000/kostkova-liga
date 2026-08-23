@@ -3,6 +3,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { GameImage } from '@/types/images';
+import type { Player } from '@/types/game';
+import { playerOnTurn } from '@/lib/game/engine';
 import type { FullscreenControls } from '@/hooks/useFullscreen';
 import { useKeyboard } from '@/hooks/useKeyboard';
 import { useSwipe } from '@/hooks/useSwipe';
@@ -10,9 +12,11 @@ import { GameCard } from '@/components/game/GameCard';
 import { ProgressIndicator } from '@/components/game/ProgressIndicator';
 import { FullscreenButton } from '@/components/game/FullscreenButton';
 import { ExitGameButton } from '@/components/game/ExitGameButton';
+import { TurnBadge } from '@/components/game/TurnBadge';
 
 type StoryModeProps = {
   images: GameImage[];
+  players: Player[];
   index: number;
   timeLimit: number;
   onNext: () => void;
@@ -23,6 +27,7 @@ type StoryModeProps = {
 
 export function StoryMode({
   images,
+  players,
   index,
   timeLimit,
   onNext,
@@ -31,6 +36,7 @@ export function StoryMode({
   fullscreen,
 }: StoryModeProps) {
   const [direction, setDirection] = useState(1);
+  const turnPlayer = playerOnTurn(players, index);
   // Volitelný časový limit na kartu; 0 = bez limitu.
   const [remaining, setRemaining] = useState(timeLimit);
   const image = images[index];
@@ -98,6 +104,7 @@ export function StoryMode({
       </div>
 
       <footer className="flex h-16 items-center justify-center gap-3 px-6 pb-[env(safe-area-inset-bottom)]">
+        {turnPlayer && <TurnBadge player={turnPlayer} label="Vypráví" />}
         {timeLimit > 0 && (
           <motion.span
             key={remaining}
@@ -108,9 +115,11 @@ export function StoryMode({
             {remaining}
           </motion.span>
         )}
-        <span className="text-xs tracking-[0.28em] text-muted/40 uppercase">
-          {index === 0 ? 'Klepnutím dál' : ''}
-        </span>
+        {!turnPlayer && (
+          <span className="text-xs tracking-[0.28em] text-muted/40 uppercase">
+            {index === 0 ? 'Klepnutím dál' : ''}
+          </span>
+        )}
       </footer>
     </div>
   );

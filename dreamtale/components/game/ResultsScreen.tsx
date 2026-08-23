@@ -13,6 +13,7 @@ type ResultsScreenProps = {
   onReview: () => void;
   onPlayAgain: () => void;
   onNewGame: () => void;
+  onHome: () => void;
   onFinish: (sound: SoundName) => void;
 };
 
@@ -21,6 +22,7 @@ export function ResultsScreen({
   onReview,
   onPlayAgain,
   onNewGame,
+  onHome,
   onFinish,
 }: ResultsScreenProps) {
   const result = useMemo(() => buildResult(state), [state]);
@@ -138,6 +140,9 @@ export function ResultsScreen({
           </Button>
           <Button variant="ghost" full onClick={onNewGame}>
             Nová hra
+          </Button>
+          <Button variant="ghost" full onClick={onHome}>
+            Zpět na úvod
           </Button>
         </motion.div>
 

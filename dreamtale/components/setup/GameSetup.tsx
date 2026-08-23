@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { useState, type ReactNode } from 'react';
 import type { GameSettings, Player, RecallMode, ScoringMode } from '@/types/game';
 import { GAME_LIMITS, IMAGE_COUNT_PRESETS } from '@/lib/config';
-import { IMAGE_PACKS } from '@/data/packs';
 import { effectiveImageCount } from '@/lib/game/engine';
 import { Button } from '@/components/ui/Button';
 import { OptionCard } from '@/components/ui/OptionCard';
@@ -15,7 +14,7 @@ import { PlayerSetup } from '@/components/setup/PlayerSetup';
 type GameSetupProps = {
   players: Player[];
   settings: GameSettings;
-  packCapacity: number;
+  cardCount: number;
   fullscreenSupported: boolean;
   onPlayersChange: (players: Player[]) => void;
   onSettingsChange: (settings: Partial<GameSettings>) => void;
@@ -43,7 +42,7 @@ const TIME_OPTIONS: ReadonlyArray<{ value: number; label: string }> = [
 export function GameSetup({
   players,
   settings,
-  packCapacity,
+  cardCount,
   fullscreenSupported,
   onPlayersChange,
   onSettingsChange,
@@ -54,11 +53,11 @@ export function GameSetup({
     !IMAGE_COUNT_PRESETS.some((preset) => preset.count === settings.imageCount),
   );
 
-  const maxImages = Math.min(GAME_LIMITS.maxImages, packCapacity);
-  const imageCount = effectiveImageCount(settings.imageCount, packCapacity);
+  const maxImages = Math.min(GAME_LIMITS.maxImages, cardCount);
+  const imageCount = effectiveImageCount(settings.imageCount, cardCount);
 
   const setImageCount = (count: number) => {
-    onSettingsChange({ imageCount: effectiveImageCount(count, packCapacity) });
+    onSettingsChange({ imageCount: effectiveImageCount(count, cardCount) });
   };
 
   return (
@@ -81,7 +80,10 @@ export function GameSetup({
             <PlayerSetup players={players} onChange={onPlayersChange} />
           </Section>
 
-          <Section title="Kolik obrázků" step={2}>
+          <Section title="Kolik karet má sen" step={2}>
+            <p className="-mt-2 mb-4 text-sm text-muted">
+              Karty se losují ze všech {cardCount} ilustrací dohromady.
+            </p>
             <div className="grid grid-cols-2 gap-3">
               {IMAGE_COUNT_PRESETS.map((preset) => (
                 <OptionCard
@@ -122,22 +124,7 @@ export function GameSetup({
             )}
           </Section>
 
-          <Section title="Balíček" step={3}>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {IMAGE_PACKS.map((pack) => (
-                <OptionCard
-                  key={pack.id}
-                  title={pack.name}
-                  subtitle={pack.description}
-                  hint={`${pack.images.length} obrázků`}
-                  selected={settings.packId === pack.id}
-                  onSelect={() => onSettingsChange({ packId: pack.id })}
-                />
-              ))}
-            </div>
-          </Section>
-
-          <Section title="Jemné doladění" step={4}>
+          <Section title="Jemné doladění" step={3}>
             <div className="flex flex-col gap-5">
               <Field label="Bodování" hint="Výchozí je hra bez bodů – jen pro radost.">
                 <Segmented

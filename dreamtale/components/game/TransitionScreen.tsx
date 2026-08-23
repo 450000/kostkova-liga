@@ -9,9 +9,12 @@ import { ExitGameButton } from '@/components/game/ExitGameButton';
 
 export function TransitionScreen({
   onContinue,
+  onFinish,
   onExit,
 }: {
   onContinue: () => void;
+  /** Skončit rovnou – ne každá parta chce hádat karty. */
+  onFinish: () => void;
   onExit: () => void;
 }) {
   useKeyboard(useMemo(() => ({ Enter: onContinue, ' ': onContinue, Escape: onExit }), [onContinue, onExit]));
@@ -59,17 +62,20 @@ export function TransitionScreen({
           transition={{ delay: 0.35, duration: 0.7 }}
           className="mt-4 max-w-xs text-balance text-muted"
         >
-          Pamatujete si celý sen?
+          Můžete si ho zkusit vybavit – nebo to nechat být a vrátit se na úvod.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.5 }}
-          className="mt-12 w-full max-w-xs"
+          className="mt-12 flex w-full max-w-xs flex-col gap-3"
         >
           <Button size="lg" full onClick={onContinue}>
             Vybavit sen
+          </Button>
+          <Button variant="ghost" full onClick={onFinish}>
+            Skončit a zpět na úvod
           </Button>
         </motion.div>
       </div>

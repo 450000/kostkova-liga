@@ -4,7 +4,6 @@ import { nextPlayerIndex } from './scoring';
 
 export const DEFAULT_SETTINGS: GameSettings = {
   imageCount: 20,
-  packId: 'classic',
   scoring: 'off',
   recallMode: 'guided',
   timeLimit: 0,
@@ -93,6 +92,15 @@ function advanceRecall(state: GameState): GameState {
     recallRevealed: false,
     currentPlayerIndex: nextPlayerIndex(state.currentPlayerIndex, state.players.length),
   };
+}
+
+/**
+ * Kdo je na tahu u N-té karty. Hráči se střídají dokola.
+ * Při jednom hráči nemá smysl jméno ukazovat – vrací null.
+ */
+export function playerOnTurn(players: readonly Player[], index: number): Player | null {
+  if (players.length < 2) return null;
+  return players[((index % players.length) + players.length) % players.length] ?? null;
 }
 
 export function gameReducer(state: GameState, action: GameAction): GameState {

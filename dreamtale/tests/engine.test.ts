@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { GAME_LIMITS } from '@/lib/config';
 import {
   DEFAULT_SETTINGS,
   clampImageCount,
@@ -8,6 +9,7 @@ import {
   gameReducer,
   isGameActive,
   isResumable,
+  playerOnTurn,
 } from '@/lib/game/engine';
 import type { GameImage } from '@/types/images';
 import type { GameState } from '@/types/game';
@@ -45,7 +47,7 @@ describe('vytvoření hry', () => {
 
   it('drží počet obrázků v povolených mezích', () => {
     expect(clampImageCount(3)).toBe(5);
-    expect(clampImageCount(999)).toBe(60);
+    expect(clampImageCount(999)).toBe(GAME_LIMITS.maxImages);
     expect(clampImageCount(24)).toBe(24);
   });
 });
@@ -146,5 +148,20 @@ describe('nová hra a reset', () => {
 
     state = gameReducer(state, { type: 'CLOSE_REVIEW' });
     expect(state.phase).toBe('RESULTS');
+  });
+});
+
+describe('kdo je na tahu', () => {
+  const players = createPlayers(['Mirek', 'Lenka', 'Anička']);
+
+  it('střídá hráče dokola podle pořadí karty', () => {
+    expect(playerOnTurn(players, 0)?.name).toBe('Mirek');
+    expect(playerOnTurn(players, 1)?.name).toBe('Lenka');
+    expect(playerOnTurn(players, 2)?.name).toBe('Anička');
+    expect(playerOnTurn(players, 3)?.name).toBe('Mirek');
+  });
+
+  it('u jednoho hráče se jméno neukazuje', () => {
+    expect(playerOnTurn(createPlayers(['Sám']), 0)).toBeNull();
   });
 });

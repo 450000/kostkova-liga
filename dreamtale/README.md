@@ -19,7 +19,6 @@ notebooku i televizi. Po prvním načtení běží offline.
 - [Architektura](#architektura)
 - [Herní stav](#herní-stav)
 - [Jak přidat nový obrázek](#jak-přidat-nový-obrázek)
-- [Jak přidat nový balíček](#jak-přidat-nový-balíček)
 - [Jak změnit design](#jak-změnit-design)
 - [Jak funguje randomizace](#jak-funguje-randomizace)
 - [Jak funguje PWA a offline režim](#jak-funguje-pwa-a-offline-režim)
@@ -56,8 +55,8 @@ Aplikace poběží na <http://localhost:3000>.
 
 1. **Domovská obrazovka** – noční obloha, jemné animace, nápověda a nastavení zvuku.
 2. **Nastavení hry** – 1–12 hráčů s vlastními jmény, počet obrázků (5–60, předvolby
-   10 / 20 / 30 nebo vlastní), výběr z šesti balíčků, bodování, režim vybavování, časový limit.
-   Menší balíček automaticky zkrátí požadovaný počet obrázků.
+   10 / 20 / 30 / 50 / 75 / 100 / 150 / 185 nebo vlastní), bodování, režim vybavování,
+   časový limit. Karty se vždy losují ze všech ilustrací – hra nemá tematické balíčky.
 3. **Příprava snu** – výběr obrázků, preload všech assetů, teprve pak start hry.
 4. **Story mode** – jedna velká karta, decentní počítadlo, tap / klik / mezerník /
    šipka vpřed, swipe doleva dál a doprava zpět.
@@ -96,7 +95,6 @@ lib/
 data/
   cards/                metadata karet (manifest.ts se generuje)
   catalog.ts            katalog karet
-  packs.ts              tematické balíčky
 public/cards/           herní karty ve WebP + index.json pro service worker
 public/cards-src/       dodané originály v plném rozlišení
 scripts/                generate-images.ts, build-single-file.ts
@@ -123,7 +121,7 @@ type GameState = {
   phase: GamePhase              // HOME | SETUP | LOADING_IMAGES | STORY_MODE
                                 // | TRANSITION | RECALL_MODE | RESULTS | REVIEW
   players: Player[]
-  settings: GameSettings        // imageCount, packId, scoring, recallMode,
+  settings: GameSettings        // imageCount, scoring, recallMode,
                                 // timeLimit, soundEnabled
   images: GameImage[]
   currentImageIndex: number     // story mode
@@ -168,8 +166,8 @@ než se karta načte. Názvy karet se hráčům nikdy nezobrazují, slouží jen
 alt text.
 
 **Přidání karty:** nahrát PNG do `public/cards-src/`, dopsat řádek do
-`scripts/cards-map.tsv` a spustit `npm run images:build`. Katalog i balíčky se
-doplní samy – kategorie určuje, do kterých balíčků karta spadne.
+`scripts/cards-map.tsv` a spustit `npm run images:build`. Katalog se doplní sám;
+kategorie slouží jen k vyvážené randomizaci, hráči ji nikde nevidí.
 
 **Rozsah:** 211 dodaných ilustrací, z toho 26 vyřazených duplicitních motivů,
 ve hře **185 karet**.
@@ -184,25 +182,6 @@ export const IMAGE_EXTENSION = 'webp';
 ```
 
 Game engine se nemění.
-
-## Jak přidat nový balíček
-
-`data/packs.ts`:
-
-```ts
-{
-  id: 'winter',
-  name: 'Zima',
-  description: 'Sníh, svíčky a teplý čaj.',
-  coverImage: '/cards/prvni-snih.webp',
-  images: imagesByCategories(['nature', 'family']),   // nebo vlastní výběr karet
-}
-```
-
-Balíček se hned objeví v nastavení hry. Počet obrázků se automaticky přizpůsobí
-kapacitě balíčku.
-
----
 
 ## Jak změnit design
 

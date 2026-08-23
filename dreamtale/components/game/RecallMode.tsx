@@ -10,6 +10,7 @@ import { GameCard } from '@/components/game/GameCard';
 import { ProgressIndicator } from '@/components/game/ProgressIndicator';
 import { FullscreenButton } from '@/components/game/FullscreenButton';
 import { ExitGameButton } from '@/components/game/ExitGameButton';
+import { TurnBadge } from '@/components/game/TurnBadge';
 import { Button } from '@/components/ui/Button';
 
 type RecallModeProps = {
@@ -71,15 +72,10 @@ export function RecallMode({ state, onReveal, onScore, onNext, onExit, fullscree
           </motion.h2>
         </AnimatePresence>
 
-        {scoringPlayers && activePlayer && (
-          <motion.p
-            key={activePlayer.id + recallIndex}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mt-2 text-sm text-muted"
-          >
-            Na řadě: <span className="font-semibold text-secondary">{activePlayer.name}</span>
-          </motion.p>
+        {activePlayer && players.length > 1 && (
+          <div key={activePlayer.id + recallIndex} className="mt-3 flex justify-center">
+            <TurnBadge player={activePlayer} label="Hádá" />
+          </div>
         )}
       </div>
 

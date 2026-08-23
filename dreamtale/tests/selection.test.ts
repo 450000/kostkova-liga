@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 import { pickBalancedImages } from '@/lib/game/selection';
 import { createRng, createSeed, hashSeed, normalizeSeed, shuffle } from '@/lib/game/rng';
 import { IMAGE_CATALOG } from '@/data/catalog';
-import { IMAGE_PACKS } from '@/data/packs';
 import { GAME_LIMITS, IMAGE_COUNT_PRESETS } from '@/lib/config';
 import { effectiveImageCount } from '@/lib/game/engine';
 import { LocalImageProvider } from '@/lib/images/localProvider';
@@ -18,11 +17,10 @@ describe('katalog obrázků', () => {
     }
   });
 
-  it('každý balíček zvládne i nejdelší předvolbu', () => {
+  it('katalog pokryje i nejdelší předvolbu', () => {
     const longestPreset = Math.max(...IMAGE_COUNT_PRESETS.map((preset) => preset.count));
-    for (const pack of IMAGE_PACKS) {
-      expect(pack.images.length).toBeGreaterThanOrEqual(longestPreset);
-    }
+    expect(IMAGE_CATALOG.length).toBeGreaterThanOrEqual(longestPreset);
+    expect(longestPreset).toBeLessThanOrEqual(GAME_LIMITS.maxImages);
   });
 
   it('menší balíček zkrátí požadovaný počet obrázků', () => {
@@ -79,11 +77,11 @@ describe('seed', () => {
 });
 
 describe('LocalImageProvider', () => {
-  it('dodá požadovaný počet obrázků z balíčku', async () => {
+  it('dodá požadovaný počet obrázků z celého katalogu', async () => {
     const provider = new LocalImageProvider();
-    const images = await provider.getImages({ count: 12, packId: 'creatures', seed: 'S1' });
+    const images = await provider.getImages({ count: 12, seed: 'S1' });
     expect(images).toHaveLength(12);
     expect(new Set(images.map((image) => image.id)).size).toBe(12);
-    expect(await provider.capacity('creatures')).toBeGreaterThan(12);
+    expect(await provider.capacity()).toBe(IMAGE_CATALOG.length);
   });
 });

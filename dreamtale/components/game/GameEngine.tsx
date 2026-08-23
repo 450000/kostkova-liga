@@ -1,7 +1,7 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { useCallback, useEffect, useMemo, useReducer } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import type { GameSettings, GameState, Player } from '@/types/game';
 import {
   createInitialState,
@@ -20,7 +20,7 @@ import {
 } from '@/lib/game/storage';
 import { imageProvider } from '@/lib/images';
 import { preloadImages } from '@/lib/images/preload';
-import { getPack } from '@/data/packs';
+import { IMAGE_CATALOG } from '@/data/catalog';
 import { useExitGuard } from '@/hooks/useExitGuard';
 import { useFullscreen } from '@/hooks/useFullscreen';
 import { useSound } from '@/hooks/useSound';
@@ -119,7 +119,7 @@ export function GameEngine() {
 
   // --- Výběr a preload obrázků -----------------------------------------
   const { phase, seed } = state;
-  const { imageCount, packId } = state.settings;
+  const { imageCount } = state.settings;
 
   useEffect(() => {
     if (phase !== 'LOADING_IMAGES') return;
@@ -130,11 +130,10 @@ export function GameEngine() {
     const run = async () => {
       uiDispatch({ type: 'LOAD_STARTED' });
       try {
-        const capacity = await imageProvider.capacity(packId);
+        const capacity = await imageProvider.capacity();
         const count = effectiveImageCount(imageCount, capacity);
         const images = await imageProvider.getImages({
           count,
-          packId,
           seed,
           signal: controller.signal,
         });
@@ -159,7 +158,7 @@ export function GameEngine() {
       cancelled = true;
       controller.abort();
     };
-  }, [phase, seed, imageCount, packId]);
+  }, [phase, seed, imageCount]);
 
   // --- Ochrana rozehrané hry -------------------------------------------
   const requestExit = useCallback(() => uiDispatch({ type: 'OPEN_EXIT' }), []);
@@ -217,6 +216,13 @@ export function GameEngine() {
   const nextRecall = useCallback(() => dispatch({ type: 'NEXT_RECALL' }), []);
   const openSetup = useCallback(() => dispatch({ type: 'OPEN_SETUP' }), []);
   const goHome = useCallback(() => dispatch({ type: 'GO_HOME' }), []);
+
+  // Konec snu bez ptaní: příběh už doběhl, takže se nepotvrzuje odchod.
+  const endDream = useCallback(() => {
+    clearSavedGame();
+    void fullscreen.exit();
+    dispatch({ type: 'GO_HOME' });
+  }, [fullscreen]);
   const openReview = useCallback(() => dispatch({ type: 'OPEN_REVIEW' }), []);
   const closeReview = useCallback(() => dispatch({ type: 'CLOSE_REVIEW' }), []);
   const reviewNext = useCallback(() => dispatch({ type: 'REVIEW_NEXT' }), []);
@@ -241,7 +247,7 @@ export function GameEngine() {
     clearSavedGame();
   }, []);
 
-  const packCapacity = useMemo(() => getPack(packId).images.length, [packId]);
+  const cardCount = IMAGE_CATALOG.length;
 
   const screen = () => {
     switch (state.phase) {
@@ -259,7 +265,7 @@ export function GameEngine() {
           <GameSetup
             players={state.players}
             settings={state.settings}
-            packCapacity={packCapacity}
+            cardCount={cardCount}
             fullscreenSupported={fullscreen.isSupported}
             onPlayersChange={setPlayers}
             onSettingsChange={updateSettings}
@@ -282,6 +288,7 @@ export function GameEngine() {
         return (
           <StoryMode
             images={state.images}
+            players={state.players}
             index={state.currentImageIndex}
             timeLimit={state.settings.timeLimit}
             onNext={nextImage}
@@ -292,7 +299,9 @@ export function GameEngine() {
         );
 
       case 'TRANSITION':
-        return <TransitionScreen onContinue={startRecall} onExit={requestExit} />;
+        return (
+          <TransitionScreen onContinue={startRecall} onFinish={endDream} onExit={requestExit} />
+        );
 
       case 'RECALL_MODE':
         return (
@@ -313,6 +322,7 @@ export function GameEngine() {
             onReview={openReview}
             onPlayAgain={playAgain}
             onNewGame={openSetup}
+            onHome={endDream}
             onFinish={play}
           />
         );
