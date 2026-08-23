@@ -46,7 +46,7 @@ Aplikace poběží na <http://localhost:3000>.
 | `npm run lint` | ESLint |
 | `npm run typecheck` | kontrola typů (`tsc --noEmit`) |
 | `npm test` | unit testy herního enginu (Vitest) |
-| `npm run images:build` | převede originály z `public/cards-src` na herní karty |
+| `npm run images:build` | převede originály z `cards-src` na herní karty |
 | `npm run build:single` | složí celou hru do jednoho souboru `dist/dreamtale.html` |
 
 ---
@@ -96,7 +96,7 @@ data/
   cards/                metadata karet (manifest.ts se generuje)
   catalog.ts            katalog karet
 public/cards/           herní karty ve WebP + index.json pro service worker
-public/cards-src/       dodané originály v plném rozlišení
+cards-src/              dodané originály v plném rozlišení (mimo public – nedeployují se)
 scripts/                generate-images.ts, build-single-file.ts
 tests/                  unit testy enginu
 types/                  game.ts, images.ts
@@ -148,13 +148,13 @@ nespustí bez obrázků.
 
 Karty jsou malované ilustrace v poměru **2 : 3** – jedna scéna na kartu, na spad,
 bez textu. Originály v plném rozlišení (1024 × 1536 PNG) leží v
-`public/cards-src/` pod pořadovými čísly, jak přišly z generátoru.
+`cards-src/` pod pořadovými čísly, jak přišly z generátoru.
 
 Převod na herní assety dělá `npm run images:build` (Python + Pillow):
 
 | Vstup / výstup | Co to je |
 | --- | --- |
-| `public/cards-src/CDO_###.png` | dodané originály, 1024 × 1536 |
+| `cards-src/CDO_###.png` | dodané originály, 1024 × 1536 |
 | `scripts/cards-map.tsv` | číslo → `id`, název, kategorie; prázdné `id` = vyřazený duplicitní motiv |
 | `public/cards/<id>.webp` | 720 × 1080, to co hraje web |
 | `.cards-small/<id>.webp` | 512 × 768, jen pro jednosouborovou verzi |
@@ -165,7 +165,7 @@ Barva (`tint`) se z každé ilustrace dopočítá jako průměrný odstín a dr�
 než se karta načte. Názvy karet se hráčům nikdy nezobrazují, slouží jen jako
 alt text.
 
-**Přidání karty:** nahrát PNG do `public/cards-src/`, dopsat řádek do
+**Přidání karty:** nahrát PNG do `cards-src/`, dopsat řádek do
 `scripts/cards-map.tsv` a spustit `npm run images:build`. Katalog se doplní sám;
 kategorie slouží jen k vyvážené randomizaci, hráči ji nikde nevidí.
 

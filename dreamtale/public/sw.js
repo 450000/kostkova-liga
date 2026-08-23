@@ -1,6 +1,9 @@
 /* DREAMTALE service worker – lehké offline cachování bez build pluginů. */
-const CACHE = 'dreamtale-v2';
-const SHELL = ['/', '/manifest.webmanifest', '/icons/icon.svg'];
+const CACHE = 'dreamtale-v3';
+// Hra může běžet i v podadresáři (GitHub Pages), proto se vše počítá od scope.
+const ROOT = new URL('./', self.location).pathname;
+const asset = (path) => ROOT + path.replace(/^\//, '');
+const SHELL = [ROOT, asset('manifest.webmanifest'), asset('icons/icon.svg')];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -8,9 +11,9 @@ self.addEventListener('install', (event) => {
       const cache = await caches.open(CACHE);
       await cache.addAll(SHELL).catch(() => undefined);
       try {
-        const response = await fetch('/cards/index.json');
+        const response = await fetch(asset('cards/index.json'));
         const images = await response.json();
-        await cache.addAll(images);
+        await cache.addAll(images.map(asset));
       } catch {
         /* obrázky se doplní za běhu */
       }
@@ -43,10 +46,10 @@ self.addEventListener('fetch', (event) => {
         try {
           const fresh = await fetch(request);
           const cache = await caches.open(CACHE);
-          cache.put('/', fresh.clone());
+          cache.put(ROOT, fresh.clone());
           return fresh;
         } catch {
-          const cached = await caches.match('/');
+          const cached = await caches.match(ROOT);
           return cached ?? Response.error();
         }
       })(),

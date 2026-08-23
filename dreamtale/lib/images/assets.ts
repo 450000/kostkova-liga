@@ -12,7 +12,10 @@ declare global {
   }
 }
 
+/** Předpona, když hra neběží v kořeni domény (např. GitHub Pages). */
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 export function resolveAsset(path: string): string {
-  if (typeof window === 'undefined') return path;
-  return window.__DREAMTALE_ASSETS__?.[path] ?? path;
+  const inlined = typeof window === 'undefined' ? undefined : window.__DREAMTALE_ASSETS__?.[path];
+  return inlined ?? `${BASE_PATH}${path}`;
 }

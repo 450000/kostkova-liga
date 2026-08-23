@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Převede dodané ilustrace z public/cards-src na herní assety.
+"""Převede dodané ilustrace z cards-src na herní assety.
 
-Vstup:  public/cards-src/CDO_###.png  (1024 × 1536)
+Vstup:  cards-src/CDO_###.png  (1024 × 1536)
 Výstup: public/cards/<id>.webp        720 × 1080  – co hraje web
         .cards-small/<id>.webp        512 × 768   – pro jednosouborovou verzi
         public/cards/index.json       seznam pro service worker
@@ -17,7 +17,7 @@ from PIL import Image
 import json
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / 'public' / 'cards-src'
+SRC = ROOT / 'cards-src'
 OUT = ROOT / 'public' / 'cards'
 SMALL = ROOT / '.cards-small'
 MAP = ROOT / 'scripts' / 'cards-map.tsv'
